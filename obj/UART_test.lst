@@ -1,0 +1,2860 @@
+
+UART_test.elf:     file format elf32-littleriscv
+UART_test.elf
+architecture: riscv:rv32, flags 0x00000112:
+EXEC_P, HAS_SYMS, D_PAGED
+start address 0x00000000
+
+Program Header:
+    LOAD off    0x00001000 vaddr 0x00000000 paddr 0x00000000 align 2**12
+         filesz 0x00000004 memsz 0x00000004 flags r-x
+    LOAD off    0x00002000 vaddr 0x20000000 paddr 0x00000004 align 2**12
+         filesz 0x0000086c memsz 0x0000086c flags r-x
+    LOAD off    0x00002870 vaddr 0x00000870 paddr 0x00000870 align 2**12
+         filesz 0x000007a8 memsz 0x000007a8 flags rwx
+    LOAD off    0x0000386c vaddr 0x2000086c paddr 0x00001018 align 2**12
+         filesz 0x0000001c memsz 0x00000058 flags rw-
+    LOAD off    0x00004600 vaddr 0x20006600 paddr 0x20006600 align 2**12
+         filesz 0x00000000 memsz 0x00000200 flags rw-
+
+Sections:
+Idx Name            Size      VMA       LMA       File off  Algn  Flags
+  0 .init           00000004  00000000  00000000  00001000  2**1  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .highcodelalign 00000000  00000004  00000004  00003888  2**0  CONTENTS
+  2 .highcode       0000086c  20000000  00000004  00002000  2**1  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  3 .text           000007a4  00000870  00000870  00002870  2**2  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  4 .fini           00000000  00001014  00001014  00003888  2**0  CONTENTS, ALLOC, LOAD, CODE
+  5 .init_array     00000004  00001014  00001014  00003014  2**2  CONTENTS, ALLOC, LOAD, DATA
+  6 .dalign         00000000  2000086c  2000086c  00003888  2**0  CONTENTS
+  7 .dlalign        00000000  00001018  00001018  00003888  2**0  CONTENTS
+  8 .data           0000001c  2000086c  00001018  0000386c  2**2  CONTENTS, ALLOC, LOAD, DATA
+  9 .bss            0000003c  20000888  00001034  00003888  2**2  ALLOC
+ 10 .stack          00000200  20006600  20006600  00004600  2**0  ALLOC
+ 11 .debug_info     000052be  00000000  00000000  00003888  2**0  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_abbrev   00000ea6  00000000  00000000  00008b46  2**0  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_loc      00000fa2  00000000  00000000  000099ec  2**0  CONTENTS, READONLY, DEBUGGING
+ 14 .debug_aranges  000001d8  00000000  00000000  0000a990  2**3  CONTENTS, READONLY, DEBUGGING
+ 15 .debug_ranges   00000318  00000000  00000000  0000ab68  2**3  CONTENTS, READONLY, DEBUGGING
+ 16 .debug_line     00003422  00000000  00000000  0000ae80  2**0  CONTENTS, READONLY, DEBUGGING
+ 17 .debug_str      00001579  00000000  00000000  0000e2a2  2**0  CONTENTS, READONLY, DEBUGGING
+ 18 .comment        00000033  00000000  00000000  0000f81b  2**0  CONTENTS, READONLY
+ 19 .debug_frame    00000258  00000000  00000000  0000f850  2**2  CONTENTS, READONLY, DEBUGGING
+SYMBOL TABLE:
+00000000 l    d  .init	00000000 .init
+00000004 l    d  .highcodelalign	00000000 .highcodelalign
+20000000 l    d  .highcode	00000000 .highcode
+00000870 l    d  .text	00000000 .text
+00001014 l    d  .fini	00000000 .fini
+00001014 l    d  .init_array	00000000 .init_array
+2000086c l    d  .dalign	00000000 .dalign
+00001018 l    d  .dlalign	00000000 .dlalign
+2000086c l    d  .data	00000000 .data
+20000888 l    d  .bss	00000000 .bss
+20006600 l    d  .stack	00000000 .stack
+00000000 l    d  .debug_info	00000000 .debug_info
+00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
+00000000 l    d  .debug_loc	00000000 .debug_loc
+00000000 l    d  .debug_aranges	00000000 .debug_aranges
+00000000 l    d  .debug_ranges	00000000 .debug_ranges
+00000000 l    d  .debug_line	00000000 .debug_line
+00000000 l    d  .debug_str	00000000 .debug_str
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .debug_frame	00000000 .debug_frame
+00000000 l    df *ABS*	00000000 ./Startup/startup_CH592.o
+20000000 l       .highcode	00000000 _vector_base
+00000000 l    df *ABS*	00000000 Main.cpp
+00000d82 l     F .text	00000038 _GLOBAL__sub_I_UART1
+00000000 l    df *ABS*	00000000 CH59x_sys.c
+00000000 l    df *ABS*	00000000 ISP583.c
+20000456 l       .highcode	00000000 .loop18
+20000464 l       .highcode	00000000 .loop29
+20000472 l       .highcode	00000000 .loop40
+200006fe l       .highcode	00000000 .loop402
+00000000 l    df *ABS*	00000000 CH59x_gpio.c
+00000000 l    df *ABS*	00000000 CH59x_uart1.c
+200008a4 g     O .bss	00000020 UART1
+20000472 g     F .highcode	0000000e FLASH_ROM_OUT
+20001088 g       .data	00000000 __global_pointer$
+2000040e g     F .highcode	0000000e mDelayuS
+2000038e  w    F .highcode	00000080 HardFault_Handler
+20000090  w      .highcode	00000000 GPIOB_IRQHandler
+20000090  w      .highcode	00000000 GPIOA_IRQHandler
+00000992  w    F .text	00000038 UartMasterPort::setTriggerPoint(unsigned short)
+20000090  w      .highcode	00000000 SysTick_Handler
+20000090  w      .highcode	00000000 NMI_Handler
+20000132 g     F .highcode	00000044 UART1_IRQHandler
+20000888 g       .bss	00000000 _sbss
+00000200 g       *ABS*	00000000 __stack_size
+20000464 g     F .highcode	0000000e FLASH_ROM_IN
+20000090  w      .highcode	00000000 UART0_IRQHandler
+00000fc2 g     F .text	0000002a UART1_INTCfg
+00000004 g       .init	00000000 _einit
+000009ca  w    F .text	0000002e UartMasterPort::setTxDataState()
+20000090  w      .highcode	00000000 BB_IRQHandler
+20000500 g     F .highcode	0000036a FLASH_EEPROM_CMD
+20000090  w      .highcode	00000000 Break_Point_Handler
+00000e60 g     F .text	000000a6 GPIOB_ModeCfg
+00000922  w    F .text	00000046 UartMasterPort::setIdleState()
+00000fa8 g     F .text	0000001a UART1_ByteTrigCfg
+20000092 g     F .highcode	000000a0 TMR0_IRQHandler
+20000888 g     O .bss	00000001 command
+20000444 g     F .highcode	00000012 FLASH_ROM_BEG
+2000041c g     F .highcode	00000028 mDelaymS
+20000090  w      .highcode	00000000 Ecall_M_Mode_Handler
+20006600 g       .stack	00000000 _heap_end
+20000480 g     F .highcode	00000048 FLASH_ROM_ADDR
+00000a42  w    F .text	00000044 UartMasterPort::dataTransmit()
+00000ae6  w    F .text	0000013a UartMasterPort::interruptReceived()
+20000090  w      .highcode	00000000 RTC_IRQHandler
+200008c4 g       .bss	00000000 _ebss
+00000f76 g     F .text	00000032 UART1_DefInit
+200004c8 g     F .highcode	00000038 FLASH_ROM_WAIT
+20000090  w      .highcode	00000000 UART2_IRQHandler
+20000090  w      .highcode	00000000 PWMX_IRQHandler
+00000000 g       .init	00000000 _start
+20000090  w      .highcode	00000000 ADC_IRQHandler
+20000000 g       .highcode	00000000 _highcode_vma_start
+20000090  w      .highcode	00000000 TMR2_IRQHandler
+2000086c g       .data	00000000 _data_vma
+20000176 g     F .highcode	000001c0 SetSysClock
+20000090  w      .highcode	00000000 USB_IRQHandler
+20000090  w      .highcode	00000000 I2C_IRQHandler
+00000c20 g     F .text	00000162 main
+00000a18  w    F .text	0000002a UartMasterPort::commandTransmit()
+000009f8  w    F .text	00000020 UartMasterPort::setRxDataState()
+00000004 g       .highcodelalign	00000000 _highcode_lma
+20000090  w      .highcode	00000000 LLE_IRQHandler
+00000000 g       .init	00000000 _sinit
+20000090  w      .highcode	00000000 WDOG_BAT_IRQHandler
+20000090  w      .highcode	00000000 Ecall_U_Mode_Handler
+2000088c g     O .bss	00000018 RxBuff
+20000090  w      .highcode	00000000 TMR3_IRQHandler
+20006800 g       .stack	00000000 _eusrstack
+20000090  w      .highcode	00000000 SW_Handler
+00000dba g     F .text	000000a6 GPIOA_ModeCfg
+00000f06 g     F .text	00000040 GetSysClock
+20000888 g       .data	00000000 _edata
+20000090  w      .highcode	00000000 SPI0_IRQHandler
+200008c4 g       .bss	00000000 _end
+2000086c g       .highcode	00000000 _highcode_vma_end
+00001018 g       .dlalign	00000000 _data_lma
+00000968  w    F .text	0000002a UartMasterPort::setTxCommandState()
+2000086c g     O .data	00000018 TxBuff
+00000870  w      .text	00000000 handle_reset
+20000090  w      .highcode	00000000 UART3_IRQHandler
+20000456 g     F .highcode	0000000e FLASH_ROM_END
+00000a86  w    F .text	00000060 UartMasterPort::echoReceived()
+20000090  w      .highcode	00000000 TMR1_IRQHandler
+20000336 g     F .highcode	00000058 SYS_ResetExecute
+00000f46 g     F .text	00000030 UART1_BaudRateCfg
+
+
+
+Disassembly of section .init:
+
+00000000 <_sinit>:
+_start():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:17
+
+	.section	.init,"ax",@progbits
+	.global	_start
+	.align	1
+_start:
+	j	handle_reset
+   0:	0710006f          	j	870 <handle_reset>
+
+Disassembly of section .highcode:
+
+20000000 <_highcode_vma_start>:
+	...
+_vector_base():
+20000008:	0090                	addi	a2,sp,64
+2000000a:	2000                	fld	fs0,0(s0)
+2000000c:	038e                	slli	t2,t2,0x3
+2000000e:	2000                	fld	fs0,0(s0)
+20000010:	bda9                	j	1ffffe6a <_data_lma+0x1fffee52>
+20000012:	f5f9                	bnez	a1,1fffffe0 <_data_lma+0x1fffefc8>
+20000014:	0090                	addi	a2,sp,64
+20000016:	2000                	fld	fs0,0(s0)
+	...
+20000020:	0090                	addi	a2,sp,64
+20000022:	2000                	fld	fs0,0(s0)
+20000024:	0090                	addi	a2,sp,64
+20000026:	2000                	fld	fs0,0(s0)
+	...
+20000030:	0090                	addi	a2,sp,64
+20000032:	2000                	fld	fs0,0(s0)
+20000034:	0000                	unimp
+20000036:	0000                	unimp
+20000038:	0090                	addi	a2,sp,64
+2000003a:	2000                	fld	fs0,0(s0)
+2000003c:	0000                	unimp
+2000003e:	0000                	unimp
+20000040:	0092                	slli	ra,ra,0x4
+20000042:	2000                	fld	fs0,0(s0)
+20000044:	0090                	addi	a2,sp,64
+20000046:	2000                	fld	fs0,0(s0)
+20000048:	0090                	addi	a2,sp,64
+2000004a:	2000                	fld	fs0,0(s0)
+2000004c:	0090                	addi	a2,sp,64
+2000004e:	2000                	fld	fs0,0(s0)
+20000050:	0090                	addi	a2,sp,64
+20000052:	2000                	fld	fs0,0(s0)
+20000054:	0090                	addi	a2,sp,64
+20000056:	2000                	fld	fs0,0(s0)
+20000058:	0090                	addi	a2,sp,64
+2000005a:	2000                	fld	fs0,0(s0)
+2000005c:	0000                	unimp
+2000005e:	0000                	unimp
+20000060:	0090                	addi	a2,sp,64
+20000062:	2000                	fld	fs0,0(s0)
+20000064:	0090                	addi	a2,sp,64
+20000066:	2000                	fld	fs0,0(s0)
+20000068:	0090                	addi	a2,sp,64
+2000006a:	2000                	fld	fs0,0(s0)
+2000006c:	0132                	slli	sp,sp,0xc
+2000006e:	2000                	fld	fs0,0(s0)
+20000070:	0090                	addi	a2,sp,64
+20000072:	2000                	fld	fs0,0(s0)
+20000074:	0090                	addi	a2,sp,64
+20000076:	2000                	fld	fs0,0(s0)
+20000078:	0090                	addi	a2,sp,64
+2000007a:	2000                	fld	fs0,0(s0)
+2000007c:	0090                	addi	a2,sp,64
+2000007e:	2000                	fld	fs0,0(s0)
+20000080:	0090                	addi	a2,sp,64
+20000082:	2000                	fld	fs0,0(s0)
+20000084:	0090                	addi	a2,sp,64
+20000086:	2000                	fld	fs0,0(s0)
+20000088:	0090                	addi	a2,sp,64
+2000008a:	2000                	fld	fs0,0(s0)
+2000008c:	0090                	addi	a2,sp,64
+2000008e:	2000                	fld	fs0,0(s0)
+
+20000090 <ADC_IRQHandler>:
+GPIOB_IRQHandler():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:119
+TMR3_IRQHandler:
+UART2_IRQHandler:
+UART3_IRQHandler:
+WDOG_BAT_IRQHandler: 
+1:  
+	j 1b
+20000090:	a001                	j	20000090 <ADC_IRQHandler>
+
+20000092 <TMR0_IRQHandler>:
+TMR0_IRQHandler():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:76
+     *********************************************************************/
+    __INTERRUPT
+    __HIGH_CODE
+    void TMR0_IRQHandler(void) 
+    {
+        if (TMR0_GetITFlag(RB_TMR_IF_CYC_END)) 
+20000092:	40002737          	lui	a4,0x40002
+20000096:	00674783          	lbu	a5,6(a4) # 40002006 <_eusrstack+0x1fffb806>
+2000009a:	8b85                	andi	a5,a5,1
+2000009c:	cbc9                	beqz	a5,2000012e <TMR0_IRQHandler+0x9c>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:75
+    {
+2000009e:	1141                	addi	sp,sp,-16
+200000a0:	c622                	sw	s0,12(sp)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:78
+        {
+            TMR0_ClearITFlag(RB_TMR_IF_CYC_END); // Сброс флага прерывания
+200000a2:	4785                	li	a5,1
+200000a4:	00f70323          	sb	a5,6(a4)
+_ZN14UartMasterPort8sendDataEhPht():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:140
+        }
+    }
+// -------------------------------------------------------------------
+    void sendData(uint8_t command, uint8_t* buf, uint16_t length)
+    {
+        tx_command = command;
+200000a8:	478d                	li	a5,3
+200000aa:	82f18ba3          	sb	a5,-1993(gp) # 200008bf <UART1+0x1b>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:141
+        tx_length  = buf ? length : 0;
+200000ae:	478d                	li	a5,3
+200000b0:	82f19823          	sh	a5,-2000(gp) # 200008b8 <UART1+0x14>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:140
+        tx_command = command;
+200000b4:	81c18413          	addi	s0,gp,-2020 # 200008a4 <UART1>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:142
+        tx_buffer  = buf ? buf + length : nullptr;
+200000b8:	00000797          	auipc	a5,0x0
+200000bc:	7b778793          	addi	a5,a5,1975 # 2000086f <_highcode_vma_end+0x3>
+200000c0:	82f1a423          	sw	a5,-2008(gp) # 200008b0 <UART1+0xc>
+_ZN14UartMasterPort4pollEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:62
+        switch (state) {
+200000c4:	441c                	lw	a5,8(s0)
+200000c6:	470d                	li	a4,3
+200000c8:	02e78463          	beq	a5,a4,200000f0 <TMR0_IRQHandler+0x5e>
+200000cc:	4715                	li	a4,5
+200000ce:	02e78163          	beq	a5,a4,200000f0 <TMR0_IRQHandler+0x5e>
+200000d2:	eb99                	bnez	a5,200000e8 <TMR0_IRQHandler+0x56>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:64
+            setTxCommandState(); 
+200000d4:	8522                	mv	a0,s0
+200000d6:	e0001097          	auipc	ra,0xe0001
+200000da:	892080e7          	jalr	-1902(ra) # 968 <UartMasterPort::setTxCommandState()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:65
+            commandTransmit(); break;
+200000de:	8522                	mv	a0,s0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:77
+                commandTransmit();                
+200000e0:	e0001097          	auipc	ra,0xe0001
+200000e4:	938080e7          	jalr	-1736(ra) # a18 <UartMasterPort::commandTransmit()>
+TMR0_IRQHandler():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:84
+            // GPIOB_InverseBits(GPIO_Pin_14);
+            UART1.sendData(3, TxBuff, 3);
+            UART1.poll();  
+            // UART1.sendData(3, TxBuff, 3);
+        }
+    }
+200000e8:	4432                	lw	s0,12(sp)
+200000ea:	0141                	addi	sp,sp,16
+200000ec:	30200073          	mret
+_ZN14UartMasterPort4pollEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:72
+            if (!(R8_UART1_LSR & RB_LSR_DATA_RDY))
+200000f0:	400037b7          	lui	a5,0x40003
+200000f4:	4057c783          	lbu	a5,1029(a5) # 40003405 <_eusrstack+0x1fffcc05>
+200000f8:	8b85                	andi	a5,a5,1
+200000fa:	f7fd                	bnez	a5,200000e8 <TMR0_IRQHandler+0x56>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:74
+                connection = false; 
+200000fc:	82018ca3          	sb	zero,-1991(gp) # 200008c1 <UART1+0x1d>
+_ZN14UartMasterPort5resetEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:196
+        reset(); 
+    }
+
+    void reset()
+    {
+        tx_command = 0;
+20000100:	82018ba3          	sb	zero,-1993(gp) # 200008bf <UART1+0x1b>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:197
+        tx_length = 0; 
+20000104:	82019823          	sh	zero,-2000(gp) # 200008b8 <UART1+0x14>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:200
+        tx_buffer = nullptr; 
+        
+        rx_command = 0;
+20000108:	82018c23          	sb	zero,-1992(gp) # 200008c0 <UART1+0x1c>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:201
+        rx_length = 0;
+2000010c:	82019923          	sh	zero,-1998(gp) # 200008ba <UART1+0x16>
+_ZN14UartMasterPort4pollEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:76
+                setTxCommandState(); 
+20000110:	81c18513          	addi	a0,gp,-2020 # 200008a4 <UART1>
+_ZN14UartMasterPort5resetEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:198
+        tx_buffer = nullptr; 
+20000114:	8201a423          	sw	zero,-2008(gp) # 200008b0 <UART1+0xc>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:202
+        rx_buffer = nullptr; 
+20000118:	8201a623          	sw	zero,-2004(gp) # 200008b4 <UART1+0x10>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:204
+
+        echo_count = 0; 
+2000011c:	82019a23          	sh	zero,-1996(gp) # 200008bc <UART1+0x18>
+_ZN14UartMasterPort4pollEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:76
+                setTxCommandState(); 
+20000120:	e0001097          	auipc	ra,0xe0001
+20000124:	848080e7          	jalr	-1976(ra) # 968 <UartMasterPort::setTxCommandState()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:77
+                commandTransmit();                
+20000128:	81c18513          	addi	a0,gp,-2020 # 200008a4 <UART1>
+2000012c:	bf55                	j	200000e0 <TMR0_IRQHandler+0x4e>
+2000012e:	30200073          	mret
+
+20000132 <UART1_IRQHandler>:
+UART1_IRQHandler():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:93
+     *********************************************************************/
+    __INTERRUPT
+    __HIGH_CODE
+    void UART1_IRQHandler(void) 
+    {
+        uint8_t int_status = UART1_GetITFlag();
+20000132:	40003737          	lui	a4,0x40003
+20000136:	40474783          	lbu	a5,1028(a4) # 40003404 <_eusrstack+0x1fffcc04>
+2000013a:	4699                	li	a3,6
+2000013c:	8bbd                	andi	a5,a5,15
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:95
+
+        switch(int_status) 
+2000013e:	02d78863          	beq	a5,a3,2000016e <UART1_IRQHandler+0x3c>
+20000142:	4731                	li	a4,12
+20000144:	00e79b63          	bne	a5,a4,2000015a <UART1_IRQHandler+0x28>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:107
+                UART1.interruptReceived(); 
+                break;
+
+            case UART_II_RECV_TOUT: 
+                // Вычитываем остатки при таймауте
+                while(R8_UART1_LSR & RB_LSR_DATA_RDY) 
+20000148:	40003737          	lui	a4,0x40003
+2000014c:	40574783          	lbu	a5,1029(a4) # 40003405 <_eusrstack+0x1fffcc05>
+20000150:	8b85                	andi	a5,a5,1
+20000152:	c385                	beqz	a5,20000172 <UART1_IRQHandler+0x40>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:109
+                {
+                    UART1_RecvByte();
+20000154:	40874783          	lbu	a5,1032(a4)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:107
+                while(R8_UART1_LSR & RB_LSR_DATA_RDY) 
+20000158:	bfd5                	j	2000014c <UART1_IRQHandler+0x1a>
+2000015a:	4711                	li	a4,4
+2000015c:	00e79b63          	bne	a5,a4,20000172 <UART1_IRQHandler+0x40>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:102
+                UART1.interruptReceived(); 
+20000160:	81c18513          	addi	a0,gp,-2020 # 200008a4 <UART1>
+20000164:	e0001097          	auipc	ra,0xe0001
+20000168:	982080e7          	jalr	-1662(ra) # ae6 <UartMasterPort::interruptReceived()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:103
+                break;
+2000016c:	a019                	j	20000172 <UART1_IRQHandler+0x40>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:98
+                UART1_GetLinSTA(); 
+2000016e:	40574783          	lbu	a5,1029(a4)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:119
+                break;
+
+            default:
+                break;
+        }
+    }
+20000172:	30200073          	mret
+
+20000176 <SetSysClock>:
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:28
+ */
+__HIGH_CODE
+void SetSysClock(SYS_CLKTypeDef sc)
+{
+    uint8_t chip_type=0;
+    if(((*(uint32_t*)ROM_CFG_VERISON)&0xFF) == DEF_CHIP_ID_CH592A)
+20000176:	0007f7b7          	lui	a5,0x7f
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:26
+{
+2000017a:	1101                	addi	sp,sp,-32
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:28
+    if(((*(uint32_t*)ROM_CFG_VERISON)&0xFF) == DEF_CHIP_ID_CH592A)
+2000017c:	4b94                	lw	a3,16(a5)
+__risc_v_disable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:130
+ */
+__attribute__((always_inline)) RV_STATIC_INLINE uint32_t __risc_v_disable_irq(void)
+{
+  uint32_t result;
+
+  __asm volatile ("csrrc %0, 0x800, %1" : \
+2000017e:	08800713          	li	a4,136
+20000182:	800737f3          	csrrc	a5,0x800,a4
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:132
+          "=r"(result): "r"(0x88) : "memory");
+  return result & 0x88;
+20000186:	0887f793          	andi	a5,a5,136
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:32
+    {
+        chip_type = 1;
+    }
+    sys_safe_access_enable();
+2000018a:	c23e                	sw	a5,4(sp)
+2000018c:	0000100f          	fence.i
+20000190:	400017b7          	lui	a5,0x40001
+20000194:	05700813          	li	a6,87
+20000198:	05078023          	sb	a6,64(a5) # 40001040 <_eusrstack+0x1fffa840>
+2000019c:	fa800593          	li	a1,-88
+200001a0:	04b78023          	sb	a1,64(a5)
+200001a4:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:33
+    R8_PLL_CONFIG &= ~(1 << 5); //
+200001a8:	04b7c603          	lbu	a2,75(a5)
+200001ac:	0df67613          	andi	a2,a2,223
+200001b0:	04c785a3          	sb	a2,75(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:34
+    sys_safe_access_disable();
+200001b4:	04078023          	sb	zero,64(a5)
+200001b8:	4612                	lw	a2,4(sp)
+__risc_v_enable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:114
+  __asm volatile ("csrrs %0, 0x800, %1" : \
+200001ba:	80062673          	csrrs	a2,0x800,a2
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:34
+200001be:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:35
+    if(sc & 0x20)  // HSE div
+200001c2:	02057613          	andi	a2,a0,32
+200001c6:	ce55                	beqz	a2,20000282 <SetSysClock+0x10c>
+__risc_v_disable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:130
+  __asm volatile ("csrrc %0, 0x800, %1" : \
+200001c8:	800736f3          	csrrc	a3,0x800,a4
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:132
+  return result & 0x88;
+200001cc:	0886f693          	andi	a3,a3,136
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:37
+    {
+        sys_safe_access_enable();
+200001d0:	c436                	sw	a3,8(sp)
+200001d2:	0000100f          	fence.i
+200001d6:	05078023          	sb	a6,64(a5)
+200001da:	04b78023          	sb	a1,64(a5)
+200001de:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:38
+        R32_CLK_SYS_CFG = (0 << 6) | (sc & 0x1f) | RB_TX_32M_PWR_EN | RB_PLL_PWR_EN;
+200001e2:	001406b7          	lui	a3,0x140
+200001e6:	897d                	andi	a0,a0,31
+200001e8:	8d55                	or	a0,a0,a3
+200001ea:	c788                	sw	a0,8(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:39
+        __nop();
+200001ec:	0001                	nop
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:40
+        __nop();
+200001ee:	0001                	nop
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:41
+        __nop();
+200001f0:	0001                	nop
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:42
+        __nop();
+200001f2:	0001                	nop
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:43
+        sys_safe_access_disable();
+200001f4:	04078023          	sb	zero,64(a5)
+200001f8:	46a2                	lw	a3,8(sp)
+__risc_v_enable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:114
+  __asm volatile ("csrrs %0, 0x800, %1" : \
+200001fa:	8006a6f3          	csrrs	a3,0x800,a3
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:43
+200001fe:	0000100f          	fence.i
+__risc_v_disable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:130
+  __asm volatile ("csrrc %0, 0x800, %1" : \
+20000202:	80073773          	csrrc	a4,0x800,a4
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:132
+  return result & 0x88;
+20000206:	08877713          	andi	a4,a4,136
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:44
+        sys_safe_access_enable();
+2000020a:	c63a                	sw	a4,12(sp)
+2000020c:	0000100f          	fence.i
+20000210:	05078023          	sb	a6,64(a5)
+20000214:	04b78023          	sb	a1,64(a5)
+20000218:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:45
+        SAFEOPERATE;
+2000021c:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:46
+        R8_FLASH_CFG = 0X51;
+20000220:	40002737          	lui	a4,0x40002
+20000224:	05100693          	li	a3,81
+20000228:	80d703a3          	sb	a3,-2041(a4) # 40001807 <_eusrstack+0x1fffb007>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:47
+        sys_safe_access_disable();
+2000022c:	04078023          	sb	zero,64(a5)
+20000230:	47b2                	lw	a5,12(sp)
+__risc_v_enable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:114
+  __asm volatile ("csrrs %0, 0x800, %1" : \
+20000232:	8007a7f3          	csrrs	a5,0x800,a5
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:74
+    }
+    else
+    {
+        sys_safe_access_enable();
+        R32_CLK_SYS_CFG |= RB_CLK_SYS_MOD;
+        sys_safe_access_disable();
+20000236:	0000100f          	fence.i
+__risc_v_disable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:130
+  __asm volatile ("csrrc %0, 0x800, %1" : \
+2000023a:	08800793          	li	a5,136
+2000023e:	8007b7f3          	csrrc	a5,0x800,a5
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:132
+  return result & 0x88;
+20000242:	0887f793          	andi	a5,a5,136
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:77
+    }
+    //更改FLASH clk的驱动能力
+    sys_safe_access_enable();
+20000246:	ce3e                	sw	a5,28(sp)
+20000248:	0000100f          	fence.i
+2000024c:	400017b7          	lui	a5,0x40001
+20000250:	05700713          	li	a4,87
+20000254:	04e78023          	sb	a4,64(a5) # 40001040 <_eusrstack+0x1fffa840>
+20000258:	fa800713          	li	a4,-88
+2000025c:	04e78023          	sb	a4,64(a5)
+20000260:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:78
+    R8_PLL_CONFIG |= 1 << 7;
+20000264:	04b7c703          	lbu	a4,75(a5)
+20000268:	08076713          	ori	a4,a4,128
+2000026c:	04e785a3          	sb	a4,75(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:79
+    sys_safe_access_disable();
+20000270:	04078023          	sb	zero,64(a5)
+20000274:	47f2                	lw	a5,28(sp)
+__risc_v_enable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:114
+  __asm volatile ("csrrs %0, 0x800, %1" : \
+20000276:	8007a7f3          	csrrs	a5,0x800,a5
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:79
+2000027a:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:80
+}
+2000027e:	6105                	addi	sp,sp,32
+20000280:	8082                	ret
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:50
+    else if(sc & 0x40) // PLL div
+20000282:	04057613          	andi	a2,a0,64
+20000286:	c259                	beqz	a2,2000030c <SetSysClock+0x196>
+__risc_v_disable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:130
+  __asm volatile ("csrrc %0, 0x800, %1" : \
+20000288:	80073673          	csrrc	a2,0x800,a4
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:132
+  return result & 0x88;
+2000028c:	08867613          	andi	a2,a2,136
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:52
+        sys_safe_access_enable();
+20000290:	c832                	sw	a2,16(sp)
+20000292:	0000100f          	fence.i
+20000296:	05078023          	sb	a6,64(a5)
+2000029a:	04b78023          	sb	a1,64(a5)
+2000029e:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:53
+        R32_CLK_SYS_CFG = (1 << 6) | (sc & 0x1f) | RB_TX_32M_PWR_EN | RB_PLL_PWR_EN;
+200002a2:	00140637          	lui	a2,0x140
+200002a6:	04060613          	addi	a2,a2,64 # 140040 <_data_lma+0x13f028>
+200002aa:	897d                	andi	a0,a0,31
+200002ac:	8d51                	or	a0,a0,a2
+200002ae:	c788                	sw	a0,8(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:54
+        __nop();
+200002b0:	0001                	nop
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:55
+        __nop();
+200002b2:	0001                	nop
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:56
+        __nop();
+200002b4:	0001                	nop
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:57
+        __nop();
+200002b6:	0001                	nop
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:58
+        sys_safe_access_disable();
+200002b8:	04078023          	sb	zero,64(a5)
+200002bc:	4642                	lw	a2,16(sp)
+__risc_v_enable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:114
+  __asm volatile ("csrrs %0, 0x800, %1" : \
+200002be:	80062673          	csrrs	a2,0x800,a2
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:58
+200002c2:	0000100f          	fence.i
+__risc_v_disable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:130
+  __asm volatile ("csrrc %0, 0x800, %1" : \
+200002c6:	80073773          	csrrc	a4,0x800,a4
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:132
+  return result & 0x88;
+200002ca:	08877713          	andi	a4,a4,136
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:59
+        sys_safe_access_enable();
+200002ce:	ca3a                	sw	a4,20(sp)
+200002d0:	0000100f          	fence.i
+200002d4:	05078023          	sb	a6,64(a5)
+200002d8:	04b78023          	sb	a1,64(a5)
+200002dc:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:60
+        if(chip_type)
+200002e0:	47a5                	li	a5,9
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:28
+    if(((*(uint32_t*)ROM_CFG_VERISON)&0xFF) == DEF_CHIP_ID_CH592A)
+200002e2:	0ff6f693          	andi	a3,a3,255
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:60
+        if(chip_type)
+200002e6:	00f69e63          	bne	a3,a5,20000302 <SetSysClock+0x18c>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:62
+            R8_FLASH_CFG = 0X53;
+200002ea:	400027b7          	lui	a5,0x40002
+200002ee:	05300713          	li	a4,83
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:66
+            R8_FLASH_CFG = 0X52;
+200002f2:	80e783a3          	sb	a4,-2041(a5) # 40001807 <_eusrstack+0x1fffb007>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:68
+        sys_safe_access_disable();
+200002f6:	400017b7          	lui	a5,0x40001
+200002fa:	04078023          	sb	zero,64(a5) # 40001040 <_eusrstack+0x1fffa840>
+200002fe:	47d2                	lw	a5,20(sp)
+__risc_v_enable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:114
+  __asm volatile ("csrrs %0, 0x800, %1" : \
+20000300:	bf0d                	j	20000232 <SetSysClock+0xbc>
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:66
+            R8_FLASH_CFG = 0X52;
+20000302:	400027b7          	lui	a5,0x40002
+20000306:	05200713          	li	a4,82
+2000030a:	b7e5                	j	200002f2 <SetSysClock+0x17c>
+__risc_v_disable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:130
+  __asm volatile ("csrrc %0, 0x800, %1" : \
+2000030c:	80073773          	csrrc	a4,0x800,a4
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:132
+  return result & 0x88;
+20000310:	08877713          	andi	a4,a4,136
+SetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:72
+        sys_safe_access_enable();
+20000314:	cc3a                	sw	a4,24(sp)
+20000316:	0000100f          	fence.i
+2000031a:	05078023          	sb	a6,64(a5) # 40002040 <_eusrstack+0x1fffb840>
+2000031e:	04b78023          	sb	a1,64(a5)
+20000322:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:73
+        R32_CLK_SYS_CFG |= RB_CLK_SYS_MOD;
+20000326:	4798                	lw	a4,8(a5)
+20000328:	0c076713          	ori	a4,a4,192
+2000032c:	c798                	sw	a4,8(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:74
+        sys_safe_access_disable();
+2000032e:	04078023          	sb	zero,64(a5)
+20000332:	47e2                	lw	a5,24(sp)
+20000334:	bdfd                	j	20000232 <SetSysClock+0xbc>
+
+20000336 <SYS_ResetExecute>:
+SYS_ResetExecute():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:142
+ *
+ * @return  none
+ */
+__HIGH_CODE
+void SYS_ResetExecute(void)
+{
+20000336:	1101                	addi	sp,sp,-32
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:143
+    FLASH_ROM_SW_RESET();
+20000338:	4681                	li	a3,0
+2000033a:	4601                	li	a2,0
+2000033c:	4581                	li	a1,0
+2000033e:	4511                	li	a0,4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:142
+{
+20000340:	ce06                	sw	ra,28(sp)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:143
+    FLASH_ROM_SW_RESET();
+20000342:	2a7d                	jal	20000500 <FLASH_EEPROM_CMD>
+__risc_v_disable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:130
+  __asm volatile ("csrrc %0, 0x800, %1" : \
+20000344:	08800793          	li	a5,136
+20000348:	8007b7f3          	csrrc	a5,0x800,a5
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:132
+  return result & 0x88;
+2000034c:	0887f793          	andi	a5,a5,136
+SYS_ResetExecute():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:144
+    sys_safe_access_enable();
+20000350:	c63e                	sw	a5,12(sp)
+20000352:	0000100f          	fence.i
+20000356:	400017b7          	lui	a5,0x40001
+2000035a:	05700713          	li	a4,87
+2000035e:	04e78023          	sb	a4,64(a5) # 40001040 <_eusrstack+0x1fffa840>
+20000362:	fa800713          	li	a4,-88
+20000366:	04e78023          	sb	a4,64(a5)
+2000036a:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:145
+    R8_RST_WDOG_CTRL |= RB_SOFTWARE_RESET;
+2000036e:	0467c703          	lbu	a4,70(a5)
+20000372:	00176713          	ori	a4,a4,1
+20000376:	04e78323          	sb	a4,70(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:146
+    sys_safe_access_disable();
+2000037a:	04078023          	sb	zero,64(a5)
+2000037e:	47b2                	lw	a5,12(sp)
+__risc_v_enable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:114
+  __asm volatile ("csrrs %0, 0x800, %1" : \
+20000380:	8007a7f3          	csrrs	a5,0x800,a5
+SYS_ResetExecute():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:146
+20000384:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:147
+}
+20000388:	40f2                	lw	ra,28(sp)
+2000038a:	6105                	addi	sp,sp,32
+2000038c:	8082                	ret
+
+2000038e <HardFault_Handler>:
+HardFault_Handler():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:281
+ */
+__INTERRUPT
+__HIGH_CODE
+__attribute__((weak))
+void HardFault_Handler(void)
+{
+2000038e:	1141                	addi	sp,sp,-16
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:282
+    FLASH_ROM_SW_RESET();
+20000390:	4681                	li	a3,0
+20000392:	4601                	li	a2,0
+20000394:	4581                	li	a1,0
+20000396:	4511                	li	a0,4
+20000398:	22a5                	jal	20000500 <FLASH_EEPROM_CMD>
+__risc_v_disable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:130
+  __asm volatile ("csrrc %0, 0x800, %1" : \
+2000039a:	08800713          	li	a4,136
+2000039e:	800737f3          	csrrc	a5,0x800,a4
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:132
+  return result & 0x88;
+200003a2:	0887f793          	andi	a5,a5,136
+HardFault_Handler():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:283
+    sys_safe_access_enable();
+200003a6:	c43e                	sw	a5,8(sp)
+200003a8:	0000100f          	fence.i
+200003ac:	400017b7          	lui	a5,0x40001
+200003b0:	05700613          	li	a2,87
+200003b4:	04c78023          	sb	a2,64(a5) # 40001040 <_eusrstack+0x1fffa840>
+200003b8:	fa800693          	li	a3,-88
+200003bc:	04d78023          	sb	a3,64(a5)
+200003c0:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:284
+    R16_INT32K_TUNE = 0xFFFF;
+200003c4:	55fd                	li	a1,-1
+200003c6:	02b79623          	sh	a1,44(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:285
+    sys_safe_access_disable();
+200003ca:	04078023          	sb	zero,64(a5)
+200003ce:	45a2                	lw	a1,8(sp)
+__risc_v_enable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:114
+  __asm volatile ("csrrs %0, 0x800, %1" : \
+200003d0:	8005a5f3          	csrrs	a1,0x800,a1
+HardFault_Handler():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:285
+200003d4:	0000100f          	fence.i
+__risc_v_disable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:130
+  __asm volatile ("csrrc %0, 0x800, %1" : \
+200003d8:	80073773          	csrrc	a4,0x800,a4
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:132
+  return result & 0x88;
+200003dc:	08877713          	andi	a4,a4,136
+HardFault_Handler():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:286
+    sys_safe_access_enable();
+200003e0:	c63a                	sw	a4,12(sp)
+200003e2:	0000100f          	fence.i
+200003e6:	04c78023          	sb	a2,64(a5)
+200003ea:	04d78023          	sb	a3,64(a5)
+200003ee:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:287
+    R8_RST_WDOG_CTRL |= RB_SOFTWARE_RESET;
+200003f2:	0467c703          	lbu	a4,70(a5)
+200003f6:	00176713          	ori	a4,a4,1
+200003fa:	04e78323          	sb	a4,70(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:288
+    sys_safe_access_disable();
+200003fe:	04078023          	sb	zero,64(a5)
+20000402:	47b2                	lw	a5,12(sp)
+__risc_v_enable_irq():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:114
+  __asm volatile ("csrrs %0, 0x800, %1" : \
+20000404:	8007a7f3          	csrrs	a5,0x800,a5
+HardFault_Handler():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:288
+20000408:	0000100f          	fence.i
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:289 (discriminator 1)
+    while(1);
+2000040c:	a001                	j	2000040c <HardFault_Handler+0x7e>
+
+2000040e <mDelayuS>:
+mDelayuS():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:308
+{
+    uint32_t i;
+#if(FREQ_SYS == 80000000)
+    i = t * 20;
+#elif(FREQ_SYS == 60000000)
+    i = t * 15;
+2000040e:	47bd                	li	a5,15
+20000410:	02f50533          	mul	a0,a0,a5
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:332 (discriminator 1)
+#else
+    i = t << 1;
+#endif
+    do
+    {
+        __nop();
+20000414:	0001                	nop
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:333 (discriminator 1)
+    } while(--i);
+20000416:	157d                	addi	a0,a0,-1
+20000418:	fd75                	bnez	a0,20000414 <mDelayuS+0x6>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:334
+}
+2000041a:	8082                	ret
+
+2000041c <mDelaymS>:
+mDelaymS():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:347
+ *
+ * @return  none
+ */
+__HIGH_CODE
+void mDelaymS(uint16_t t)
+{
+2000041c:	1141                	addi	sp,sp,-16
+2000041e:	c422                	sw	s0,8(sp)
+20000420:	c226                	sw	s1,4(sp)
+20000422:	c606                	sw	ra,12(sp)
+20000424:	84aa                	mv	s1,a0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:350
+    uint16_t i;
+
+    for(i = 0; i < t; i++)
+20000426:	4401                	li	s0,0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:350 (discriminator 1)
+20000428:	00941763          	bne	s0,s1,20000436 <mDelaymS+0x1a>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:354
+    {
+        mDelayuS(1000);
+    }
+}
+2000042c:	40b2                	lw	ra,12(sp)
+2000042e:	4422                	lw	s0,8(sp)
+20000430:	4492                	lw	s1,4(sp)
+20000432:	0141                	addi	sp,sp,16
+20000434:	8082                	ret
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:350 (discriminator 3)
+    for(i = 0; i < t; i++)
+20000436:	0405                	addi	s0,s0,1
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:352 (discriminator 3)
+        mDelayuS(1000);
+20000438:	3e800513          	li	a0,1000
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:350 (discriminator 3)
+    for(i = 0; i < t; i++)
+2000043c:	0442                	slli	s0,s0,0x10
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:352 (discriminator 3)
+        mDelayuS(1000);
+2000043e:	3fc1                	jal	2000040e <mDelayuS>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:350 (discriminator 3)
+    for(i = 0; i < t; i++)
+20000440:	8041                	srli	s0,s0,0x10
+20000442:	b7dd                	j	20000428 <mDelaymS+0xc>
+
+20000444 <FLASH_ROM_BEG>:
+FLASH_ROM_BEG():
+20000444:	80040323          	sb	zero,-2042(s0)
+20000448:	4715                	li	a4,5
+2000044a:	80e40323          	sb	a4,-2042(s0)
+2000044e:	0001                	nop
+20000450:	80a40223          	sb	a0,-2044(s0)
+20000454:	8082                	ret
+
+20000456 <FLASH_ROM_END>:
+FLASH_ROM_END():
+20000456:	80640783          	lb	a5,-2042(s0)
+2000045a:	fe07cee3          	bltz	a5,20000456 <FLASH_ROM_END>
+2000045e:	80040323          	sb	zero,-2042(s0)
+20000462:	8082                	ret
+
+20000464 <FLASH_ROM_IN>:
+FLASH_ROM_IN():
+20000464:	80640783          	lb	a5,-2042(s0)
+20000468:	fe07cee3          	bltz	a5,20000464 <FLASH_ROM_IN>
+2000046c:	80444503          	lbu	a0,-2044(s0)
+20000470:	8082                	ret
+
+20000472 <FLASH_ROM_OUT>:
+FLASH_ROM_OUT():
+20000472:	80640783          	lb	a5,-2042(s0)
+20000476:	fe07cee3          	bltz	a5,20000472 <FLASH_ROM_OUT>
+2000047a:	80a40223          	sb	a0,-2044(s0)
+2000047e:	8082                	ret
+
+20000480 <FLASH_ROM_ADDR>:
+FLASH_ROM_ADDR():
+20000480:	1141                	addi	sp,sp,-16
+20000482:	c426                	sw	s1,8(sp)
+20000484:	c24a                	sw	s2,4(sp)
+20000486:	c04e                	sw	s3,0(sp)
+20000488:	c606                	sw	ra,12(sp)
+2000048a:	0bf57713          	andi	a4,a0,191
+2000048e:	47ad                	li	a5,11
+20000490:	89aa                	mv	s3,a0
+20000492:	892e                	mv	s2,a1
+20000494:	4495                	li	s1,5
+20000496:	00f70663          	beq	a4,a5,200004a2 <FLASH_ROM_ADDR+0x22>
+2000049a:	4519                	li	a0,6
+2000049c:	3765                	jal	20000444 <FLASH_ROM_BEG>
+2000049e:	3f65                	jal	20000456 <FLASH_ROM_END>
+200004a0:	448d                	li	s1,3
+200004a2:	854e                	mv	a0,s3
+200004a4:	3745                	jal	20000444 <FLASH_ROM_BEG>
+200004a6:	59fd                	li	s3,-1
+200004a8:	14fd                	addi	s1,s1,-1
+200004aa:	01349863          	bne	s1,s3,200004ba <FLASH_ROM_ADDR+0x3a>
+200004ae:	40b2                	lw	ra,12(sp)
+200004b0:	44a2                	lw	s1,8(sp)
+200004b2:	4912                	lw	s2,4(sp)
+200004b4:	4982                	lw	s3,0(sp)
+200004b6:	0141                	addi	sp,sp,16
+200004b8:	8082                	ret
+200004ba:	01095513          	srli	a0,s2,0x10
+200004be:	0ff57513          	andi	a0,a0,255
+200004c2:	3f45                	jal	20000472 <FLASH_ROM_OUT>
+200004c4:	0922                	slli	s2,s2,0x8
+200004c6:	b7cd                	j	200004a8 <FLASH_ROM_ADDR+0x28>
+
+200004c8 <FLASH_ROM_WAIT>:
+FLASH_ROM_WAIT():
+200004c8:	1101                	addi	sp,sp,-32
+200004ca:	cc26                	sw	s1,24(sp)
+200004cc:	ce06                	sw	ra,28(sp)
+200004ce:	000804b7          	lui	s1,0x80
+200004d2:	3751                	jal	20000456 <FLASH_ROM_END>
+200004d4:	4515                	li	a0,5
+200004d6:	37bd                	jal	20000444 <FLASH_ROM_BEG>
+200004d8:	3771                	jal	20000464 <FLASH_ROM_IN>
+200004da:	3769                	jal	20000464 <FLASH_ROM_IN>
+200004dc:	c62a                	sw	a0,12(sp)
+200004de:	3fa5                	jal	20000456 <FLASH_ROM_END>
+200004e0:	4532                	lw	a0,12(sp)
+200004e2:	00157793          	andi	a5,a0,1
+200004e6:	eb89                	bnez	a5,200004f8 <FLASH_ROM_WAIT+0x30>
+200004e8:	00156513          	ori	a0,a0,1
+200004ec:	0ff57513          	andi	a0,a0,255
+200004f0:	40f2                	lw	ra,28(sp)
+200004f2:	44e2                	lw	s1,24(sp)
+200004f4:	6105                	addi	sp,sp,32
+200004f6:	8082                	ret
+200004f8:	14fd                	addi	s1,s1,-1
+200004fa:	fce9                	bnez	s1,200004d4 <FLASH_ROM_WAIT+0xc>
+200004fc:	4501                	li	a0,0
+200004fe:	bfcd                	j	200004f0 <FLASH_ROM_WAIT+0x28>
+
+20000500 <FLASH_EEPROM_CMD>:
+FLASH_EEPROM_CMD():
+20000500:	7139                	addi	sp,sp,-64
+20000502:	dc26                	sw	s1,56(sp)
+20000504:	da4a                	sw	s2,52(sp)
+20000506:	d84e                	sw	s3,48(sp)
+20000508:	d652                	sw	s4,44(sp)
+2000050a:	d456                	sw	s5,40(sp)
+2000050c:	d25a                	sw	s6,36(sp)
+2000050e:	d05e                	sw	s7,32(sp)
+20000510:	de06                	sw	ra,60(sp)
+20000512:	ce62                	sw	s8,28(sp)
+20000514:	cc66                	sw	s9,24(sp)
+20000516:	e000e7b7          	lui	a5,0xe000e
+2000051a:	577d                	li	a4,-1
+2000051c:	0007aa83          	lw	s5,0(a5) # e000e000 <_eusrstack+0xc0007800>
+20000520:	c622                	sw	s0,12(sp)
+20000522:	0047aa03          	lw	s4,4(a5)
+20000526:	18e7a023          	sw	a4,384(a5)
+2000052a:	18e7a223          	sw	a4,388(a5)
+2000052e:	400017b7          	lui	a5,0x40001
+20000532:	05700713          	li	a4,87
+20000536:	04e78023          	sb	a4,64(a5) # 40001040 <_eusrstack+0x1fffa840>
+2000053a:	fa800713          	li	a4,-88
+2000053e:	04e78023          	sb	a4,64(a5)
+20000542:	0447c783          	lbu	a5,68(a5)
+20000546:	ff750b93          	addi	s7,a0,-9
+2000054a:	84b6                	mv	s1,a3
+2000054c:	07e2                	slli	a5,a5,0x18
+2000054e:	0ffbfb93          	andi	s7,s7,255
+20000552:	4685                	li	a3,1
+20000554:	89aa                	mv	s3,a0
+20000556:	8b2e                	mv	s6,a1
+20000558:	8932                	mv	s2,a2
+2000055a:	40002437          	lui	s0,0x40002
+2000055e:	87e1                	srai	a5,a5,0x18
+20000560:	5701                	li	a4,-32
+20000562:	0176fa63          	bgeu	a3,s7,20000576 <FLASH_EEPROM_CMD+0x76>
+20000566:	00d50863          	beq	a0,a3,20000576 <FLASH_EEPROM_CMD+0x76>
+2000056a:	4689                	li	a3,2
+2000056c:	02000713          	li	a4,32
+20000570:	00d51363          	bne	a0,a3,20000576 <FLASH_EEPROM_CMD+0x76>
+20000574:	5701                	li	a4,-32
+20000576:	8fd9                	or	a5,a5,a4
+20000578:	0ff7f793          	andi	a5,a5,255
+2000057c:	40001cb7          	lui	s9,0x40001
+20000580:	04fc8223          	sb	a5,68(s9) # 40001044 <_eusrstack+0x1fffa844>
+20000584:	4711                	li	a4,4
+20000586:	80e40323          	sb	a4,-2042(s0) # 40001806 <_eusrstack+0x1fffb006>
+2000058a:	0ff00513          	li	a0,255
+2000058e:	3d5d                	jal	20000444 <FLASH_ROM_BEG>
+20000590:	4c09                	li	s8,2
+20000592:	35d1                	jal	20000456 <FLASH_ROM_END>
+20000594:	117c6d63          	bltu	s8,s7,200006ae <FLASH_EEPROM_CMD+0x1ae>
+20000598:	000705b7          	lui	a1,0x70
+2000059c:	95da                	add	a1,a1,s6
+2000059e:	00078737          	lui	a4,0x78
+200005a2:	5579                	li	a0,-2
+200005a4:	04e5f263          	bgeu	a1,a4,200005e8 <FLASH_EEPROM_CMD+0xe8>
+200005a8:	009587b3          	add	a5,a1,s1
+200005ac:	02f76e63          	bltu	a4,a5,200005e8 <FLASH_EEPROM_CMD+0xe8>
+200005b0:	00080b37          	lui	s6,0x80
+200005b4:	47a9                	li	a5,10
+200005b6:	0165eb33          	or	s6,a1,s6
+200005ba:	06f99963          	bne	s3,a5,2000062c <FLASH_EEPROM_CMD+0x12c>
+200005be:	e489                	bnez	s1,200005c8 <FLASH_EEPROM_CMD+0xc8>
+200005c0:	4481                	li	s1,0
+200005c2:	3d51                	jal	20000456 <FLASH_ROM_END>
+200005c4:	8526                	mv	a0,s1
+200005c6:	a00d                	j	200005e8 <FLASH_EEPROM_CMD+0xe8>
+200005c8:	85da                	mv	a1,s6
+200005ca:	4509                	li	a0,2
+200005cc:	3d55                	jal	20000480 <FLASH_ROM_ADDR>
+200005ce:	0905                	addi	s2,s2,1
+200005d0:	fff94503          	lbu	a0,-1(s2)
+200005d4:	14fd                	addi	s1,s1,-1
+200005d6:	0b05                	addi	s6,s6,1
+200005d8:	3d69                	jal	20000472 <FLASH_ROM_OUT>
+200005da:	c481                	beqz	s1,200005e2 <FLASH_EEPROM_CMD+0xe2>
+200005dc:	0ffb7793          	andi	a5,s6,255
+200005e0:	f7fd                	bnez	a5,200005ce <FLASH_EEPROM_CMD+0xce>
+200005e2:	35dd                	jal	200004c8 <FLASH_ROM_WAIT>
+200005e4:	fd69                	bnez	a0,200005be <FLASH_EEPROM_CMD+0xbe>
+200005e6:	557d                	li	a0,-1
+200005e8:	400017b7          	lui	a5,0x40001
+200005ec:	05700713          	li	a4,87
+200005f0:	04e78023          	sb	a4,64(a5) # 40001040 <_eusrstack+0x1fffa840>
+200005f4:	fa800713          	li	a4,-88
+200005f8:	04e78023          	sb	a4,64(a5)
+200005fc:	0447c703          	lbu	a4,68(a5)
+20000600:	8b41                	andi	a4,a4,16
+20000602:	04e78223          	sb	a4,68(a5)
+20000606:	50f2                	lw	ra,60(sp)
+20000608:	e000e7b7          	lui	a5,0xe000e
+2000060c:	1157a023          	sw	s5,256(a5) # e000e100 <_eusrstack+0xc0007900>
+20000610:	1147a223          	sw	s4,260(a5)
+20000614:	54e2                	lw	s1,56(sp)
+20000616:	4432                	lw	s0,12(sp)
+20000618:	5952                	lw	s2,52(sp)
+2000061a:	59c2                	lw	s3,48(sp)
+2000061c:	5a32                	lw	s4,44(sp)
+2000061e:	5aa2                	lw	s5,40(sp)
+20000620:	5b12                	lw	s6,36(sp)
+20000622:	5b82                	lw	s7,32(sp)
+20000624:	4c72                	lw	s8,28(sp)
+20000626:	4ce2                	lw	s9,24(sp)
+20000628:	6121                	addi	sp,sp,64
+2000062a:	8082                	ret
+2000062c:	47a5                	li	a5,9
+2000062e:	06f99563          	bne	s3,a5,20000698 <FLASH_EEPROM_CMD+0x198>
+20000632:	6985                	lui	s3,0x1
+20000634:	0ff00913          	li	s2,255
+20000638:	009906b3          	add	a3,s2,s1
+2000063c:	012b74b3          	and	s1,s6,s2
+20000640:	94b6                	add	s1,s1,a3
+20000642:	fff94913          	not	s2,s2
+20000646:	009974b3          	and	s1,s2,s1
+2000064a:	6b85                	lui	s7,0x1
+2000064c:	01697933          	and	s2,s2,s6
+20000650:	6b41                	lui	s6,0x10
+20000652:	fff98793          	addi	a5,s3,-1 # fff <UART1_INTCfg+0x3d>
+20000656:	0127f7b3          	and	a5,a5,s2
+2000065a:	e399                	bnez	a5,20000660 <FLASH_EEPROM_CMD+0x160>
+2000065c:	0134fc63          	bgeu	s1,s3,20000674 <FLASH_EEPROM_CMD+0x174>
+20000660:	0049d993          	srli	s3,s3,0x4
+20000664:	47c1                	li	a5,16
+20000666:	ff37e6e3          	bltu	a5,s3,20000652 <FLASH_EEPROM_CMD+0x152>
+2000066a:	bf99                	j	200005c0 <FLASH_EEPROM_CMD+0xc0>
+2000066c:	6905                	lui	s2,0x1
+2000066e:	69c1                	lui	s3,0x10
+20000670:	197d                	addi	s2,s2,-1
+20000672:	b7d9                	j	20000638 <FLASH_EEPROM_CMD+0x138>
+20000674:	0d800513          	li	a0,216
+20000678:	01698863          	beq	s3,s6,20000688 <FLASH_EEPROM_CMD+0x188>
+2000067c:	02000513          	li	a0,32
+20000680:	01798463          	beq	s3,s7,20000688 <FLASH_EEPROM_CMD+0x188>
+20000684:	08100513          	li	a0,129
+20000688:	85ca                	mv	a1,s2
+2000068a:	3bdd                	jal	20000480 <FLASH_ROM_ADDR>
+2000068c:	3d35                	jal	200004c8 <FLASH_ROM_WAIT>
+2000068e:	dd21                	beqz	a0,200005e6 <FLASH_EEPROM_CMD+0xe6>
+20000690:	994e                	add	s2,s2,s3
+20000692:	413484b3          	sub	s1,s1,s3
+20000696:	b7d9                	j	2000065c <FLASH_EEPROM_CMD+0x15c>
+20000698:	85da                	mv	a1,s6
+2000069a:	452d                	li	a0,11
+2000069c:	33d5                	jal	20000480 <FLASH_ROM_ADDR>
+2000069e:	94ca                	add	s1,s1,s2
+200006a0:	f29900e3          	beq	s2,s1,200005c0 <FLASH_EEPROM_CMD+0xc0>
+200006a4:	0905                	addi	s2,s2,1
+200006a6:	3b7d                	jal	20000464 <FLASH_ROM_IN>
+200006a8:	fea90fa3          	sb	a0,-1(s2) # fff <UART1_INTCfg+0x3d>
+200006ac:	bfd5                	j	200006a0 <FLASH_EEPROM_CMD+0x1a0>
+200006ae:	fff98793          	addi	a5,s3,-1 # ffff <_data_lma+0xefe7>
+200006b2:	0ff7f793          	andi	a5,a5,255
+200006b6:	0cfc6163          	bltu	s8,a5,20000778 <.loop402+0x7a>
+200006ba:	041cc783          	lbu	a5,65(s9)
+200006be:	08300713          	li	a4,131
+200006c2:	04f71f63          	bne	a4,a5,20000720 <.loop402+0x22>
+200006c6:	00080737          	lui	a4,0x80
+200006ca:	04eb6b63          	bltu	s6,a4,20000720 <.loop402+0x22>
+200006ce:	009b07b3          	add	a5,s6,s1
+200006d2:	001006b7          	lui	a3,0x100
+200006d6:	04d7f563          	bgeu	a5,a3,20000720 <.loop402+0x22>
+200006da:	00eb4b33          	xor	s6,s6,a4
+200006de:	4789                	li	a5,2
+200006e0:	06f99363          	bne	s3,a5,20000746 <.loop402+0x48>
+200006e4:	8089                	srli	s1,s1,0x2
+200006e6:	49d5                	li	s3,21
+200006e8:	ec048ce3          	beqz	s1,200005c0 <FLASH_EEPROM_CMD+0xc0>
+200006ec:	85da                	mv	a1,s6
+200006ee:	4509                	li	a0,2
+200006f0:	3b41                	jal	20000480 <FLASH_ROM_ADDR>
+200006f2:	0911                	addi	s2,s2,4
+200006f4:	ffc92703          	lw	a4,-4(s2)
+200006f8:	4791                	li	a5,4
+200006fa:	80e42023          	sw	a4,-2048(s0)
+
+200006fe <.loop402>:
+200006fe:	80640703          	lb	a4,-2042(s0)
+20000702:	fe074ee3          	bltz	a4,200006fe <.loop402>
+20000706:	81340323          	sb	s3,-2042(s0)
+2000070a:	17fd                	addi	a5,a5,-1
+2000070c:	fbed                	bnez	a5,200006fe <.loop402>
+2000070e:	14fd                	addi	s1,s1,-1
+20000710:	0b11                	addi	s6,s6,4
+20000712:	c481                	beqz	s1,2000071a <.loop402+0x1c>
+20000714:	0ffb7793          	andi	a5,s6,255
+20000718:	ffe9                	bnez	a5,200006f2 <FLASH_EEPROM_CMD+0x1f2>
+2000071a:	337d                	jal	200004c8 <FLASH_ROM_WAIT>
+2000071c:	f571                	bnez	a0,200006e8 <FLASH_EEPROM_CMD+0x1e8>
+2000071e:	b5e1                	j	200005e6 <FLASH_EEPROM_CMD+0xe6>
+20000720:	400017b7          	lui	a5,0x40001
+20000724:	0457c703          	lbu	a4,69(a5) # 40001045 <_eusrstack+0x1fffa845>
+20000728:	000807b7          	lui	a5,0x80
+2000072c:	02077713          	andi	a4,a4,32
+20000730:	e319                	bnez	a4,20000736 <.loop402+0x38>
+20000732:	000787b7          	lui	a5,0x78
+20000736:	5579                	li	a0,-2
+20000738:	eafb78e3          	bgeu	s6,a5,200005e8 <FLASH_EEPROM_CMD+0xe8>
+2000073c:	009b0733          	add	a4,s6,s1
+20000740:	f8e7ffe3          	bgeu	a5,a4,200006de <FLASH_EEPROM_CMD+0x1de>
+20000744:	b555                	j	200005e8 <FLASH_EEPROM_CMD+0xe8>
+20000746:	4785                	li	a5,1
+20000748:	f2f982e3          	beq	s3,a5,2000066c <FLASH_EEPROM_CMD+0x16c>
+2000074c:	85da                	mv	a1,s6
+2000074e:	452d                	li	a0,11
+20000750:	3b05                	jal	20000480 <FLASH_ROM_ADDR>
+20000752:	fff48993          	addi	s3,s1,-1 # 7ffff <_data_lma+0x7efe7>
+20000756:	e60485e3          	beqz	s1,200005c0 <FLASH_EEPROM_CMD+0xc0>
+2000075a:	3329                	jal	20000464 <FLASH_ROM_IN>
+2000075c:	0039f793          	andi	a5,s3,3
+20000760:	eb91                	bnez	a5,20000774 <.loop402+0x76>
+20000762:	80042683          	lw	a3,-2048(s0)
+20000766:	00092703          	lw	a4,0(s2)
+2000076a:	00490793          	addi	a5,s2,4
+2000076e:	e4e69ae3          	bne	a3,a4,200005c2 <FLASH_EEPROM_CMD+0xc2>
+20000772:	893e                	mv	s2,a5
+20000774:	84ce                	mv	s1,s3
+20000776:	bff1                	j	20000752 <.loop402+0x54>
+20000778:	47b5                	li	a5,13
+2000077a:	00f99663          	bne	s3,a5,20000786 <.loop402+0x88>
+2000077e:	0b900513          	li	a0,185
+20000782:	31c9                	jal	20000444 <FLASH_ROM_BEG>
+20000784:	bd35                	j	200005c0 <FLASH_EEPROM_CMD+0xc0>
+20000786:	47b1                	li	a5,12
+20000788:	0ab00513          	li	a0,171
+2000078c:	fef98be3          	beq	s3,a5,20000782 <.loop402+0x84>
+20000790:	4799                	li	a5,6
+20000792:	04f99163          	bne	s3,a5,200007d4 <.loop402+0xd6>
+20000796:	000805b7          	lui	a1,0x80
+2000079a:	00bb65b3          	or	a1,s6,a1
+2000079e:	452d                	li	a0,11
+200007a0:	31c5                	jal	20000480 <FLASH_ROM_ADDR>
+200007a2:	4481                	li	s1,0
+200007a4:	4b8d                	li	s7,3
+200007a6:	49a1                	li	s3,8
+200007a8:	3975                	jal	20000464 <FLASH_ROM_IN>
+200007aa:	01749663          	bne	s1,s7,200007b6 <.loop402+0xb8>
+200007ae:	80042783          	lw	a5,-2048(s0)
+200007b2:	00f92023          	sw	a5,0(s2)
+200007b6:	0485                	addi	s1,s1,1
+200007b8:	ff3498e3          	bne	s1,s3,200007a8 <.loop402+0xaa>
+200007bc:	80042783          	lw	a5,-2048(s0)
+200007c0:	012b1713          	slli	a4,s6,0x12
+200007c4:	00075563          	bgez	a4,200007ce <.loop402+0xd0>
+200007c8:	00f91223          	sh	a5,4(s2)
+200007cc:	bbd5                	j	200005c0 <FLASH_EEPROM_CMD+0xc0>
+200007ce:	00f92223          	sw	a5,4(s2)
+200007d2:	b3fd                	j	200005c0 <FLASH_EEPROM_CMD+0xc0>
+200007d4:	479d                	li	a5,7
+200007d6:	02f99963          	bne	s3,a5,20000808 <.loop402+0x10a>
+200007da:	4581                	li	a1,0
+200007dc:	04b00513          	li	a0,75
+200007e0:	3145                	jal	20000480 <FLASH_ROM_ADDR>
+200007e2:	44bd                	li	s1,15
+200007e4:	00092023          	sw	zero,0(s2)
+200007e8:	00092223          	sw	zero,4(s2)
+200007ec:	59fd                	li	s3,-1
+200007ee:	399d                	jal	20000464 <FLASH_ROM_IN>
+200007f0:	0074f793          	andi	a5,s1,7
+200007f4:	97ca                	add	a5,a5,s2
+200007f6:	0007c703          	lbu	a4,0(a5) # 78000 <_data_lma+0x76fe8>
+200007fa:	14fd                	addi	s1,s1,-1
+200007fc:	8d39                	xor	a0,a0,a4
+200007fe:	00a78023          	sb	a0,0(a5)
+20000802:	ff3496e3          	bne	s1,s3,200007ee <.loop402+0xf0>
+20000806:	bb6d                	j	200005c0 <FLASH_EEPROM_CMD+0xc0>
+20000808:	47a1                	li	a5,8
+2000080a:	04f99263          	bne	s3,a5,2000084e <.loop402+0x150>
+2000080e:	396d                	jal	200004c8 <FLASH_ROM_WAIT>
+20000810:	4481                	li	s1,0
+20000812:	000b0d63          	beqz	s6,2000082c <.loop402+0x12e>
+20000816:	478d                	li	a5,3
+20000818:	03c00493          	li	s1,60
+2000081c:	00fb0863          	beq	s6,a5,2000082c <.loop402+0x12e>
+20000820:	05000493          	li	s1,80
+20000824:	018b0463          	beq	s6,s8,2000082c <.loop402+0x12e>
+20000828:	04400493          	li	s1,68
+2000082c:	07c57513          	andi	a0,a0,124
+20000830:	d89508e3          	beq	a0,s1,200005c0 <FLASH_EEPROM_CMD+0xc0>
+20000834:	4519                	li	a0,6
+20000836:	3139                	jal	20000444 <FLASH_ROM_BEG>
+20000838:	3939                	jal	20000456 <FLASH_ROM_END>
+2000083a:	4505                	li	a0,1
+2000083c:	3121                	jal	20000444 <FLASH_ROM_BEG>
+2000083e:	8526                	mv	a0,s1
+20000840:	390d                	jal	20000472 <FLASH_ROM_OUT>
+20000842:	4509                	li	a0,2
+20000844:	313d                	jal	20000472 <FLASH_ROM_OUT>
+20000846:	3149                	jal	200004c8 <FLASH_ROM_WAIT>
+20000848:	d6051ce3          	bnez	a0,200005c0 <FLASH_EEPROM_CMD+0xc0>
+2000084c:	bb69                	j	200005e6 <FLASH_EEPROM_CMD+0xe6>
+2000084e:	4791                	li	a5,4
+20000850:	00f99963          	bne	s3,a5,20000862 <.loop402+0x164>
+20000854:	06600513          	li	a0,102
+20000858:	36f5                	jal	20000444 <FLASH_ROM_BEG>
+2000085a:	3ef5                	jal	20000456 <FLASH_ROM_END>
+2000085c:	09900513          	li	a0,153
+20000860:	b70d                	j	20000782 <.loop402+0x84>
+20000862:	d4098fe3          	beqz	s3,200005c0 <FLASH_EEPROM_CMD+0xc0>
+20000866:	54f1                	li	s1,-4
+20000868:	bba9                	j	200005c2 <FLASH_EEPROM_CMD+0xc2>
+	...
+
+Disassembly of section .text:
+
+00000870 <handle_reset>:
+handle_reset():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:127
+	.weak	handle_reset
+	.align	1
+handle_reset:
+.option push 
+.option	norelax 
+	la gp, __global_pointer$
+     870:	20001197          	auipc	gp,0x20001
+     874:	81818193          	addi	gp,gp,-2024 # 20001088 <__global_pointer$>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:130
+.option	pop 
+1:
+	la sp, _eusrstack 
+     878:	20006117          	auipc	sp,0x20006
+     87c:	f8810113          	addi	sp,sp,-120 # 20006800 <_eusrstack>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:134
+
+/* Load highcode code  section from flash to RAM */
+2:
+    la a0, _highcode_lma
+     880:	00400513          	li	a0,4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:135
+    la a1, _highcode_vma_start
+     884:	1ffff597          	auipc	a1,0x1ffff
+     888:	77c58593          	addi	a1,a1,1916 # 20000000 <_highcode_vma_start>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:136
+    la a2, _highcode_vma_end
+     88c:	20000617          	auipc	a2,0x20000
+     890:	fe060613          	addi	a2,a2,-32 # 2000086c <_highcode_vma_end>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:137
+    bgeu a1, a2, 2f
+     894:	00c5fa63          	bgeu	a1,a2,8a8 <handle_reset+0x38>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:139
+1:
+    lw t0, (a0)
+     898:	00052283          	lw	t0,0(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:140
+    sw t0, (a1)
+     89c:	0055a023          	sw	t0,0(a1)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:141
+    addi a0, a0, 4
+     8a0:	0511                	addi	a0,a0,4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:142
+    addi a1, a1, 4
+     8a2:	0591                	addi	a1,a1,4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:143
+    bltu a1, a2, 1b
+     8a4:	fec5eae3          	bltu	a1,a2,898 <handle_reset+0x28>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:147
+
+/* Load data section from flash to RAM */
+2:
+	la a0, _data_lma
+     8a8:	00000517          	auipc	a0,0x0
+     8ac:	77050513          	addi	a0,a0,1904 # 1018 <_data_lma>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:148
+	la a1, _data_vma
+     8b0:	20000597          	auipc	a1,0x20000
+     8b4:	fbc58593          	addi	a1,a1,-68 # 2000086c <_highcode_vma_end>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:149
+	la a2, _edata
+     8b8:	20000617          	auipc	a2,0x20000
+     8bc:	fd060613          	addi	a2,a2,-48 # 20000888 <_edata>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:150
+	bgeu a1, a2, 2f
+     8c0:	00c5fa63          	bgeu	a1,a2,8d4 <handle_reset+0x64>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:152
+1:
+	lw t0, (a0)
+     8c4:	00052283          	lw	t0,0(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:153
+	sw t0, (a1)
+     8c8:	0055a023          	sw	t0,0(a1)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:154
+	addi a0, a0, 4
+     8cc:	0511                	addi	a0,a0,4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:155
+	addi a1, a1, 4
+     8ce:	0591                	addi	a1,a1,4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:156
+	bltu a1, a2, 1b
+     8d0:	fec5eae3          	bltu	a1,a2,8c4 <handle_reset+0x54>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:159
+2:
+	/* clear bss section */
+	la a0, _sbss
+     8d4:	20000517          	auipc	a0,0x20000
+     8d8:	fb450513          	addi	a0,a0,-76 # 20000888 <_edata>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:160
+	la a1, _ebss
+     8dc:	83c18593          	addi	a1,gp,-1988 # 200008c4 <_ebss>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:161
+	bgeu a0, a1, 2f
+     8e0:	00b57763          	bgeu	a0,a1,8ee <handle_reset+0x7e>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:163
+1:
+	sw zero, (a0)
+     8e4:	00052023          	sw	zero,0(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:164
+	addi a0, a0, 4
+     8e8:	0511                	addi	a0,a0,4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:165
+	bltu a0, a1, 1b
+     8ea:	feb56de3          	bltu	a0,a1,8e4 <handle_reset+0x74>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:168
+2:
+	/* 流水线控制位 & 动态预测控制位 */
+	li t0, 0x1f
+     8ee:	42fd                	li	t0,31
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:169
+	csrw 0xbc0, t0
+     8f0:	bc029073          	csrw	0xbc0,t0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:171
+	/* 打开嵌套中断、硬件压栈功能 */
+	li t0, 0x3
+     8f4:	428d                	li	t0,3
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:172
+	csrw 0x804, t0
+     8f6:	80429073          	csrw	0x804,t0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:174
+	
+    li t0, 0x88
+     8fa:	08800293          	li	t0,136
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:175
+    csrw mstatus, t0
+     8fe:	30029073          	csrw	mstatus,t0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:176
+	la t0, _vector_base
+     902:	1ffff297          	auipc	t0,0x1ffff
+     906:	6fe28293          	addi	t0,t0,1790 # 20000000 <_highcode_vma_start>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:179
+
+	/* 配置向量表模式为绝对地址模式 */
+    ori t0, t0, 3
+     90a:	0032e293          	ori	t0,t0,3
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:180
+	csrw mtvec, t0
+     90e:	30529073          	csrw	mtvec,t0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:182
+
+	la t0, main
+     912:	00000297          	auipc	t0,0x0
+     916:	30e28293          	addi	t0,t0,782 # c20 <main>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:183
+	csrw mepc, t0
+     91a:	34129073          	csrw	mepc,t0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../Startup/startup_CH592.S:185
+	
+	mret
+     91e:	30200073          	mret
+
+00000922 <UartMasterPort::setIdleState()>:
+_ZN14UartMasterPort12setIdleStateEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:186
+    void setIdleState()
+     922:	1141                	addi	sp,sp,-16
+     924:	c422                	sw	s0,8(sp)
+     926:	c606                	sw	ra,12(sp)
+     928:	842a                	mv	s0,a0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:188
+        state = STATE_IDLE; 
+     92a:	00052423          	sw	zero,8(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:189
+        GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+     92e:	4108                	lw	a0,0(a0)
+     930:	4585                	li	a1,1
+     932:	2161                	jal	dba <GPIOA_ModeCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:190
+        if (rx_command > 0) connection = true; 
+     934:	01c44783          	lbu	a5,28(s0)
+     938:	0ff7f793          	andi	a5,a5,255
+     93c:	c781                	beqz	a5,944 <UartMasterPort::setIdleState()+0x22>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:190 (discriminator 1)
+     93e:	4785                	li	a5,1
+     940:	00f40ea3          	sb	a5,29(s0)
+_ZN14UartMasterPort5resetEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:196
+        tx_command = 0;
+     944:	00040da3          	sb	zero,27(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:197
+        tx_length = 0; 
+     948:	00041a23          	sh	zero,20(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:200
+        rx_command = 0;
+     94c:	00040e23          	sb	zero,28(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:201
+        rx_length = 0;
+     950:	00041b23          	sh	zero,22(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:198
+        tx_buffer = nullptr; 
+     954:	00042623          	sw	zero,12(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:202
+        rx_buffer = nullptr; 
+     958:	00042823          	sw	zero,16(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:204
+        echo_count = 0; 
+     95c:	00041c23          	sh	zero,24(s0)
+_ZN14UartMasterPort12setIdleStateEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:192
+    }
+     960:	40b2                	lw	ra,12(sp)
+     962:	4422                	lw	s0,8(sp)
+     964:	0141                	addi	sp,sp,16
+     966:	8082                	ret
+
+00000968 <UartMasterPort::setTxCommandState()>:
+_ZN14UartMasterPort17setTxCommandStateEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:207
+    }
+
+    void setTxCommandState()
+     968:	1141                	addi	sp,sp,-16
+     96a:	c606                	sw	ra,12(sp)
+     96c:	c422                	sw	s0,8(sp)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:209
+    {
+        state = STATE_TX_COMMAND; 
+     96e:	4789                	li	a5,2
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:207
+    void setTxCommandState()
+     970:	842a                	mv	s0,a0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:209
+        state = STATE_TX_COMMAND; 
+     972:	c51c                	sw	a5,8(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:210
+        GPIOA_ModeCfg(TX_PIN, GPIO_ModeOut_PP_5mA);
+     974:	4108                	lw	a0,0(a0)
+     976:	458d                	li	a1,3
+     978:	2189                	jal	dba <GPIOA_ModeCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:211
+        trig_point = 1;
+     97a:	4785                	li	a5,1
+     97c:	00f40d23          	sb	a5,26(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:212
+        UART1_ByteTrigCfg(UART_1BYTE_TRIG);
+     980:	4501                	li	a0,0
+     982:	251d                	jal	fa8 <UART1_ByteTrigCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:213
+        echo_count = 1;          
+     984:	4785                	li	a5,1
+     986:	00f41c23          	sh	a5,24(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:214
+    }
+     98a:	40b2                	lw	ra,12(sp)
+     98c:	4422                	lw	s0,8(sp)
+     98e:	0141                	addi	sp,sp,16
+     990:	8082                	ret
+
+00000992 <UartMasterPort::setTriggerPoint(unsigned short)>:
+_ZN14UartMasterPort15setTriggerPointEt():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:239
+        setTriggerPoint(rx_length); 
+    }
+
+    void setTriggerPoint(uint16_t lenght)
+    {
+        if (lenght >= 7)
+     992:	4799                	li	a5,6
+     994:	00b7f763          	bgeu	a5,a1,9a2 <UartMasterPort::setTriggerPoint(unsigned short)+0x10>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:241
+        {
+            trig_point = 7; 
+     998:	479d                	li	a5,7
+     99a:	00f50d23          	sb	a5,26(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:242
+            UART1_ByteTrigCfg(UART_7BYTE_TRIG);        
+     99e:	450d                	li	a0,3
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:257
+            UART1_ByteTrigCfg(UART_2BYTE_TRIG);
+        }
+        else
+        {
+            trig_point = 1; 
+            UART1_ByteTrigCfg(UART_1BYTE_TRIG);
+     9a0:	a521                	j	fa8 <UART1_ByteTrigCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:244
+        else if (lenght >= 4)
+     9a2:	478d                	li	a5,3
+     9a4:	00b7f763          	bgeu	a5,a1,9b2 <UartMasterPort::setTriggerPoint(unsigned short)+0x20>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:246
+            trig_point = 4; 
+     9a8:	4791                	li	a5,4
+     9aa:	00f50d23          	sb	a5,26(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:247
+            UART1_ByteTrigCfg(UART_4BYTE_TRIG);
+     9ae:	4509                	li	a0,2
+     9b0:	bfc5                	j	9a0 <UartMasterPort::setTriggerPoint(unsigned short)+0xe>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:249
+        else if (lenght >= 2)
+     9b2:	4785                	li	a5,1
+     9b4:	00b7f763          	bgeu	a5,a1,9c2 <UartMasterPort::setTriggerPoint(unsigned short)+0x30>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:251
+            trig_point = 2; 
+     9b8:	4789                	li	a5,2
+     9ba:	00f50d23          	sb	a5,26(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:252
+            UART1_ByteTrigCfg(UART_2BYTE_TRIG);
+     9be:	4505                	li	a0,1
+     9c0:	b7c5                	j	9a0 <UartMasterPort::setTriggerPoint(unsigned short)+0xe>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:256
+            trig_point = 1; 
+     9c2:	00f50d23          	sb	a5,26(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:257
+            UART1_ByteTrigCfg(UART_1BYTE_TRIG);
+     9c6:	4501                	li	a0,0
+     9c8:	bfe1                	j	9a0 <UartMasterPort::setTriggerPoint(unsigned short)+0xe>
+
+000009ca <UartMasterPort::setTxDataState()>:
+_ZN14UartMasterPort14setTxDataStateEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:223
+    void setTxDataState()
+     9ca:	1141                	addi	sp,sp,-16
+     9cc:	c606                	sw	ra,12(sp)
+     9ce:	c422                	sw	s0,8(sp)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:225
+        state = STATE_TX_DATA; 
+     9d0:	4791                	li	a5,4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:223
+    void setTxDataState()
+     9d2:	842a                	mv	s0,a0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:225
+        state = STATE_TX_DATA; 
+     9d4:	c51c                	sw	a5,8(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:226
+        GPIOA_ModeCfg(TX_PIN, GPIO_ModeOut_PP_5mA);
+     9d6:	4108                	lw	a0,0(a0)
+     9d8:	458d                	li	a1,3
+     9da:	26c5                	jal	dba <GPIOA_ModeCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:227
+        setTriggerPoint(tx_length); 
+     9dc:	01445583          	lhu	a1,20(s0)
+     9e0:	8522                	mv	a0,s0
+     9e2:	3f45                	jal	992 <UartMasterPort::setTriggerPoint(unsigned short)>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:228
+        echo_count = tx_length;
+     9e4:	01445783          	lhu	a5,20(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:229
+    }
+     9e8:	40b2                	lw	ra,12(sp)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:228
+        echo_count = tx_length;
+     9ea:	07c2                	slli	a5,a5,0x10
+     9ec:	83c1                	srli	a5,a5,0x10
+     9ee:	00f41c23          	sh	a5,24(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:229
+    }
+     9f2:	4422                	lw	s0,8(sp)
+     9f4:	0141                	addi	sp,sp,16
+     9f6:	8082                	ret
+
+000009f8 <UartMasterPort::setRxDataState()>:
+_ZN14UartMasterPort14setRxDataStateEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:230
+    void setRxDataState()
+     9f8:	1141                	addi	sp,sp,-16
+     9fa:	c422                	sw	s0,8(sp)
+     9fc:	c606                	sw	ra,12(sp)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:232
+        state = STATE_RX_DATA; 
+     9fe:	4795                	li	a5,5
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:230
+    void setRxDataState()
+     a00:	842a                	mv	s0,a0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:232
+        state = STATE_RX_DATA; 
+     a02:	c51c                	sw	a5,8(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:233
+        GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+     a04:	4108                	lw	a0,0(a0)
+     a06:	4585                	li	a1,1
+     a08:	2e4d                	jal	dba <GPIOA_ModeCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:234
+        setTriggerPoint(rx_length); 
+     a0a:	01645583          	lhu	a1,22(s0)
+     a0e:	8522                	mv	a0,s0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:235
+    }
+     a10:	4422                	lw	s0,8(sp)
+     a12:	40b2                	lw	ra,12(sp)
+     a14:	0141                	addi	sp,sp,16
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:234
+        setTriggerPoint(rx_length); 
+     a16:	bfb5                	j	992 <UartMasterPort::setTriggerPoint(unsigned short)>
+
+00000a18 <UartMasterPort::commandTransmit()>:
+_ZN14UartMasterPort15commandTransmitEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:263
+        }
+    }
+// --------------------------------------------------------------
+    void commandTransmit()
+    {
+        if (tx_command > 0) R8_UART1_THR = tx_command;
+     a18:	01b54783          	lbu	a5,27(a0)
+     a1c:	0ff7f793          	andi	a5,a5,255
+     a20:	cb91                	beqz	a5,a34 <UartMasterPort::commandTransmit()+0x1c>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:263 (discriminator 1)
+     a22:	01b54783          	lbu	a5,27(a0)
+     a26:	40003737          	lui	a4,0x40003
+     a2a:	0ff7f793          	andi	a5,a5,255
+     a2e:	40f70423          	sb	a5,1032(a4) # 40003408 <_eusrstack+0x1fffcc08>
+     a32:	8082                	ret
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:264
+        else R8_UART1_THR = HELLO;
+     a34:	400037b7          	lui	a5,0x40003
+     a38:	05500713          	li	a4,85
+     a3c:	40e78423          	sb	a4,1032(a5) # 40003408 <_eusrstack+0x1fffcc08>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:265
+    }
+     a40:	8082                	ret
+
+00000a42 <UartMasterPort::dataTransmit()>:
+_ZN14UartMasterPort12dataTransmitEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:269
+
+    void dataTransmit()
+    {
+        uint16_t frame_length = (tx_length > 8)? 8 : tx_length; 
+     a42:	01455783          	lhu	a5,20(a0)
+     a46:	4721                	li	a4,8
+     a48:	00f76663          	bltu	a4,a5,a54 <UartMasterPort::dataTransmit()+0x12>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:269 (discriminator 1)
+     a4c:	01455703          	lhu	a4,20(a0)
+     a50:	0742                	slli	a4,a4,0x10
+     a52:	8341                	srli	a4,a4,0x10
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:270 (discriminator 4)
+        for (int i=0; i<frame_length; i++)
+     a54:	4681                	li	a3,0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:272 (discriminator 4)
+        {
+            R8_UART1_THR = *(tx_buffer - tx_length); 
+     a56:	40003637          	lui	a2,0x40003
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:270 (discriminator 3)
+        for (int i=0; i<frame_length; i++)
+     a5a:	02e6d563          	bge	a3,a4,a84 <UartMasterPort::dataTransmit()+0x42>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:272 (discriminator 2)
+            R8_UART1_THR = *(tx_buffer - tx_length); 
+     a5e:	01455583          	lhu	a1,20(a0)
+     a62:	455c                	lw	a5,12(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:270 (discriminator 2)
+        for (int i=0; i<frame_length; i++)
+     a64:	0685                	addi	a3,a3,1
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:272 (discriminator 2)
+            R8_UART1_THR = *(tx_buffer - tx_length); 
+     a66:	8f8d                	sub	a5,a5,a1
+     a68:	0007c783          	lbu	a5,0(a5)
+     a6c:	0ff7f793          	andi	a5,a5,255
+     a70:	40f60423          	sb	a5,1032(a2) # 40003408 <_eusrstack+0x1fffcc08>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:273 (discriminator 2)
+            tx_length--; 
+     a74:	01455783          	lhu	a5,20(a0)
+     a78:	17fd                	addi	a5,a5,-1
+     a7a:	07c2                	slli	a5,a5,0x10
+     a7c:	83c1                	srli	a5,a5,0x10
+     a7e:	00f51a23          	sh	a5,20(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:270 (discriminator 2)
+        for (int i=0; i<frame_length; i++)
+     a82:	bfe1                	j	a5a <UartMasterPort::dataTransmit()+0x18>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:275
+        }  
+    }
+     a84:	8082                	ret
+
+00000a86 <UartMasterPort::echoReceived()>:
+_ZN14UartMasterPort12echoReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:278
+    void echoReceived()
+    {
+        for (int i=0; i<trig_point; i++)
+     a86:	01a54603          	lbu	a2,26(a0)
+     a8a:	4701                	li	a4,0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:280
+        {
+            R8_UART1_RBR; 
+     a8c:	400036b7          	lui	a3,0x40003
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:278 (discriminator 3)
+        for (int i=0; i<trig_point; i++)
+     a90:	00c75d63          	bge	a4,a2,aaa <UartMasterPort::echoReceived()+0x24>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:280 (discriminator 2)
+            R8_UART1_RBR; 
+     a94:	4086c783          	lbu	a5,1032(a3) # 40003408 <_eusrstack+0x1fffcc08>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:281 (discriminator 2)
+            echo_count--; 
+     a98:	01855783          	lhu	a5,24(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:278 (discriminator 2)
+        for (int i=0; i<trig_point; i++)
+     a9c:	0705                	addi	a4,a4,1
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:281 (discriminator 2)
+            echo_count--; 
+     a9e:	17fd                	addi	a5,a5,-1
+     aa0:	07c2                	slli	a5,a5,0x10
+     aa2:	83c1                	srli	a5,a5,0x10
+     aa4:	00f51c23          	sh	a5,24(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:278 (discriminator 2)
+        for (int i=0; i<trig_point; i++)
+     aa8:	b7e5                	j	a90 <UartMasterPort::echoReceived()+0xa>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:283
+        }
+        if (tx_length > 0 && state == STATE_TX_DATA) 
+     aaa:	01455783          	lhu	a5,20(a0)
+     aae:	07c2                	slli	a5,a5,0x10
+     ab0:	83c1                	srli	a5,a5,0x10
+     ab2:	c38d                	beqz	a5,ad4 <UartMasterPort::echoReceived()+0x4e>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:283 (discriminator 1)
+     ab4:	4518                	lw	a4,8(a0)
+     ab6:	4791                	li	a5,4
+     ab8:	00f71e63          	bne	a4,a5,ad4 <UartMasterPort::echoReceived()+0x4e>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:285
+        {
+            setTriggerPoint(tx_length);
+     abc:	01455583          	lhu	a1,20(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:276
+    void echoReceived()
+     ac0:	1141                	addi	sp,sp,-16
+     ac2:	c422                	sw	s0,8(sp)
+     ac4:	c606                	sw	ra,12(sp)
+     ac6:	842a                	mv	s0,a0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:285
+            setTriggerPoint(tx_length);
+     ac8:	35e9                	jal	992 <UartMasterPort::setTriggerPoint(unsigned short)>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:286
+            dataTransmit();
+     aca:	8522                	mv	a0,s0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:289
+            } 
+        else if (echo_count > 0) setTriggerPoint(echo_count); 
+    }
+     acc:	4422                	lw	s0,8(sp)
+     ace:	40b2                	lw	ra,12(sp)
+     ad0:	0141                	addi	sp,sp,16
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:286
+            dataTransmit();
+     ad2:	bf85                	j	a42 <UartMasterPort::dataTransmit()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:288
+        else if (echo_count > 0) setTriggerPoint(echo_count); 
+     ad4:	01855783          	lhu	a5,24(a0)
+     ad8:	07c2                	slli	a5,a5,0x10
+     ada:	83c1                	srli	a5,a5,0x10
+     adc:	c781                	beqz	a5,ae4 <UartMasterPort::echoReceived()+0x5e>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:288 (discriminator 1)
+     ade:	01855583          	lhu	a1,24(a0)
+     ae2:	bd45                	j	992 <UartMasterPort::setTriggerPoint(unsigned short)>
+     ae4:	8082                	ret
+
+00000ae6 <UartMasterPort::interruptReceived()>:
+_ZN14UartMasterPort17interruptReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:84
+        switch (state) {
+     ae6:	451c                	lw	a5,8(a0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:82
+    void interruptReceived()
+     ae8:	1141                	addi	sp,sp,-16
+     aea:	c422                	sw	s0,8(sp)
+     aec:	c226                	sw	s1,4(sp)
+     aee:	c606                	sw	ra,12(sp)
+     af0:	448d                	li	s1,3
+     af2:	842a                	mv	s0,a0
+     af4:	08978a63          	beq	a5,s1,b88 <UartMasterPort::interruptReceived()+0xa2>
+     af8:	00f4ea63          	bltu	s1,a5,b0c <UartMasterPort::interruptReceived()+0x26>
+     afc:	4709                	li	a4,2
+     afe:	04e78763          	beq	a5,a4,b4c <UartMasterPort::interruptReceived()+0x66>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:136
+    }
+     b02:	40b2                	lw	ra,12(sp)
+     b04:	4422                	lw	s0,8(sp)
+     b06:	4492                	lw	s1,4(sp)
+     b08:	0141                	addi	sp,sp,16
+     b0a:	8082                	ret
+     b0c:	4711                	li	a4,4
+     b0e:	0ce78c63          	beq	a5,a4,be6 <UartMasterPort::interruptReceived()+0x100>
+     b12:	4695                	li	a3,5
+_ZN14UartMasterPort12dataReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:297
+    {
+        rx_command = R8_UART1_RBR;
+    }
+    void dataReceived()
+    {
+        for (int i=0; i<trig_point; i++)
+     b14:	4701                	li	a4,0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:299
+        {
+            *(rx_buffer - rx_length) = R8_UART1_RBR; 
+     b16:	40003637          	lui	a2,0x40003
+     b1a:	fed794e3          	bne	a5,a3,b02 <UartMasterPort::interruptReceived()+0x1c>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:297
+        for (int i=0; i<trig_point; i++)
+     b1e:	01a44783          	lbu	a5,26(s0)
+     b22:	0ef75463          	bge	a4,a5,c0a <UartMasterPort::interruptReceived()+0x124>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:299
+            *(rx_buffer - rx_length) = R8_UART1_RBR; 
+     b26:	01645683          	lhu	a3,22(s0)
+     b2a:	481c                	lw	a5,16(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:297
+        for (int i=0; i<trig_point; i++)
+     b2c:	0705                	addi	a4,a4,1
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:299
+            *(rx_buffer - rx_length) = R8_UART1_RBR; 
+     b2e:	8f95                	sub	a5,a5,a3
+     b30:	40864683          	lbu	a3,1032(a2) # 40003408 <_eusrstack+0x1fffcc08>
+     b34:	0ff6f693          	andi	a3,a3,255
+     b38:	00d78023          	sb	a3,0(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:300
+            rx_length--; 
+     b3c:	01645783          	lhu	a5,22(s0)
+     b40:	17fd                	addi	a5,a5,-1
+     b42:	07c2                	slli	a5,a5,0x10
+     b44:	83c1                	srli	a5,a5,0x10
+     b46:	00f41b23          	sh	a5,22(s0)
+     b4a:	bfd1                	j	b1e <UartMasterPort::interruptReceived()+0x38>
+_ZN14UartMasterPort17interruptReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:90
+                echoReceived();
+     b4c:	3f2d                	jal	a86 <UartMasterPort::echoReceived()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:91
+                if (!rx_command) setRxCommandState(); 
+     b4e:	01c44783          	lbu	a5,28(s0)
+     b52:	0ff7f793          	andi	a5,a5,255
+     b56:	ef91                	bnez	a5,b72 <UartMasterPort::interruptReceived()+0x8c>
+_ZN14UartMasterPort17setRxCommandStateEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:218
+        GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+     b58:	4008                	lw	a0,0(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:217
+        state = STATE_RX_COMMAND; 
+     b5a:	c404                	sw	s1,8(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:218
+        GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+     b5c:	4585                	li	a1,1
+     b5e:	2cb1                	jal	dba <GPIOA_ModeCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:219
+        trig_point = 1;
+     b60:	4785                	li	a5,1
+     b62:	00f40d23          	sb	a5,26(s0)
+_ZN14UartMasterPort17interruptReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:136
+    }
+     b66:	4422                	lw	s0,8(sp)
+     b68:	40b2                	lw	ra,12(sp)
+     b6a:	4492                	lw	s1,4(sp)
+_ZN14UartMasterPort17setRxCommandStateEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:220
+        UART1_ByteTrigCfg(UART_1BYTE_TRIG);  
+     b6c:	4501                	li	a0,0
+_ZN14UartMasterPort17interruptReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:136
+    }
+     b6e:	0141                	addi	sp,sp,16
+_ZN14UartMasterPort17setRxCommandStateEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:220
+        UART1_ByteTrigCfg(UART_1BYTE_TRIG);  
+     b70:	a925                	j	fa8 <UART1_ByteTrigCfg>
+_ZN14UartMasterPort17interruptReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:92
+                else if (rx_length) setRxDataState(); 
+     b72:	01645783          	lhu	a5,22(s0)
+     b76:	07c2                	slli	a5,a5,0x10
+     b78:	83c1                	srli	a5,a5,0x10
+     b7a:	d7c1                	beqz	a5,b02 <UartMasterPort::interruptReceived()+0x1c>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:92 (discriminator 1)
+     b7c:	8522                	mv	a0,s0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:136 (discriminator 1)
+    }
+     b7e:	4422                	lw	s0,8(sp)
+     b80:	40b2                	lw	ra,12(sp)
+     b82:	4492                	lw	s1,4(sp)
+     b84:	0141                	addi	sp,sp,16
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:92 (discriminator 1)
+                else if (rx_length) setRxDataState(); 
+     b86:	bd8d                	j	9f8 <UartMasterPort::setRxDataState()>
+_ZN14UartMasterPort15commandReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:293
+        rx_command = R8_UART1_RBR;
+     b88:	400037b7          	lui	a5,0x40003
+     b8c:	4087c783          	lbu	a5,1032(a5) # 40003408 <_eusrstack+0x1fffcc08>
+_ZN14UartMasterPort17interruptReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:97
+                if (rx_command == HELLO)
+     b90:	05500713          	li	a4,85
+_ZN14UartMasterPort15commandReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:293
+        rx_command = R8_UART1_RBR;
+     b94:	0ff7f793          	andi	a5,a5,255
+     b98:	00f50e23          	sb	a5,28(a0)
+_ZN14UartMasterPort17interruptReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:97
+                if (rx_command == HELLO)
+     b9c:	01c54783          	lbu	a5,28(a0)
+     ba0:	00f71f63          	bne	a4,a5,bbe <UartMasterPort::interruptReceived()+0xd8>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:99
+                    if (tx_length) 
+     ba4:	01455783          	lhu	a5,20(a0)
+     ba8:	07c2                	slli	a5,a5,0x10
+     baa:	83c1                	srli	a5,a5,0x10
+     bac:	cba9                	beqz	a5,bfe <UartMasterPort::interruptReceived()+0x118>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:101
+                        setTxDataState();
+     bae:	8522                	mv	a0,s0
+     bb0:	3d29                	jal	9ca <UartMasterPort::setTxDataState()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:102
+                        dataTransmit(); 
+     bb2:	8522                	mv	a0,s0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:136
+    }
+     bb4:	4422                	lw	s0,8(sp)
+     bb6:	40b2                	lw	ra,12(sp)
+     bb8:	4492                	lw	s1,4(sp)
+     bba:	0141                	addi	sp,sp,16
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:102
+                        dataTransmit(); 
+     bbc:	b559                	j	a42 <UartMasterPort::dataTransmit()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:108
+                    if (!rx_length) state = STATE_WAIT; 
+     bbe:	01655783          	lhu	a5,22(a0)
+     bc2:	07c2                	slli	a5,a5,0x10
+     bc4:	83c1                	srli	a5,a5,0x10
+     bc6:	e781                	bnez	a5,bce <UartMasterPort::interruptReceived()+0xe8>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:108 (discriminator 1)
+     bc8:	4785                	li	a5,1
+     bca:	c51c                	sw	a5,8(a0)
+     bcc:	bf1d                	j	b02 <UartMasterPort::interruptReceived()+0x1c>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:109
+                    else if (tx_length)
+     bce:	01455783          	lhu	a5,20(a0)
+     bd2:	07c2                	slli	a5,a5,0x10
+     bd4:	83c1                	srli	a5,a5,0x10
+     bd6:	ffe1                	bnez	a5,bae <UartMasterPort::interruptReceived()+0xc8>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:116
+                        setTxCommandState(); 
+     bd8:	3b41                	jal	968 <UartMasterPort::setTxCommandState()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:117
+                        commandTransmit(); 
+     bda:	8522                	mv	a0,s0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:136
+    }
+     bdc:	4422                	lw	s0,8(sp)
+     bde:	40b2                	lw	ra,12(sp)
+     be0:	4492                	lw	s1,4(sp)
+     be2:	0141                	addi	sp,sp,16
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:117
+                        commandTransmit(); 
+     be4:	bd15                	j	a18 <UartMasterPort::commandTransmit()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:124
+                echoReceived();
+     be6:	3545                	jal	a86 <UartMasterPort::echoReceived()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:125
+                if (!echo_count) 
+     be8:	01845783          	lhu	a5,24(s0)
+     bec:	07c2                	slli	a5,a5,0x10
+     bee:	83c1                	srli	a5,a5,0x10
+     bf0:	f00799e3          	bnez	a5,b02 <UartMasterPort::interruptReceived()+0x1c>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:127
+                    if (rx_length) setRxDataState();
+     bf4:	01645783          	lhu	a5,22(s0)
+     bf8:	07c2                	slli	a5,a5,0x10
+     bfa:	83c1                	srli	a5,a5,0x10
+     bfc:	f3c1                	bnez	a5,b7c <UartMasterPort::interruptReceived()+0x96>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:104
+                    else setIdleState(); 
+     bfe:	8522                	mv	a0,s0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:136
+    }
+     c00:	4422                	lw	s0,8(sp)
+     c02:	40b2                	lw	ra,12(sp)
+     c04:	4492                	lw	s1,4(sp)
+     c06:	0141                	addi	sp,sp,16
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:104
+                    else setIdleState(); 
+     c08:	bb29                	j	922 <UartMasterPort::setIdleState()>
+_ZN14UartMasterPort12dataReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:302
+        }
+        setTriggerPoint(rx_length);  
+     c0a:	01645583          	lhu	a1,22(s0)
+     c0e:	8522                	mv	a0,s0
+     c10:	3349                	jal	992 <UartMasterPort::setTriggerPoint(unsigned short)>
+_ZN14UartMasterPort17interruptReceivedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:133
+                if (!rx_length) setIdleState(); 
+     c12:	01645783          	lhu	a5,22(s0)
+     c16:	07c2                	slli	a5,a5,0x10
+     c18:	83c1                	srli	a5,a5,0x10
+     c1a:	ee0794e3          	bnez	a5,b02 <UartMasterPort::interruptReceived()+0x1c>
+     c1e:	b7c5                	j	bfe <UartMasterPort::interruptReceived()+0x118>
+
+00000c20 <main>:
+main():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:23
+{
+     c20:	1101                	addi	sp,sp,-32
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:25
+    SetSysClock(CLK_SOURCE_PLL_60MHz);
+     c22:	04800513          	li	a0,72
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:23
+{
+     c26:	ce06                	sw	ra,28(sp)
+     c28:	cc22                	sw	s0,24(sp)
+     c2a:	ca26                	sw	s1,20(sp)
+     c2c:	c84a                	sw	s2,16(sp)
+     c2e:	c64e                	sw	s3,12(sp)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:25
+    SetSysClock(CLK_SOURCE_PLL_60MHz);
+     c30:	1ffff097          	auipc	ra,0x1ffff
+     c34:	546080e7          	jalr	1350(ra) # 20000176 <SetSysClock>
+_ZN14UartMasterPort4initEmm():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:41
+        TX_PIN = tx_pin; 
+     c38:	20000793          	li	a5,512
+     c3c:	80f1ae23          	sw	a5,-2020(gp) # 200008a4 <UART1>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:42
+        RX_PIN = rx_pin; 
+     c40:	10000793          	li	a5,256
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:45
+        GPIOA_SetBits(TX_PIN);
+     c44:	400014b7          	lui	s1,0x40001
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:42
+        RX_PIN = rx_pin; 
+     c48:	82f1a023          	sw	a5,-2016(gp) # 200008a8 <UART1+0x4>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:45
+        GPIOA_SetBits(TX_PIN);
+     c4c:	0a84a783          	lw	a5,168(s1) # 400010a8 <_eusrstack+0x1fffa8a8>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:46
+        GPIOA_ModeCfg(RX_PIN, GPIO_ModeIN_PU);
+     c50:	4585                	li	a1,1
+     c52:	10000513          	li	a0,256
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:45
+        GPIOA_SetBits(TX_PIN);
+     c56:	2007e793          	ori	a5,a5,512
+     c5a:	0af4a423          	sw	a5,168(s1)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:46
+        GPIOA_ModeCfg(RX_PIN, GPIO_ModeIN_PU);
+     c5e:	2ab1                	jal	dba <GPIOA_ModeCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:41
+        TX_PIN = tx_pin; 
+     c60:	81c18413          	addi	s0,gp,-2020 # 200008a4 <UART1>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:47
+        GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+     c64:	4008                	lw	a0,0(s0)
+     c66:	4585                	li	a1,1
+PFIC_EnableIRQ():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:144
+ *
+ * @param   IRQn    - Interrupt Numbers
+ */
+__attribute__((always_inline)) RV_STATIC_INLINE void PFIC_EnableIRQ(IRQn_Type IRQn)
+{
+    PFIC->IENR[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn)&0x1F));
+     c68:	e000e937          	lui	s2,0xe000e
+_ZN14UartMasterPort4initEmm():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:47
+     c6c:	22b9                	jal	dba <GPIOA_ModeCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:50
+        UART1_DefInit();
+     c6e:	2621                	jal	f76 <UART1_DefInit>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:53
+        UART1_ByteTrigCfg(UART_1BYTE_TRIG); 
+     c70:	4501                	li	a0,0
+     c72:	2e1d                	jal	fa8 <UART1_ByteTrigCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:54
+        UART1_INTCfg(ENABLE, RB_IER_RECV_RDY | RB_IER_LINE_STAT);
+     c74:	4595                	li	a1,5
+     c76:	4505                	li	a0,1
+     c78:	26a9                	jal	fc2 <UART1_INTCfg>
+PFIC_EnableIRQ():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:144
+     c7a:	080007b7          	lui	a5,0x8000
+     c7e:	10f92023          	sw	a5,256(s2) # e000e100 <_eusrstack+0xc0007900>
+main():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:31
+    GPIOB_ModeCfg(GPIO_Pin_15, GPIO_ModeOut_PP_5mA);
+     c82:	458d                	li	a1,3
+     c84:	6521                	lui	a0,0x8
+     c86:	2ae9                	jal	e60 <GPIOB_ModeCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:32
+    GPIOB_ResetBits(GPIO_Pin_15);
+     c88:	0cc4a783          	lw	a5,204(s1)
+     c8c:	6721                	lui	a4,0x8
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:34
+    GPIOB_ModeCfg(GPIO_Pin_14, GPIO_ModeOut_PP_5mA);
+     c8e:	458d                	li	a1,3
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:32
+    GPIOB_ResetBits(GPIO_Pin_15);
+     c90:	8fd9                	or	a5,a5,a4
+     c92:	0cf4a623          	sw	a5,204(s1)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:34
+    GPIOB_ModeCfg(GPIO_Pin_14, GPIO_ModeOut_PP_5mA);
+     c96:	6511                	lui	a0,0x4
+     c98:	22e1                	jal	e60 <GPIOB_ModeCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:35
+    GPIOB_ResetBits(GPIO_Pin_14);
+     c9a:	0cc4a783          	lw	a5,204(s1)
+     c9e:	6711                	lui	a4,0x4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:57
+        else GPIOB_ResetBits(GPIO_Pin_15);
+     ca0:	400019b7          	lui	s3,0x40001
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:35
+    GPIOB_ResetBits(GPIO_Pin_14);
+     ca4:	8fd9                	or	a5,a5,a4
+     ca6:	0cf4a623          	sw	a5,204(s1)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:43
+    R8_TMR0_CTRL_MOD = RB_TMR_ALL_CLEAR;     // Сброс таймера
+     caa:	4709                	li	a4,2
+     cac:	400027b7          	lui	a5,0x40002
+     cb0:	00e78023          	sb	a4,0(a5) # 40002000 <_eusrstack+0x1fffb800>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:44
+    R8_TMR0_CTRL_MOD = RB_TMR_COUNT_EN;      // Режим счета
+     cb4:	4711                	li	a4,4
+     cb6:	00e78023          	sb	a4,0(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:45
+    R32_TMR0_CNT_END = 6000000;               // Установка периода (15 мс при 60МГц)
+     cba:	005b9737          	lui	a4,0x5b9
+     cbe:	d8070713          	addi	a4,a4,-640 # 5b8d80 <_data_lma+0x5b7d68>
+     cc2:	c7d8                	sw	a4,12(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:48
+    R8_TMR0_INTER_EN = RB_TMR_IE_CYC_END;
+     cc4:	4705                	li	a4,1
+     cc6:	00e78123          	sb	a4,2(a5)
+PFIC_EnableIRQ():
+c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h:144
+     cca:	67c1                	lui	a5,0x10
+     ccc:	10f92023          	sw	a5,256(s2)
+main():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:59
+        command = UART1.hasCommand();
+     cd0:	20000497          	auipc	s1,0x20000
+     cd4:	bb848493          	addi	s1,s1,-1096 # 20000888 <_edata>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:57
+        else GPIOB_ResetBits(GPIO_Pin_15);
+     cd8:	6921                	lui	s2,0x8
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:58
+        GPIOB_InverseBits(GPIO_Pin_14);
+     cda:	6611                	lui	a2,0x4
+_ZN14UartMasterPort10hasCommandEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:164
+        if (state == STATE_WAIT)
+     cdc:	4705                	li	a4,1
+_ZN14UartMasterPort11isConnectedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:154
+        return connection;
+     cde:	01d44783          	lbu	a5,29(s0)
+     ce2:	0ff7f793          	andi	a5,a5,255
+main():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:56
+        if (UART1.isConnected()) GPIOB_SetBits(GPIO_Pin_15); 
+     ce6:	cbad                	beqz	a5,d58 <main+0x138>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:56 (discriminator 1)
+     ce8:	0c89a783          	lw	a5,200(s3) # 400010c8 <_eusrstack+0x1fffa8c8>
+     cec:	0127e7b3          	or	a5,a5,s2
+     cf0:	0cf9a423          	sw	a5,200(s3)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:58
+        GPIOB_InverseBits(GPIO_Pin_14);
+     cf4:	0c89a783          	lw	a5,200(s3)
+     cf8:	8fb1                	xor	a5,a5,a2
+     cfa:	0cf9a423          	sw	a5,200(s3)
+_ZN14UartMasterPort10hasCommandEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:164
+        if (state == STATE_WAIT)
+     cfe:	4414                	lw	a3,8(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:166
+        else return 0; 
+     d00:	4781                	li	a5,0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:164
+        if (state == STATE_WAIT)
+     d02:	00e69663          	bne	a3,a4,d0e <main+0xee>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:165
+            return rx_command; 
+     d06:	01c44783          	lbu	a5,28(s0)
+     d0a:	0ff7f793          	andi	a5,a5,255
+main():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:59
+        command = UART1.hasCommand();
+     d0e:	20000697          	auipc	a3,0x20000
+     d12:	b6f68d23          	sb	a5,-1158(a3) # 20000888 <_edata>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:60
+        if (command > 0) {
+     d16:	0004c783          	lbu	a5,0(s1)
+     d1a:	0ff7f793          	andi	a5,a5,255
+     d1e:	d3e1                	beqz	a5,cde <main+0xbe>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:61
+            UART1.receiveData(RxBuff, command);
+     d20:	0004c783          	lbu	a5,0(s1)
+     d24:	0ff7f793          	andi	a5,a5,255
+_ZN14UartMasterPort11receiveDataEPht():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:147
+        rx_length = buf ? length : 0;
+     d28:	82f19923          	sh	a5,-1998(gp) # 200008ba <UART1+0x16>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:149
+        if (state == STATE_WAIT) proceed(); 
+     d2c:	4414                	lw	a3,8(s0)
+     d2e:	fae698e3          	bne	a3,a4,cde <main+0xbe>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:148
+        rx_buffer = buf ? buf + length : nullptr; 
+     d32:	20000717          	auipc	a4,0x20000
+     d36:	b5a70713          	addi	a4,a4,-1190 # 2000088c <RxBuff>
+     d3a:	97ba                	add	a5,a5,a4
+     d3c:	82f1a623          	sw	a5,-2004(gp) # 200008b4 <UART1+0x10>
+_ZN14UartMasterPort7proceedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:173
+        if (tx_length) 
+     d40:	01445783          	lhu	a5,20(s0)
+     d44:	07c2                	slli	a5,a5,0x10
+     d46:	83c1                	srli	a5,a5,0x10
+     d48:	cf99                	beqz	a5,d66 <main+0x146>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:175
+            setTxDataState();
+     d4a:	81c18513          	addi	a0,gp,-2020 # 200008a4 <UART1>
+     d4e:	39b5                	jal	9ca <UartMasterPort::setTxDataState()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:176
+            dataTransmit();
+     d50:	81c18513          	addi	a0,gp,-2020 # 200008a4 <UART1>
+     d54:	31fd                	jal	a42 <UartMasterPort::dataTransmit()>
+     d56:	b751                	j	cda <main+0xba>
+main():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:57
+        else GPIOB_ResetBits(GPIO_Pin_15);
+     d58:	0cc9a783          	lw	a5,204(s3)
+     d5c:	0127e7b3          	or	a5,a5,s2
+     d60:	0cf9a623          	sw	a5,204(s3)
+     d64:	bf41                	j	cf4 <main+0xd4>
+_ZN14UartMasterPort7proceedEv():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:178
+        else if (rx_length)
+     d66:	01645783          	lhu	a5,22(s0)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:180
+            setTxCommandState(); 
+     d6a:	81c18513          	addi	a0,gp,-2020 # 200008a4 <UART1>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:178
+        else if (rx_length)
+     d6e:	07c2                	slli	a5,a5,0x10
+     d70:	83c1                	srli	a5,a5,0x10
+     d72:	c791                	beqz	a5,d7e <main+0x15e>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:180
+            setTxCommandState(); 
+     d74:	3ed5                	jal	968 <UartMasterPort::setTxCommandState()>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:181
+            commandTransmit(); 
+     d76:	81c18513          	addi	a0,gp,-2020 # 200008a4 <UART1>
+     d7a:	3979                	jal	a18 <UartMasterPort::commandTransmit()>
+     d7c:	bfb9                	j	cda <main+0xba>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:183
+        else setIdleState(); 
+     d7e:	3655                	jal	922 <UartMasterPort::setIdleState()>
+     d80:	bfa9                	j	cda <main+0xba>
+
+00000d82 <_GLOBAL__sub_I_UART1>:
+_ZN14UartMasterPortC4Ev():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Modules/UART_Master_Port_old.hpp:38
+    UartMasterPort() {}
+     d82:	81c18793          	addi	a5,gp,-2020 # 200008a4 <UART1>
+     d86:	0007a423          	sw	zero,8(a5) # 10008 <_data_lma+0xeff0>
+     d8a:	00079a23          	sh	zero,20(a5)
+     d8e:	00079b23          	sh	zero,22(a5)
+     d92:	00079c23          	sh	zero,24(a5)
+     d96:	00078da3          	sb	zero,27(a5)
+     d9a:	4705                	li	a4,1
+     d9c:	00078e23          	sb	zero,28(a5)
+     da0:	0007a023          	sw	zero,0(a5)
+     da4:	0007a223          	sw	zero,4(a5)
+     da8:	0007a623          	sw	zero,12(a5)
+     dac:	0007a823          	sw	zero,16(a5)
+     db0:	00e78d23          	sb	a4,26(a5)
+     db4:	00078ea3          	sb	zero,29(a5)
+_GLOBAL__sub_I_UART1():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../User/Main.cpp:120
+     db8:	8082                	ret
+
+00000dba <GPIOA_ModeCfg>:
+GPIOA_ModeCfg():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:27
+ *
+ * @return  none
+ */
+void GPIOA_ModeCfg(uint32_t pin, GPIOModeTypeDef mode)
+{
+    switch(mode)
+     dba:	4791                	li	a5,4
+     dbc:	02b7ee63          	bltu	a5,a1,df8 <GPIOA_ModeCfg+0x3e>
+     dc0:	00000717          	auipc	a4,0x0
+     dc4:	22c70713          	addi	a4,a4,556 # fec <UART1_INTCfg+0x2a>
+     dc8:	058a                	slli	a1,a1,0x2
+     dca:	95ba                	add	a1,a1,a4
+     dcc:	419c                	lw	a5,0(a1)
+     dce:	97ba                	add	a5,a5,a4
+     dd0:	8782                	jr	a5
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:30
+    {
+        case GPIO_ModeIN_Floating:
+            R32_PA_PD_DRV &= ~pin;
+     dd2:	400017b7          	lui	a5,0x40001
+     dd6:	0b47a703          	lw	a4,180(a5) # 400010b4 <_eusrstack+0x1fffa8b4>
+     dda:	fff54513          	not	a0,a0
+     dde:	8f69                	and	a4,a4,a0
+     de0:	0ae7aa23          	sw	a4,180(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:31
+            R32_PA_PU &= ~pin;
+     de4:	0b07a703          	lw	a4,176(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:43
+            R32_PA_DIR &= ~pin;
+            break;
+
+        case GPIO_ModeIN_PD:
+            R32_PA_PD_DRV |= pin;
+            R32_PA_PU &= ~pin;
+     de8:	8f69                	and	a4,a4,a0
+     dea:	0ae7a823          	sw	a4,176(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:44
+            R32_PA_DIR &= ~pin;
+     dee:	0a07a703          	lw	a4,160(a5)
+     df2:	8d79                	and	a0,a0,a4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:54
+            R32_PA_DIR |= pin;
+            break;
+
+        case GPIO_ModeOut_PP_20mA:
+            R32_PA_PD_DRV |= pin;
+            R32_PA_DIR |= pin;
+     df4:	0aa7a023          	sw	a0,160(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:60
+            break;
+
+        default:
+            break;
+    }
+}
+     df8:	8082                	ret
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:36
+            R32_PA_PD_DRV &= ~pin;
+     dfa:	400017b7          	lui	a5,0x40001
+     dfe:	0b47a683          	lw	a3,180(a5) # 400010b4 <_eusrstack+0x1fffa8b4>
+     e02:	fff54713          	not	a4,a0
+     e06:	8ef9                	and	a3,a3,a4
+     e08:	0ad7aa23          	sw	a3,180(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:37
+            R32_PA_PU |= pin;
+     e0c:	0b07a683          	lw	a3,176(a5)
+     e10:	8d55                	or	a0,a0,a3
+     e12:	0aa7a823          	sw	a0,176(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:38
+            R32_PA_DIR &= ~pin;
+     e16:	0a07a683          	lw	a3,160(a5)
+     e1a:	8f75                	and	a4,a4,a3
+     e1c:	0ae7a023          	sw	a4,160(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:39
+            break;
+     e20:	8082                	ret
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:42
+            R32_PA_PD_DRV |= pin;
+     e22:	400017b7          	lui	a5,0x40001
+     e26:	0b47a703          	lw	a4,180(a5) # 400010b4 <_eusrstack+0x1fffa8b4>
+     e2a:	8f49                	or	a4,a4,a0
+     e2c:	0ae7aa23          	sw	a4,180(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:43
+            R32_PA_PU &= ~pin;
+     e30:	0b07a703          	lw	a4,176(a5)
+     e34:	fff54513          	not	a0,a0
+     e38:	bf45                	j	de8 <GPIOA_ModeCfg+0x2e>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:48
+            R32_PA_PD_DRV &= ~pin;
+     e3a:	400017b7          	lui	a5,0x40001
+     e3e:	0b47a683          	lw	a3,180(a5) # 400010b4 <_eusrstack+0x1fffa8b4>
+     e42:	fff54713          	not	a4,a0
+     e46:	8f75                	and	a4,a4,a3
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:53
+            R32_PA_PD_DRV |= pin;
+     e48:	0ae7aa23          	sw	a4,180(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:54
+            R32_PA_DIR |= pin;
+     e4c:	0a07a703          	lw	a4,160(a5)
+     e50:	8d59                	or	a0,a0,a4
+     e52:	b74d                	j	df4 <GPIOA_ModeCfg+0x3a>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:53
+            R32_PA_PD_DRV |= pin;
+     e54:	400017b7          	lui	a5,0x40001
+     e58:	0b47a703          	lw	a4,180(a5) # 400010b4 <_eusrstack+0x1fffa8b4>
+     e5c:	8f49                	or	a4,a4,a0
+     e5e:	b7ed                	j	e48 <GPIOA_ModeCfg+0x8e>
+
+00000e60 <GPIOB_ModeCfg>:
+GPIOB_ModeCfg():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:74
+ *
+ * @return  none
+ */
+void GPIOB_ModeCfg(uint32_t pin, GPIOModeTypeDef mode)
+{
+    switch(mode)
+     e60:	4791                	li	a5,4
+     e62:	02b7ee63          	bltu	a5,a1,e9e <GPIOB_ModeCfg+0x3e>
+     e66:	00000717          	auipc	a4,0x0
+     e6a:	19a70713          	addi	a4,a4,410 # 1000 <UART1_INTCfg+0x3e>
+     e6e:	058a                	slli	a1,a1,0x2
+     e70:	95ba                	add	a1,a1,a4
+     e72:	419c                	lw	a5,0(a1)
+     e74:	97ba                	add	a5,a5,a4
+     e76:	8782                	jr	a5
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:77
+    {
+        case GPIO_ModeIN_Floating:
+            R32_PB_PD_DRV &= ~pin;
+     e78:	400017b7          	lui	a5,0x40001
+     e7c:	0d47a703          	lw	a4,212(a5) # 400010d4 <_eusrstack+0x1fffa8d4>
+     e80:	fff54513          	not	a0,a0
+     e84:	8f69                	and	a4,a4,a0
+     e86:	0ce7aa23          	sw	a4,212(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:78
+            R32_PB_PU &= ~pin;
+     e8a:	0d07a703          	lw	a4,208(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:90
+            R32_PB_DIR &= ~pin;
+            break;
+
+        case GPIO_ModeIN_PD:
+            R32_PB_PD_DRV |= pin;
+            R32_PB_PU &= ~pin;
+     e8e:	8f69                	and	a4,a4,a0
+     e90:	0ce7a823          	sw	a4,208(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:91
+            R32_PB_DIR &= ~pin;
+     e94:	0c07a703          	lw	a4,192(a5)
+     e98:	8d79                	and	a0,a0,a4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:101
+            R32_PB_DIR |= pin;
+            break;
+
+        case GPIO_ModeOut_PP_20mA:
+            R32_PB_PD_DRV |= pin;
+            R32_PB_DIR |= pin;
+     e9a:	0ca7a023          	sw	a0,192(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:107
+            break;
+
+        default:
+            break;
+    }
+}
+     e9e:	8082                	ret
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:83
+            R32_PB_PD_DRV &= ~pin;
+     ea0:	400017b7          	lui	a5,0x40001
+     ea4:	0d47a683          	lw	a3,212(a5) # 400010d4 <_eusrstack+0x1fffa8d4>
+     ea8:	fff54713          	not	a4,a0
+     eac:	8ef9                	and	a3,a3,a4
+     eae:	0cd7aa23          	sw	a3,212(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:84
+            R32_PB_PU |= pin;
+     eb2:	0d07a683          	lw	a3,208(a5)
+     eb6:	8d55                	or	a0,a0,a3
+     eb8:	0ca7a823          	sw	a0,208(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:85
+            R32_PB_DIR &= ~pin;
+     ebc:	0c07a683          	lw	a3,192(a5)
+     ec0:	8f75                	and	a4,a4,a3
+     ec2:	0ce7a023          	sw	a4,192(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:86
+            break;
+     ec6:	8082                	ret
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:89
+            R32_PB_PD_DRV |= pin;
+     ec8:	400017b7          	lui	a5,0x40001
+     ecc:	0d47a703          	lw	a4,212(a5) # 400010d4 <_eusrstack+0x1fffa8d4>
+     ed0:	8f49                	or	a4,a4,a0
+     ed2:	0ce7aa23          	sw	a4,212(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:90
+            R32_PB_PU &= ~pin;
+     ed6:	0d07a703          	lw	a4,208(a5)
+     eda:	fff54513          	not	a0,a0
+     ede:	bf45                	j	e8e <GPIOB_ModeCfg+0x2e>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:95
+            R32_PB_PD_DRV &= ~pin;
+     ee0:	400017b7          	lui	a5,0x40001
+     ee4:	0d47a683          	lw	a3,212(a5) # 400010d4 <_eusrstack+0x1fffa8d4>
+     ee8:	fff54713          	not	a4,a0
+     eec:	8f75                	and	a4,a4,a3
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:100
+            R32_PB_PD_DRV |= pin;
+     eee:	0ce7aa23          	sw	a4,212(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:101
+            R32_PB_DIR |= pin;
+     ef2:	0c07a703          	lw	a4,192(a5)
+     ef6:	8d59                	or	a0,a0,a4
+     ef8:	b74d                	j	e9a <GPIOB_ModeCfg+0x3a>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_gpio.c:100
+            R32_PB_PD_DRV |= pin;
+     efa:	400017b7          	lui	a5,0x40001
+     efe:	0d47a703          	lw	a4,212(a5) # 400010d4 <_eusrstack+0x1fffa8d4>
+     f02:	8f49                	or	a4,a4,a0
+     f04:	b7ed                	j	eee <GPIOB_ModeCfg+0x8e>
+
+00000f06 <GetSysClock>:
+GetSysClock():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:95
+    rev = R32_CLK_SYS_CFG & 0xff;
+     f06:	400017b7          	lui	a5,0x40001
+     f0a:	4788                	lw	a0,8(a5)
+     f0c:	0542                	slli	a0,a0,0x10
+     f0e:	8141                	srli	a0,a0,0x10
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:96
+    if((rev & 0x40) == (0 << 6))
+     f10:	04057793          	andi	a5,a0,64
+     f14:	eb91                	bnez	a5,f28 <GetSysClock+0x22>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:98
+        return (32000000 / (rev & 0x1f));
+     f16:	01f57793          	andi	a5,a0,31
+     f1a:	01e85537          	lui	a0,0x1e85
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:102
+        return (480000000 / (rev & 0x1f));
+     f1e:	80050513          	addi	a0,a0,-2048 # 1e84800 <_data_lma+0x1e837e8>
+     f22:	02f54533          	div	a0,a0,a5
+     f26:	8082                	ret
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:100
+    else if((rev & RB_CLK_SYS_MOD) == (1 << 6))
+     f28:	0c057793          	andi	a5,a0,192
+     f2c:	04000713          	li	a4,64
+     f30:	00e79763          	bne	a5,a4,f3e <GetSysClock+0x38>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:102
+        return (480000000 / (rev & 0x1f));
+     f34:	01f57793          	andi	a5,a0,31
+     f38:	1c9c4537          	lui	a0,0x1c9c4
+     f3c:	b7cd                	j	f1e <GetSysClock+0x18>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:106
+        return (32000);
+     f3e:	6521                	lui	a0,0x8
+     f40:	d0050513          	addi	a0,a0,-768 # 7d00 <_data_lma+0x6ce8>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_sys.c:108
+}
+     f44:	8082                	ret
+
+00000f46 <UART1_BaudRateCfg>:
+UART1_BaudRateCfg():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:43
+ * @param   baudrate    - 波特率
+ *
+ * @return  none
+ */
+void UART1_BaudRateCfg(uint32_t baudrate)
+{
+     f46:	1141                	addi	sp,sp,-16
+     f48:	c422                	sw	s0,8(sp)
+     f4a:	c606                	sw	ra,12(sp)
+     f4c:	842a                	mv	s0,a0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:46
+    uint32_t x;
+
+    x = 10 * GetSysClock() / 8 / baudrate;
+     f4e:	3f65                	jal	f06 <GetSysClock>
+     f50:	4729                	li	a4,10
+     f52:	02e507b3          	mul	a5,a0,a4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:49
+    x = (x + 5) / 10;
+    R16_UART1_DL = (uint16_t)x;
+}
+     f56:	40b2                	lw	ra,12(sp)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:46
+    x = 10 * GetSysClock() / 8 / baudrate;
+     f58:	838d                	srli	a5,a5,0x3
+     f5a:	0287d7b3          	divu	a5,a5,s0
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:49
+}
+     f5e:	4422                	lw	s0,8(sp)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:47
+    x = (x + 5) / 10;
+     f60:	0795                	addi	a5,a5,5
+     f62:	02e7d7b3          	divu	a5,a5,a4
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:48
+    R16_UART1_DL = (uint16_t)x;
+     f66:	40003737          	lui	a4,0x40003
+     f6a:	07c2                	slli	a5,a5,0x10
+     f6c:	83c1                	srli	a5,a5,0x10
+     f6e:	40f71623          	sh	a5,1036(a4) # 4000340c <_eusrstack+0x1fffcc0c>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:49
+}
+     f72:	0141                	addi	sp,sp,16
+     f74:	8082                	ret
+
+00000f76 <UART1_DefInit>:
+UART1_DefInit():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:26
+    UART1_BaudRateCfg(115200);
+     f76:	6571                	lui	a0,0x1c
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:25
+{
+     f78:	1141                	addi	sp,sp,-16
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:26
+    UART1_BaudRateCfg(115200);
+     f7a:	20050513          	addi	a0,a0,512 # 1c200 <_data_lma+0x1b1e8>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:25
+{
+     f7e:	c606                	sw	ra,12(sp)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:26
+    UART1_BaudRateCfg(115200);
+     f80:	37d9                	jal	f46 <UART1_BaudRateCfg>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:27
+    R8_UART1_FCR = (2 << 6) | RB_FCR_TX_FIFO_CLR | RB_FCR_RX_FIFO_CLR | RB_FCR_FIFO_EN; // FIFO打开，触发点4字节
+     f82:	400037b7          	lui	a5,0x40003
+     f86:	f8700713          	li	a4,-121
+     f8a:	40e78123          	sb	a4,1026(a5) # 40003402 <_eusrstack+0x1fffcc02>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:28
+    R8_UART1_LCR = RB_LCR_WORD_SZ;
+     f8e:	470d                	li	a4,3
+     f90:	40e781a3          	sb	a4,1027(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:29
+    R8_UART1_IER = RB_IER_TXD_EN;
+     f94:	04000713          	li	a4,64
+     f98:	40e780a3          	sb	a4,1025(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:30
+    R8_UART1_DIV = 1;
+     f9c:	4705                	li	a4,1
+     f9e:	40e78723          	sb	a4,1038(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:31
+}
+     fa2:	40b2                	lw	ra,12(sp)
+     fa4:	0141                	addi	sp,sp,16
+     fa6:	8082                	ret
+
+00000fa8 <UART1_ByteTrigCfg>:
+UART1_ByteTrigCfg():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:62
+ *
+ * @return  none
+ */
+void UART1_ByteTrigCfg(UARTByteTRIGTypeDef b)
+{
+    R8_UART1_FCR = (R8_UART1_FCR & ~RB_FCR_FIFO_TRIG) | (b << 6);
+     fa8:	40003737          	lui	a4,0x40003
+     fac:	40274783          	lbu	a5,1026(a4) # 40003402 <_eusrstack+0x1fffcc02>
+     fb0:	051a                	slli	a0,a0,0x6
+     fb2:	03f7f793          	andi	a5,a5,63
+     fb6:	8fc9                	or	a5,a5,a0
+     fb8:	0ff7f793          	andi	a5,a5,255
+     fbc:	40f70123          	sb	a5,1026(a4)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:63
+}
+     fc0:	8082                	ret
+
+00000fc2 <UART1_INTCfg>:
+UART1_INTCfg():
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:83
+ */
+void UART1_INTCfg(FunctionalState s, uint8_t i)
+{
+    if(s)
+    {
+        R8_UART1_IER |= i;
+     fc2:	400037b7          	lui	a5,0x40003
+     fc6:	4017c703          	lbu	a4,1025(a5) # 40003401 <_eusrstack+0x1fffcc01>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:81
+    if(s)
+     fca:	c919                	beqz	a0,fe0 <UART1_INTCfg+0x1e>
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:83
+        R8_UART1_IER |= i;
+     fcc:	8dd9                	or	a1,a1,a4
+     fce:	40b780a3          	sb	a1,1025(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:84
+        R8_UART1_MCR |= RB_MCR_INT_OE;
+     fd2:	4007c703          	lbu	a4,1024(a5)
+     fd6:	00876713          	ori	a4,a4,8
+     fda:	40e78023          	sb	a4,1024(a5)
+     fde:	8082                	ret
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:88
+    }
+    else
+    {
+        R8_UART1_IER &= ~i;
+     fe0:	fff5c593          	not	a1,a1
+     fe4:	8df9                	and	a1,a1,a4
+     fe6:	40b780a3          	sb	a1,1025(a5)
+c:\Users\Jenny\mounriver-studio-projects\UART_test\obj/../StdPeriphDriver/CH59x_uart1.c:90
+    }
+}
+     fea:	8082                	ret
+     fec:	fde6                	fsw	fs9,248(sp)
+     fee:	ffff                	0xffff
+     ff0:	fe0e                	fsw	ft3,60(sp)
+     ff2:	ffff                	0xffff
+     ff4:	fe36                	fsw	fa3,60(sp)
+     ff6:	ffff                	0xffff
+     ff8:	fe4e                	fsw	fs3,60(sp)
+     ffa:	ffff                	0xffff
+     ffc:	fe68                	fsw	fa0,124(a2)
+     ffe:	ffff                	0xffff
+    1000:	fe78                	fsw	fa4,124(a2)
+    1002:	ffff                	0xffff
+    1004:	fea0                	fsw	fs0,120(a3)
+    1006:	ffff                	0xffff
+    1008:	fec8                	fsw	fa0,60(a3)
+    100a:	ffff                	0xffff
+    100c:	fee0                	fsw	fs0,124(a3)
+    100e:	ffff                	0xffff
+    1010:	fefa                	fsw	ft10,124(sp)
+    1012:	ffff                	0xffff
