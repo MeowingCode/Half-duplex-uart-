@@ -1,7 +1,7 @@
 // #pragma once
 #include "CH59x_common.h"
-
-class UartMaster
+template <typename Derived>
+class UartPort
 {
 public:
         enum State
@@ -35,7 +35,7 @@ protected:
     volatile bool connection = false; 
 
 public: ////////////////////////////////////////////////////////////////
-    UartMaster() {}
+    UartPort() {}
     void init(uint32_t tx_pin, uint32_t rx_pin) 
     {
         TX_PIN = tx_pin; 
@@ -56,10 +56,6 @@ public: ////////////////////////////////////////////////////////////////
         // §£§Ü§Ý§ð§é§Ñ§Ö§Þ §Ó§Ö§Ü§ä§à§â §Ó §Ü§à§ß§ä§â§à§Ý§Ý§Ö§â§Ö §á§â§Ö§â§í§Ó§Ñ§ß§Ú§Û PFIC
         PFIC_EnableIRQ(UART1_IRQn);
     }
-// ------------------------------------------------------------------
-    virtual void poll() =0;
-
-    virtual void interruptReceived() =0;
 
 // -------------------------------------------------------------------
     void sendData(uint8_t command, uint8_t* buf, uint16_t length)
@@ -72,8 +68,21 @@ public: ////////////////////////////////////////////////////////////////
     void receiveData(uint8_t *buf, uint16_t length)
     {
         rx_length = buf ? length : 0;
-        rx_buffer = buf ? buf + length : nullptr; 
-        if (state == STATE_WAIT) proceed(); 
+        rx_buffer = buf ? buf + length : nullptr;
+
+        if (state == STATE_WAIT)
+        {
+            static_cast<Derived*>(this)->proceed();
+        }
+    }
+// ----------------------------------------------------------------------
+    void poll()
+    {
+        static_cast<Derived*>(this)->poll();
+    }
+    void interruptReceived()
+    {
+        static_cast<Derived*>(this)->interruptReceived();
     }
 // ----------------------------------------------------------------------
     bool isConnected()
@@ -94,10 +103,6 @@ public: ////////////////////////////////////////////////////////////////
     }
 
 protected: ////////////////////////////////////////////////////////
-    
-    virtual void proceed() = 0;
-
-    virtual void setIdleState() = 0;
 
     void reset()
     {
@@ -215,11 +220,13 @@ protected: ////////////////////////////////////////////////////////
 // Master
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class UartMasterPort: public UartMaster
+class UartMasterPort: public UartPort<UartMasterPort>
 {
-    using State = UartMaster::State; 
+    friend UartPort<UartMasterPort>; 
+    using State = UartPort::State; 
 private:
-    void proceed() override
+
+    void proceed()
     {
         if (tx_length) 
         {
@@ -234,7 +241,7 @@ private:
         else setIdleState(); 
     }
 
-    void setIdleState() override
+    void setIdleState()
     {
         state = STATE_IDLE; 
         GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
@@ -242,7 +249,17 @@ private:
         reset(); 
     }
 public:
-    void poll() override
+    // void receiveData(uint8_t *buf, uint16_t length)
+    // {
+    //     rx_length = buf ? length : 0;
+    //     rx_buffer = buf ? buf + length : nullptr;
+
+    //     if (state == STATE_WAIT)
+    //     {
+    //         proceed();
+    //     }
+    // }
+    void poll()
     {
         switch (state) {
             case STATE_IDLE: 
@@ -265,7 +282,7 @@ public:
         }
     }
     
-    void interruptReceived() override
+    void interruptReceived()
     {
         switch (state) {
             case STATE_IDLE: 
@@ -327,17 +344,18 @@ public:
 // Slave
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class UartSlavePort: public UartMaster
+class UartSlavePort: public UartPort<UartSlavePort>
 {
-    using State = UartMaster::State; 
+    friend UartPort<UartSlavePort>; 
+    using State = UartPort::State; 
 private:
-    void proceed() override
+    void proceed()
     {
         setTxCommandState(); 
         commandTransmit();  
     }
 
-    void setIdleState() override
+    void setIdleState()
     {
         state = STATE_IDLE; 
         GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
@@ -348,7 +366,13 @@ private:
         UART1_ByteTrigCfg(UART_1BYTE_TRIG); 
     }
 public:
-    void poll() override
+    // void receiveData(uint8_t *buf, uint16_t length)
+    // {
+    //     rx_length = buf ? length : 0;
+    //     rx_buffer = buf ? buf + length : nullptr; 
+    //     if (state == STATE_WAIT) proceed(); 
+    // }
+    void poll()
     {
         switch (state) {
             case STATE_IDLE: 
@@ -371,7 +395,7 @@ public:
         }
     }
     
-    void interruptReceived() override
+    void interruptReceived()
     {
         switch (state) {
             case STATE_IDLE: 

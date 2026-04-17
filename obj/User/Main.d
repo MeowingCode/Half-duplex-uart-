@@ -16,7 +16,7 @@ User/Main.o: ../User/Main.cpp \
  c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_usbdev.h \
  c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_usbhost.h \
  c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/ISP592.h \
- ../User/Modules/UART_Master_Port_old.hpp
+ ../User/Modules/UART_Port\ copy.hpp
 
 c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_common.h:
 
@@ -52,4 +52,4 @@ c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_usb
 
 c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/ISP592.h:
 
-../User/Modules/UART_Master_Port_old.hpp:
+../User/Modules/UART_Port\ copy.hpp:

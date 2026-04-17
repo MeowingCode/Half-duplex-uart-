@@ -1,6 +1,6 @@
 // #pragma once
 #include "CH59x_common.h"
-
+template <typename Derived>
 class UartPort
 {
 public:
@@ -36,7 +36,7 @@ protected:
 
 public: ////////////////////////////////////////////////////////////////
     UartPort() {}
-    void init(uint32_t tx_pin, uint32_t rx_pin) 
+    void init(uint32_t tx_pin, uint32_t rx_pin, uint32_t baudrate = 115200) 
     {
         TX_PIN = tx_pin; 
         RX_PIN = rx_pin; 
@@ -47,18 +47,17 @@ public: ////////////////////////////////////////////////////////////////
         GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
         
         // §¯§Ñ§ã§ä§â§à§Û§Ü§Ñ §ã§Ñ§Þ§à§Ô§à UART (§ã§Ü§à§â§à§ã§ä§î, §æ§à§â§Þ§Ñ§ä)
-        UART1_DefInit();
+        UART_DefInit();
+        UART_BaudRateCfg(baudrate);
 
         // §¬§à§ß§æ§Ú§Ô§å§â§Ñ§è§Ú§ñ §á§â§Ö§â§í§Ó§Ñ§ß§Ú§Û
-        UART1_ByteTrigCfg(UART_1BYTE_TRIG); 
-        UART1_INTCfg(ENABLE, RB_IER_RECV_RDY | RB_IER_LINE_STAT);
+        UART_ByteTrigCfg(UART_1BYTE_TRIG); 
+        UART_INTCfg(ENABLE, RB_IER_RECV_RDY | RB_IER_LINE_STAT);
         
         // §£§Ü§Ý§ð§é§Ñ§Ö§Þ §Ó§Ö§Ü§ä§à§â §Ó §Ü§à§ß§ä§â§à§Ý§Ý§Ö§â§Ö §á§â§Ö§â§í§Ó§Ñ§ß§Ú§Û PFIC
         PFIC_EnableIRQ(UART1_IRQn);
     }
-// ------------------------------------------------------------------
-    virtual void poll() = 0; 
-    virtual void interruptReceived() = 0; 
+
 // -------------------------------------------------------------------
     void sendData(uint8_t command, uint8_t* buf, uint16_t length)
     {
@@ -70,13 +69,18 @@ public: ////////////////////////////////////////////////////////////////
     void receiveData(uint8_t *buf, uint16_t length)
     {
         rx_length = buf ? length : 0;
-        rx_buffer = buf ? buf + length : nullptr; 
-        if (state == STATE_WAIT) proceed(); 
+        rx_buffer = buf ? buf + length : nullptr;
+
+        if (state == STATE_WAIT)
+        {
+            static_cast<Derived*>(this)->proceed();
+        }
     }
+    
 // ----------------------------------------------------------------------
     bool isConnected()
     {
-        return connection;
+        return (state == STATE_IDLE);
     }
 
     bool isTxReady()
@@ -92,10 +96,6 @@ public: ////////////////////////////////////////////////////////////////
     }
 
 protected: ////////////////////////////////////////////////////////
-    
-    virtual void proceed() = 0;
-
-    virtual void setIdleState() = 0; 
 
     void reset()
     {
@@ -115,7 +115,7 @@ protected: ////////////////////////////////////////////////////////
         state = STATE_TX_COMMAND; 
         GPIOA_ModeCfg(TX_PIN, GPIO_ModeOut_PP_5mA);
         trig_point = 1;
-        UART1_ByteTrigCfg(UART_1BYTE_TRIG);
+        UART_ByteTrigCfg(UART_1BYTE_TRIG);
         echo_count = 1;          
     }
     void setRxCommandState()
@@ -123,7 +123,7 @@ protected: ////////////////////////////////////////////////////////
         state = STATE_RX_COMMAND; 
         GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
         trig_point = 1;
-        UART1_ByteTrigCfg(UART_1BYTE_TRIG);  
+        UART_ByteTrigCfg(UART_1BYTE_TRIG);  
     }
     
     void setTxDataState()
@@ -145,22 +145,22 @@ protected: ////////////////////////////////////////////////////////
         if (lenght >= 7)
         {
             trig_point = 7; 
-            UART1_ByteTrigCfg(UART_7BYTE_TRIG);        
+            UART_ByteTrigCfg(UART_7BYTE_TRIG);        
         }
         else if (lenght >= 4)
         {
             trig_point = 4; 
-            UART1_ByteTrigCfg(UART_4BYTE_TRIG);
+            UART_ByteTrigCfg(UART_4BYTE_TRIG);
         } 
         else if (lenght >= 2)
         {
             trig_point = 2; 
-            UART1_ByteTrigCfg(UART_2BYTE_TRIG);
+            UART_ByteTrigCfg(UART_2BYTE_TRIG);
         }
         else
         {
             trig_point = 1; 
-            UART1_ByteTrigCfg(UART_1BYTE_TRIG);
+            UART_ByteTrigCfg(UART_1BYTE_TRIG);
         }
     }
 // --------------------------------------------------------------
@@ -207,16 +207,52 @@ protected: ////////////////////////////////////////////////////////
         }
         setTriggerPoint(rx_length);  
     }
+// -----------------------------------------------------------------
+// §³§Ú§ã§ä§Ö§Þ§ß§í§Ö §æ§å§ß§Ü§è§Ú§Ú 
+    void UART_DefInit(void)
+    {
+        R8_UART1_FCR = (2 << 6) | RB_FCR_TX_FIFO_CLR | RB_FCR_RX_FIFO_CLR | RB_FCR_FIFO_EN; // FIFO
+        R8_UART1_LCR = RB_LCR_WORD_SZ;
+        R8_UART1_IER = RB_IER_TXD_EN;
+        R8_UART1_DIV = 1;
+    }
+    void UART_BaudRateCfg(uint32_t baudrate)
+    {
+        uint32_t x;
+        x = 10 * GetSysClock() / 8 / baudrate;
+        x = (x + 5) / 10;
+        R16_UART1_DL = (uint16_t)x;
+    }
+    void UART_ByteTrigCfg(UARTByteTRIGTypeDef b)
+    {
+        R8_UART1_FCR = (R8_UART1_FCR & ~RB_FCR_FIFO_TRIG) | (b << 6);
+    }
+    
+    void UART_INTCfg(FunctionalState s, uint8_t i)
+{
+    if(s)
+    {
+        R8_UART1_IER |= i;
+        R8_UART1_MCR |= RB_MCR_INT_OE;
+    }
+    else
+    {
+        R8_UART1_IER &= ~i;
+    }
+}
 };
 
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Master
-////////////////////////////////////////////////////////////
-class UartMasterPort: public UartPort
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class UartMasterPort: public UartPort<UartMasterPort>
 {
-    using State = UartPort::State;
+    friend class UartPort<UartMasterPort>;
+    
 private:
-    void proceed() override
+    using State = UartPort::State; 
+    void proceed()
     {
         if (tx_length) 
         {
@@ -231,7 +267,7 @@ private:
         else setIdleState(); 
     }
 
-    void setIdleState() override
+    void setIdleState()
     {
         state = STATE_IDLE; 
         GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
@@ -239,7 +275,8 @@ private:
         reset(); 
     }
 public:
-    void poll() override
+
+    void poll()
     {
         switch (state) {
             case STATE_IDLE: 
@@ -261,8 +298,8 @@ public:
             break; 
         }
     }
-
-    void interruptReceived() override
+    
+    void interruptReceived()
     {
         switch (state) {
             case STATE_IDLE: 
@@ -317,23 +354,25 @@ public:
                 break;
         }
     }
-
 };
 
-///////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Slave
-///////////////////////////////////////////////////////////////////////////////////
-class UartSlavePort: public UartPort
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class UartSlavePort: public UartPort<UartSlavePort>
 {
-    using State = UartPort::State;
+    friend class UartPort<UartSlavePort>;
+    using State = UartPort::State; 
 private:
-    void proceed() override
+    void proceed()
     {
         setTxCommandState(); 
         commandTransmit();  
     }
-    
-    void setIdleState() override
+
+    void setIdleState()
     {
         state = STATE_IDLE; 
         GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
@@ -341,14 +380,14 @@ private:
 
         echo_count = 0; 
         trig_point = 1;
-        UART1_ByteTrigCfg(UART_1BYTE_TRIG); 
+        UART_ByteTrigCfg(UART_1BYTE_TRIG); 
     }
 public:
-    void poll() override
+    void poll()
     {
         switch (state) {
             case STATE_IDLE: 
-            // connection = (rx_command)? true : false; 
+            connection = (rx_command)? true : false; 
             reset();
             break; 
             case STATE_WAIT: break; 
@@ -366,8 +405,8 @@ public:
             break; 
         }
     }
-
-    void interruptReceived() override
+    
+    void interruptReceived()
     {
         switch (state) {
             case STATE_IDLE: 
@@ -412,5 +451,4 @@ public:
                 break; 
         }
     }
-
 };

@@ -28,9 +28,29 @@
 				"name": "test.cpp"
 			},
 			{
-				"name": "UART_Port.hpp",
 				"parentLogicPath": "User/Modules",
-				"type": "file"
+				"type": "file",
+				"name": "UART_Master_Port_old.hpp"
+			},
+			{
+				"parentLogicPath": "User/Modules",
+				"type": "file",
+				"name": "UART_Master_Port.hpp"
+			},
+			{
+				"parentLogicPath": "User/Modules",
+				"type": "file",
+				"name": "UART_Port_old.hpp"
+			},
+			{
+				"parentLogicPath": "User/Modules",
+				"type": "file",
+				"name": "UART_Slave_Port_old.hpp"
+			},
+			{
+				"parentLogicPath": "User/Modules",
+				"type": "file",
+				"name": "UART_Slave_Port.hpp"
 			}
 		],
 		"projectName": "UART_test",

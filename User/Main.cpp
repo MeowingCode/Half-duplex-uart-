@@ -1,14 +1,14 @@
 #include "CH59x_common.h"
-
-// #include "UART_Port.hpp"
+#include "Modules/UART_Port copy.hpp"
 // #include "Modules/UART_Port.hpp"
-#include "Modules/UART_Master_Port_old.hpp"
-// #include "Modules/UART_Slave_Port_old.hpp"
-// #include "Modules/UART_Slave_Port.hpp"
-// #include "Modules/UART_Master_Port.hpp"
+// #include "Modules/UART_Port_backup.hpp"
+
 
 // PA9 - TX, PA8 - RX.    
-UartMasterPort UART1;
+UartSlavePort<0x40003400, GPIO_Pin_9, GPIO_Pin_8> UART1;
+// UartMasterPort<0x40003400, GPIO_Pin_9, GPIO_Pin_8> UART1;
+UartSlavePort<0x40003C00, GPIO_Pin_5,GPIO_Pin_4> UART3; 
+// UartMasterPort UART1; 
 // UartSlavePort UART1;
 
 uint8_t TxBuff[] = {0x01, 0x02, 0x03, 0x4, 0x05, 0x06, 0x07, 0xFF,
@@ -16,6 +16,8 @@ uint8_t TxBuff[] = {0x01, 0x02, 0x03, 0x4, 0x05, 0x06, 0x07, 0xFF,
                     0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0xFF};
 
 uint8_t RxBuff[24]; 
+uint8_t RxBuff3[24]; 
+
 
 volatile uint8_t command = 0;
 
@@ -25,7 +27,9 @@ int main()
     SetSysClock(CLK_SOURCE_PLL_60MHz);
     
     // §¬§à§ß§æ§Ú§Ô§å§â§Ñ§è§Ú§ñ §á§Ú§ß§à§Ó UART (§Ú§ã§á§à§Ý§î§Ù§å§Ö§Þ §ä§Ó§à§Û §â§Ñ§Ò§à§é§Ú§Û §Þ§Ö§ä§à§Õ §ã §Ñ§â§Ô§å§Þ§Ö§ß§ä§Ñ§Þ§Ú)
-    UART1.init(GPIO_Pin_9, GPIO_Pin_8); 
+    UART1.init(115200); 
+    // UART3.init(115200); 
+    // UART1.init(GPIO_Pin_9,GPIO_Pin_8);
 
     // §¯§Ñ§ã§ä§â§à§Û§Ü§Ñ §Ú§ß§Õ§Ú§Ü§Ñ§ä§à§â§ß§à§Ô§à §á§Ú§ß§Ñ B15
     GPIOB_ModeCfg(GPIO_Pin_15, GPIO_ModeOut_PP_5mA);
@@ -46,6 +50,8 @@ int main()
     
     // 3. §£§Ü§Ý§ð§é§Ñ§Ö§Þ §á§â§Ö§â§í§Ó§Ñ§ß§Ú§Ö §á§à §à§Ü§à§ß§é§Ñ§ß§Ú§ð §ã§é§Ö§ä§Ñ
     R8_TMR0_INTER_EN = RB_TMR_IE_CYC_END;
+    PFIC_EnableIRQ(UART1_IRQn);
+    PFIC_EnableIRQ(UART3_IRQn);
 
     PFIC_EnableIRQ(TMR0_IRQn);             // §£§Ü§Ý§ð§é§Ö§ß§Ú§Ö §á§â§Ö§â§í§Ó§Ñ§ß§Ú§ñ TMR0 §Ó §Ü§à§ß§ä§â§à§Ý§Ý§Ö§â§Ö
 
@@ -55,10 +61,15 @@ while(1)
         // GPIOB_InverseBits(GPIO_Pin_15); 
         if (UART1.isConnected()) GPIOB_SetBits(GPIO_Pin_15); 
         else GPIOB_ResetBits(GPIO_Pin_15);
+
         GPIOB_InverseBits(GPIO_Pin_14);
         command = UART1.hasCommand();
         if (command > 0) {
             UART1.receiveData(RxBuff, command);
+        }
+        command = UART3.hasCommand();
+        if (command > 0) {
+            UART3.receiveData(RxBuff3, command);
         }
     }
 
@@ -77,9 +88,10 @@ extern "C" {
         {
             TMR0_ClearITFlag(RB_TMR_IF_CYC_END); // §³§Ò§â§à§ã §æ§Ý§Ñ§Ô§Ñ §á§â§Ö§â§í§Ó§Ñ§ß§Ú§ñ
             // GPIOB_InverseBits(GPIO_Pin_14);
-            UART1.sendData(3, TxBuff, 3);
-            UART1.poll();  
             // UART1.sendData(3, TxBuff, 3);
+            UART1.poll();  
+            UART3.poll();
+            // UART1.sendData(20, TxBuff, 20);
         }
     }
 
@@ -107,6 +119,38 @@ extern "C" {
                 while(R8_UART1_LSR & RB_LSR_DATA_RDY) 
                 {
                     UART1_RecvByte();
+                }
+                break;
+
+            case UART_II_THR_EMPTY:
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    __INTERRUPT
+    __HIGH_CODE
+    void UART3_IRQHandler(void) 
+    {
+        uint8_t int_status = UART3_GetITFlag();
+
+        switch(int_status) 
+        {
+            case UART_II_LINE_STAT: 
+                UART3_GetLinSTA(); 
+                break;
+
+            case UART_II_RECV_RDY: 
+                UART3.interruptReceived(); 
+                break;
+
+            case UART_II_RECV_TOUT: 
+                // §£§í§é§Ú§ä§í§Ó§Ñ§Ö§Þ §à§ã§ä§Ñ§ä§Ü§Ú §á§â§Ú §ä§Ñ§Û§Þ§Ñ§å§ä§Ö
+                while(R8_UART3_LSR & RB_LSR_DATA_RDY) 
+                {
+                    UART3_RecvByte();
                 }
                 break;
 

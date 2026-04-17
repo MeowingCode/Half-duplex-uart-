@@ -1,17 +1,25 @@
 #include "CH59x_common.h"
-#include "Modules/UART_Slave_Port.hpp"
-#include "Modules/UART_Master_Port.hpp"
+#include "Modules/UART_Port copy.hpp"
+// #include "Modules/UART_Port.hpp"
+// #include "Modules/UART_Port_backup.hpp"
+
 
 // PA9 - TX, PA8 - RX.    
-UartMasterPort UART1;
+// UartMasterPort<0x40003400, GPIO_Pin_9, GPIO_Pin_8> UART1;
+UartSlavePort<0x40003400, GPIO_Pin_9, GPIO_Pin_8> UART1;
+UartMasterPort<0x40003C00, GPIO_Pin_5,GPIO_Pin_4> UART3; 
+// UartMasterPort UART1; 
+// UartSlavePort UART1;
 
 uint8_t TxBuff[] = {0x01, 0x02, 0x03, 0x4, 0x05, 0x06, 0x07, 0xFF,
-                    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0xFF,
+                    0x01, 0x02, 0x03, 0x04, 0x05, 0x01, 0x01, 0xFF,
                     0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0xFF};
 
 uint8_t RxBuff[24]; 
+uint8_t RxBuff3[24]; 
 
-bool start = false; 
+
+volatile uint8_t command = 0;
 
 int main() 
 {
@@ -19,12 +27,16 @@ int main()
     SetSysClock(CLK_SOURCE_PLL_60MHz);
     
     // §¬§à§ß§æ§Ú§Ô§å§â§Ñ§è§Ú§ñ §á§Ú§ß§à§Ó UART (§Ú§ã§á§à§Ý§î§Ù§å§Ö§Þ §ä§Ó§à§Û §â§Ñ§Ò§à§é§Ú§Û §Þ§Ö§ä§à§Õ §ã §Ñ§â§Ô§å§Þ§Ö§ß§ä§Ñ§Þ§Ú)
-    UART1.init(GPIO_Pin_9, GPIO_Pin_8); 
+    UART1.init(1000000); 
+    UART3.init(1000000); 
+    // UART1.init(GPIO_Pin_9,GPIO_Pin_8);
 
     // §¯§Ñ§ã§ä§â§à§Û§Ü§Ñ §Ú§ß§Õ§Ú§Ü§Ñ§ä§à§â§ß§à§Ô§à §á§Ú§ß§Ñ B15
     GPIOB_ModeCfg(GPIO_Pin_15, GPIO_ModeOut_PP_5mA);
     GPIOB_ResetBits(GPIO_Pin_15);
 
+    GPIOB_ModeCfg(GPIO_Pin_14, GPIO_ModeOut_PP_5mA);
+    GPIOB_ResetBits(GPIO_Pin_14);
 // --- §¯§Ñ§ã§ä§â§à§Û§Ü§Ñ §´§Ñ§Û§Þ§Ö§â§Ñ 0 §Õ§Ý§ñ §Ó§í§Ù§à§Ó§Ñ poll §Ü§Ñ§Ø§Õ§í§Ö 15 §Þ§ã ---
     
     // 1. §£§Ü§Ý§ð§é§Ñ§Ö§Þ §ä§Ñ§Ü§ä§Ú§â§à§Ó§Ñ§ß§Ú§Ö §ä§Ñ§Û§Þ§Ö§â§Ñ (§Ö§ã§Ý§Ú §ä§â§Ö§Ò§å§Ö§ä§ã§ñ §Ó §Ó§Ñ§ê§Ö§Û §Ó§Ö§â§ã§Ú§Ú SDK)
@@ -34,20 +46,31 @@ int main()
     // §Ú§ã§á§à§Ý§î§Ù§å§Ö§Þ §á§â§ñ§Þ§å§ð §ß§Ñ§ã§ä§â§à§Û§Ü§å §é§Ö§â§Ö§Ù §â§Ö§Ô§Ú§ã§ä§â§í §Ú§Ý§Ú §Ñ§Ý§î§ä§Ö§â§ß§Ñ§ä§Ú§Ó§ß§à§Ö §Ú§Þ§ñ:
     R8_TMR0_CTRL_MOD = RB_TMR_ALL_CLEAR;     // §³§Ò§â§à§ã §ä§Ñ§Û§Þ§Ö§â§Ñ
     R8_TMR0_CTRL_MOD = RB_TMR_COUNT_EN;      // §²§Ö§Ø§Ú§Þ §ã§é§Ö§ä§Ñ
-    R32_TMR0_CNT_END = 900000;               // §µ§ã§ä§Ñ§ß§à§Ó§Ü§Ñ §á§Ö§â§Ú§à§Õ§Ñ (15 §Þ§ã §á§â§Ú 60§®§¤§è)
+    R32_TMR0_CNT_END = 6000000;               // §µ§ã§ä§Ñ§ß§à§Ó§Ü§Ñ §á§Ö§â§Ú§à§Õ§Ñ (15 §Þ§ã §á§â§Ú 60§®§¤§è)
     
     // 3. §£§Ü§Ý§ð§é§Ñ§Ö§Þ §á§â§Ö§â§í§Ó§Ñ§ß§Ú§Ö §á§à §à§Ü§à§ß§é§Ñ§ß§Ú§ð §ã§é§Ö§ä§Ñ
     R8_TMR0_INTER_EN = RB_TMR_IE_CYC_END;
+    PFIC_EnableIRQ(UART1_IRQn);
+    PFIC_EnableIRQ(UART3_IRQn);
 
     PFIC_EnableIRQ(TMR0_IRQn);             // §£§Ü§Ý§ð§é§Ö§ß§Ú§Ö §á§â§Ö§â§í§Ó§Ñ§ß§Ú§ñ TMR0 §Ó §Ü§à§ß§ä§â§à§Ý§Ý§Ö§â§Ö
 
-    while(1) 
+while(1) 
     {
-        // §´§Ö§á§Ö§â§î §Ù§Õ§Ö§ã§î §ß§Ö§ä DelayMs(15), §è§Ú§Ü§Ý §Ü§â§å§ä§Ú§ä§ã§ñ §ß§Ñ §Þ§Ñ§Ü§ã§Ú§Þ§Ñ§Ý§î§ß§à§Û §ã§Ü§à§â§à§ã§ä§Ú.
-        // §±§Ú§ß B15 §Ò§å§Õ§Ö§ä §á§Ö§â§Ö§Ü§Ý§ð§é§Ñ§ä§î§ã§ñ §à§é§Ö§ß§î §Ò§í§ã§ä§â§à, §Ö§ã§Ý§Ú §Ö§ã§ä§î §ã§Ó§ñ§Ù§î.
+        // §¬§Ñ§Ø§Õ§à§Ö §á§â§à§ç§à§Ø§Õ§Ö§ß§Ú§Ö §è§Ú§Ü§Ý§Ñ §Ú§ß§Ó§Ö§â§ä§Ú§â§å§Ö§Þ §á§Ú§ß
+        // GPIOB_InverseBits(GPIO_Pin_15); 
+        if (UART1.isConnected()) GPIOB_SetBits(GPIO_Pin_15); 
+        else GPIOB_ResetBits(GPIO_Pin_15);
 
-        // DelayMs(1);
-        
+        GPIOB_InverseBits(GPIO_Pin_14);
+        command = UART1.hasCommand();
+        if (command > 0) {
+            UART1.receiveData(RxBuff, command);
+        }
+        command = UART3.hasCommand();
+        if (command > 0) {
+            UART3.receiveData(RxBuff3, command);
+        }
     }
 
 }
@@ -64,15 +87,11 @@ extern "C" {
         if (TMR0_GetITFlag(RB_TMR_IF_CYC_END)) 
         {
             TMR0_ClearITFlag(RB_TMR_IF_CYC_END); // §³§Ò§â§à§ã §æ§Ý§Ñ§Ô§Ñ §á§â§Ö§â§í§Ó§Ñ§ß§Ú§ñ
-
-            // §£§í§á§à§Ý§ß§ñ§Ö§Þ §Ý§à§Ô§Ú§Ü§å §à§á§â§à§ã§Ñ §á§à §ä§Ñ§Û§Þ§Ö§â§å
-            // UART1.sendData(4, TxBuff, 4);
-            if (UART1.isConnected()) GPIOB_SetBits(GPIO_Pin_15); // §ª§ß§Ó§Ö§â§ã§Ú§ñ §ã§à§ã§ä§à§ñ§ß§Ú§ñ §á§Ú§ß§Ñ
-            else GPIOB_ResetBits(GPIO_Pin_15);   // §£§í§Ü§Ý§ð§é§Ö§ß, §Ö§ã§Ý§Ú §ß§Ö§ä §ã§Ó§ñ§Ù§Ú
-            UART1.sendData(4, TxBuff, 4);
-            UART1.poll(); 
-            if (UART1.isConnected()) GPIOB_SetBits(GPIO_Pin_15); // §ª§ß§Ó§Ö§â§ã§Ú§ñ §ã§à§ã§ä§à§ñ§ß§Ú§ñ §á§Ú§ß§Ñ
-            else GPIOB_ResetBits(GPIO_Pin_15);   // §£§í§Ü§Ý§ð§é§Ö§ß, §Ö§ã§Ý§Ú §ß§Ö§ä §ã§Ó§ñ§Ù§Ú
+            // GPIOB_InverseBits(GPIO_Pin_14);
+            UART1.sendData(20, TxBuff, 20);
+            UART1.poll();  
+            UART3.poll();
+            // UART1.sendData(20, TxBuff, 20);
         }
     }
 
@@ -92,13 +111,7 @@ extern "C" {
                 break;
 
             case UART_II_RECV_RDY: 
-                if (UART1.isConnected()) GPIOB_SetBits(GPIO_Pin_15); // §ª§ß§Ó§Ö§â§ã§Ú§ñ §ã§à§ã§ä§à§ñ§ß§Ú§ñ §á§Ú§ß§Ñ
-                else GPIOB_ResetBits(GPIO_Pin_15);   // §£§í§Ü§Ý§ð§é§Ö§ß, §Ö§ã§Ý§Ú §ß§Ö§ä §ã§Ó§ñ§Ù§Ú
-                
                 UART1.interruptReceived(); 
-                
-                if (UART1.isConnected()) GPIOB_SetBits(GPIO_Pin_15); // §ª§ß§Ó§Ö§â§ã§Ú§ñ §ã§à§ã§ä§à§ñ§ß§Ú§ñ §á§Ú§ß§Ñ
-                else GPIOB_ResetBits(GPIO_Pin_15);   // §£§í§Ü§Ý§ð§é§Ö§ß, §Ö§ã§Ý§Ú §ß§Ö§ä §ã§Ó§ñ§Ù§Ú
                 break;
 
             case UART_II_RECV_TOUT: 
@@ -106,6 +119,38 @@ extern "C" {
                 while(R8_UART1_LSR & RB_LSR_DATA_RDY) 
                 {
                     UART1_RecvByte();
+                }
+                break;
+
+            case UART_II_THR_EMPTY:
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    __INTERRUPT
+    __HIGH_CODE
+    void UART3_IRQHandler(void) 
+    {
+        uint8_t int_status = UART3_GetITFlag();
+
+        switch(int_status) 
+        {
+            case UART_II_LINE_STAT: 
+                UART3_GetLinSTA(); 
+                break;
+
+            case UART_II_RECV_RDY: 
+                UART3.interruptReceived(); 
+                break;
+
+            case UART_II_RECV_TOUT: 
+                // §£§í§é§Ú§ä§í§Ó§Ñ§Ö§Þ §à§ã§ä§Ñ§ä§Ü§Ú §á§â§Ú §ä§Ñ§Û§Þ§Ñ§å§ä§Ö
+                while(R8_UART3_LSR & RB_LSR_DATA_RDY) 
+                {
+                    UART3_RecvByte();
                 }
                 break;
 
