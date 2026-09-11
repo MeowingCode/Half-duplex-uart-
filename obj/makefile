@@ -8,6 +8,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include User/Modules/subdir.mk
 -include User/subdir.mk
 -include StdPeriphDriver/subdir.mk
 -include Startup/subdir.mk

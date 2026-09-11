@@ -5,12 +5,11 @@
 		},
 		{
 			"name": "UART_test",
-			"path": "C:\\Users\\Jenny\\mounriver-studio-projects\\UART_test"
+			"path": "c:\\Users\\Jenny\\mounriver-studio-projects\\UART_test"
 		}
 	],
 	"settings": {
 		"mrs.workspace.type": "project",
-		"mrs.init.arg": "",
 		"files.associations": {
 			"*.c": "c",
 			"*.h": "cpp",

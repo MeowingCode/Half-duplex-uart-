@@ -9,6 +9,16 @@ c:/users/jenny/mounriver_studio2/resources/app/resources/win32/components/wch/to
 
 Discarded input sections
 
+ .text          0x0000000000000000        0x0 ./User/Modules/Uart_Port.o
+ .data          0x0000000000000000        0x0 ./User/Modules/Uart_Port.o
+ .bss           0x0000000000000000        0x0 ./User/Modules/Uart_Port.o
+ .debug_info    0x0000000000000000      0xc1a ./User/Modules/Uart_Port.o
+ .debug_abbrev  0x0000000000000000      0x1b9 ./User/Modules/Uart_Port.o
+ .debug_aranges
+                0x0000000000000000       0x18 ./User/Modules/Uart_Port.o
+ .debug_line    0x0000000000000000      0x28e ./User/Modules/Uart_Port.o
+ .debug_str     0x0000000000000000      0x884 ./User/Modules/Uart_Port.o
+ .comment       0x0000000000000000       0x34 ./User/Modules/Uart_Port.o
  .group         0x0000000000000000        0xc ./User/Main.o
  .group         0x0000000000000000        0xc ./User/Main.o
  .group         0x0000000000000000        0xc ./User/Main.o
@@ -18,7 +28,10 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./User/Main.o
  .group         0x0000000000000000        0xc ./User/Main.o
  .group         0x0000000000000000        0xc ./User/Main.o
- .group         0x0000000000000000       0x14 ./User/Main.o
+ .group         0x0000000000000000        0xc ./User/Main.o
+ .group         0x0000000000000000        0xc ./User/Main.o
+ .group         0x0000000000000000        0xc ./User/Main.o
+ .group         0x0000000000000000        0xc ./User/Main.o
  .group         0x0000000000000000        0xc ./User/Main.o
  .group         0x0000000000000000        0xc ./User/Main.o
  .group         0x0000000000000000        0xc ./User/Main.o
@@ -26,8 +39,7 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/Main.o
  .data          0x0000000000000000        0x0 ./User/Main.o
  .bss           0x0000000000000000        0x0 ./User/Main.o
- .data.TxBuff   0x0000000000000000       0x18 ./User/Main.o
- .eh_frame      0x0000000000000000      0x2dc ./User/Main.o
+ .eh_frame      0x0000000000000000      0x350 ./User/Main.o
  .text          0x0000000000000000        0x0 ./StdPeriphDriver/CH59x_clk.o
  .data          0x0000000000000000        0x0 ./StdPeriphDriver/CH59x_clk.o
  .bss           0x0000000000000000        0x0 ./StdPeriphDriver/CH59x_clk.o
@@ -365,6 +377,7 @@ RAM              0x0000000020000000 0x0000000000006800 xrw
 
 Linker script and memory map
 
+LOAD ./User/Modules/Uart_Port.o
 LOAD ./User/Main.o
 LOAD ./StdPeriphDriver/CH59x_clk.o
 LOAD ./StdPeriphDriver/CH59x_flash.o
@@ -411,7 +424,7 @@ END GROUP
                 0x0000000000000004                . = ALIGN (0x4)
                 0x0000000000000004                PROVIDE (_highcode_lma = .)
 
-.highcode       0x0000000020000000      0x918 load address 0x0000000000000004
+.highcode       0x0000000020000000      0x8c4 load address 0x0000000000000004
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                PROVIDE (_highcode_vma_start = .)
  *(.vector)
@@ -442,153 +455,165 @@ END GROUP
                 0x0000000020000090                SPI0_IRQHandler
                 0x0000000020000090                TMR1_IRQHandler
  *(.highcode)
- .highcode      0x0000000020000092      0x192 ./User/Main.o
+ .highcode      0x0000000020000092      0x13c ./User/Main.o
                 0x0000000020000092                TMR0_IRQHandler
-                0x000000002000019c                UART1_IRQHandler
-                0x00000000200001e0                UART3_IRQHandler
- .highcode      0x0000000020000224      0x2ce ./StdPeriphDriver/CH59x_sys.o
-                0x0000000020000224                SetSysClock
-                0x00000000200003e4                SYS_ResetExecute
-                0x000000002000043c                HardFault_Handler
-                0x00000000200004bc                mDelayuS
-                0x00000000200004ca                mDelaymS
- .highcode      0x00000000200004f2      0x426 c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver\libISP592.a(ISP583.o)
-                0x00000000200004f2                FLASH_ROM_BEG
-                0x0000000020000504                FLASH_ROM_END
-                0x0000000020000512                FLASH_ROM_IN
-                0x0000000020000520                FLASH_ROM_OUT
-                0x000000002000052e                FLASH_ROM_ADDR
-                0x0000000020000576                FLASH_ROM_WAIT
-                0x00000000200005ae                FLASH_EEPROM_CMD
+                0x0000000020000146                UART1_IRQHandler
+                0x000000002000018a                UART3_IRQHandler
+ .highcode      0x00000000200001ce      0x2ce ./StdPeriphDriver/CH59x_sys.o
+                0x00000000200001ce                SetSysClock
+                0x000000002000038e                SYS_ResetExecute
+                0x00000000200003e6                HardFault_Handler
+                0x0000000020000466                mDelayuS
+                0x0000000020000474                mDelaymS
+ .highcode      0x000000002000049c      0x426 c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver\libISP592.a(ISP583.o)
+                0x000000002000049c                FLASH_ROM_BEG
+                0x00000000200004ae                FLASH_ROM_END
+                0x00000000200004bc                FLASH_ROM_IN
+                0x00000000200004ca                FLASH_ROM_OUT
+                0x00000000200004d8                FLASH_ROM_ADDR
+                0x0000000020000520                FLASH_ROM_WAIT
+                0x0000000020000558                FLASH_EEPROM_CMD
  *(.highcode.*)
-                0x0000000020000918                . = ALIGN (0x4)
-                0x0000000020000918                PROVIDE (_highcode_vma_end = .)
+                0x00000000200008c4                . = ALIGN (0x4)
+ *fill*         0x00000000200008c2        0x2 
+                0x00000000200008c4                PROVIDE (_highcode_vma_end = .)
 
-.text           0x000000000000091c      0xaf0
-                0x000000000000091c                . = ALIGN (0x4)
+.text           0x00000000000008c8      0xbf8
+                0x00000000000008c8                . = ALIGN (0x4)
  *(SORT_NONE(.handle_reset))
- .handle_reset  0x000000000000091c       0xb2 ./Startup/startup_CH592.o
-                0x000000000000091c                handle_reset
+ .handle_reset  0x00000000000008c8       0xb2 ./Startup/startup_CH592.o
+                0x00000000000008c8                handle_reset
  *(.text)
  *(.text.*)
- .text._ZN8UartPortILm1073755136ELm512ELm256E13UartSlavePortILm1073755136ELm512ELm256EEE16UART_ByteTrigCfgE19UARTByteTRIGTypeDef.isra.0
-                0x00000000000009ce       0x1a ./User/Main.o
- .text._ZN8UartPortILm1073757184ELm32ELm16E13UartSlavePortILm1073757184ELm32ELm16EEE16UART_ByteTrigCfgE19UARTByteTRIGTypeDef.isra.8
-                0x00000000000009e8       0x1a ./User/Main.o
- .text._ZN13UartSlavePortILm1073755136ELm512ELm256EE12setIdleStateEv
-                0x0000000000000a02       0x3a ./User/Main.o
-                0x0000000000000a02                UartSlavePort<1073755136ul, 512ul, 256ul>::setIdleState()
- .text._ZN13UartSlavePortILm1073757184ELm32ELm16EE12setIdleStateEv
-                0x0000000000000a3c       0x3a ./User/Main.o
-                0x0000000000000a3c                UartSlavePort<1073757184ul, 32ul, 16ul>::setIdleState()
- .text._ZN8UartPortILm1073755136ELm512ELm256E13UartSlavePortILm1073755136ELm512ELm256EEE17setTxCommandStateEv
-                0x0000000000000a76       0x2e ./User/Main.o
-                0x0000000000000a76                UartPort<1073755136ul, 512ul, 256ul, UartSlavePort<1073755136ul, 512ul, 256ul> >::setTxCommandState()
- .text._ZN8UartPortILm1073755136ELm512ELm256E13UartSlavePortILm1073755136ELm512ELm256EEE12dataTransmitEv
-                0x0000000000000aa4       0x44 ./User/Main.o
-                0x0000000000000aa4                UartPort<1073755136ul, 512ul, 256ul, UartSlavePort<1073755136ul, 512ul, 256ul> >::dataTransmit()
- .text._ZN8UartPortILm1073757184ELm32ELm16E13UartSlavePortILm1073757184ELm32ELm16EEE17setTxCommandStateEv
-                0x0000000000000ae8       0x2e ./User/Main.o
-                0x0000000000000ae8                UartPort<1073757184ul, 32ul, 16ul, UartSlavePort<1073757184ul, 32ul, 16ul> >::setTxCommandState()
+ .text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE16UART_ByteTrigCfgE19UARTByteTRIGTypeDef.isra.0
+                0x000000000000097a       0x1a ./User/Main.o
+ .text._ZN8UartPortILm1073757184EL8GpioPort0ELm32ELm16E13UartSlavePortILm1073757184ELS0_0ELm32ELm16EEE16UART_ByteTrigCfgE19UARTByteTRIGTypeDef.isra.4
+                0x0000000000000994       0x1a ./User/Main.o
+ .text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE17setTxCommandStateEv
+                0x00000000000009ae       0x2e ./User/Main.o
+                0x00000000000009ae                UartPort<1073755136ul, (GpioPort)0, 512ul, 256ul, UartMasterPort<1073755136ul, (GpioPort)0, 512ul, 256ul> >::setTxCommandState()
+ .text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE15commandTransmitEv
+                0x00000000000009dc       0x20 ./User/Main.o
+                0x00000000000009dc                UartPort<1073755136ul, (GpioPort)0, 512ul, 256ul, UartMasterPort<1073755136ul, (GpioPort)0, 512ul, 256ul> >::commandTransmit()
+ .text._ZN14UartMasterPortILm1073755136EL8GpioPort0ELm512ELm256EE4pollEv
+                0x00000000000009fc       0x5c ./User/Main.o
+                0x00000000000009fc                UartMasterPort<1073755136ul, (GpioPort)0, 512ul, 256ul>::poll()
+ .text._ZN13UartSlavePortILm1073757184EL8GpioPort0ELm32ELm16EE12setIdleStateEv
+                0x0000000000000a58       0x44 ./User/Main.o
+                0x0000000000000a58                UartSlavePort<1073757184ul, (GpioPort)0, 32ul, 16ul>::setIdleState()
+ .text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE12dataTransmitEv
+                0x0000000000000a9c       0x44 ./User/Main.o
+                0x0000000000000a9c                UartPort<1073755136ul, (GpioPort)0, 512ul, 256ul, UartMasterPort<1073755136ul, (GpioPort)0, 512ul, 256ul> >::dataTransmit()
+ .text._ZN14UartMasterPortILm1073755136EL8GpioPort0ELm512ELm256EE12setIdleStateEv
+                0x0000000000000ae0       0x4a ./User/Main.o
+                0x0000000000000ae0                UartMasterPort<1073755136ul, (GpioPort)0, 512ul, 256ul>::setIdleState()
+ .text._ZN8UartPortILm1073757184EL8GpioPort0ELm32ELm16E13UartSlavePortILm1073757184ELS0_0ELm32ELm16EEE17setTxCommandStateEv
+                0x0000000000000b2a       0x2e ./User/Main.o
+                0x0000000000000b2a                UartPort<1073757184ul, (GpioPort)0, 32ul, 16ul, UartSlavePort<1073757184ul, (GpioPort)0, 32ul, 16ul> >::setTxCommandState()
+ .text._ZN8UartPortILm1073757184EL8GpioPort0ELm32ELm16E13UartSlavePortILm1073757184ELS0_0ELm32ELm16EEE12dataTransmitEv
+                0x0000000000000b58       0x44 ./User/Main.o
+                0x0000000000000b58                UartPort<1073757184ul, (GpioPort)0, 32ul, 16ul, UartSlavePort<1073757184ul, (GpioPort)0, 32ul, 16ul> >::dataTransmit()
+ .text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE15setTriggerPointEt
+                0x0000000000000b9c       0x38 ./User/Main.o
+                0x0000000000000b9c                UartPort<1073755136ul, (GpioPort)0, 512ul, 256ul, UartMasterPort<1073755136ul, (GpioPort)0, 512ul, 256ul> >::setTriggerPoint(unsigned short)
+ .text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE14setTxDataStateEv
+                0x0000000000000bd4       0x32 ./User/Main.o
+                0x0000000000000bd4                UartPort<1073755136ul, (GpioPort)0, 512ul, 256ul, UartMasterPort<1073755136ul, (GpioPort)0, 512ul, 256ul> >::setTxDataState()
  .text.startup.main
-                0x0000000000000b16      0x20c ./User/Main.o
-                0x0000000000000b16                main
- .text._ZN8UartPortILm1073757184ELm32ELm16E13UartSlavePortILm1073757184ELm32ELm16EEE12dataTransmitEv
-                0x0000000000000d22       0x44 ./User/Main.o
-                0x0000000000000d22                UartPort<1073757184ul, 32ul, 16ul, UartSlavePort<1073757184ul, 32ul, 16ul> >::dataTransmit()
- .text._ZN8UartPortILm1073755136ELm512ELm256E13UartSlavePortILm1073755136ELm512ELm256EEE15setTriggerPointEt
-                0x0000000000000d66       0x38 ./User/Main.o
-                0x0000000000000d66                UartPort<1073755136ul, 512ul, 256ul, UartSlavePort<1073755136ul, 512ul, 256ul> >::setTriggerPoint(unsigned short)
- .text._ZN8UartPortILm1073755136ELm512ELm256E13UartSlavePortILm1073755136ELm512ELm256EEE14setTxDataStateEv
-                0x0000000000000d9e       0x30 ./User/Main.o
-                0x0000000000000d9e                UartPort<1073755136ul, 512ul, 256ul, UartSlavePort<1073755136ul, 512ul, 256ul> >::setTxDataState()
- .text._ZN8UartPortILm1073755136ELm512ELm256E13UartSlavePortILm1073755136ELm512ELm256EEE12echoReceivedEv
-                0x0000000000000dce       0x78 ./User/Main.o
-                0x0000000000000dce                UartPort<1073755136ul, 512ul, 256ul, UartSlavePort<1073755136ul, 512ul, 256ul> >::echoReceived()
- .text._ZN13UartSlavePortILm1073755136ELm512ELm256EE17interruptReceivedEv
-                0x0000000000000e46      0x150 ./User/Main.o
-                0x0000000000000e46                UartSlavePort<1073755136ul, 512ul, 256ul>::interruptReceived()
- .text._ZN8UartPortILm1073757184ELm32ELm16E13UartSlavePortILm1073757184ELm32ELm16EEE15setTriggerPointEt
-                0x0000000000000f96       0x38 ./User/Main.o
-                0x0000000000000f96                UartPort<1073757184ul, 32ul, 16ul, UartSlavePort<1073757184ul, 32ul, 16ul> >::setTriggerPoint(unsigned short)
- .text._ZN8UartPortILm1073757184ELm32ELm16E13UartSlavePortILm1073757184ELm32ELm16EEE14setTxDataStateEv
-                0x0000000000000fce       0x30 ./User/Main.o
-                0x0000000000000fce                UartPort<1073757184ul, 32ul, 16ul, UartSlavePort<1073757184ul, 32ul, 16ul> >::setTxDataState()
- .text._ZN8UartPortILm1073757184ELm32ELm16E13UartSlavePortILm1073757184ELm32ELm16EEE12echoReceivedEv
-                0x0000000000000ffe       0x78 ./User/Main.o
-                0x0000000000000ffe                UartPort<1073757184ul, 32ul, 16ul, UartSlavePort<1073757184ul, 32ul, 16ul> >::echoReceived()
- .text._ZN13UartSlavePortILm1073757184ELm32ELm16EE17interruptReceivedEv
-                0x0000000000001076      0x154 ./User/Main.o
-                0x0000000000001076                UartSlavePort<1073757184ul, 32ul, 16ul>::interruptReceived()
+                0x0000000000000c06      0x276 ./User/Main.o
+                0x0000000000000c06                main
+ .text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE12echoReceivedEv
+                0x0000000000000e7c       0x78 ./User/Main.o
+                0x0000000000000e7c                UartPort<1073755136ul, (GpioPort)0, 512ul, 256ul, UartMasterPort<1073755136ul, (GpioPort)0, 512ul, 256ul> >::echoReceived()
+ .text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE14setRxDataStateEv
+                0x0000000000000ef4       0x2a ./User/Main.o
+                0x0000000000000ef4                UartPort<1073755136ul, (GpioPort)0, 512ul, 256ul, UartMasterPort<1073755136ul, (GpioPort)0, 512ul, 256ul> >::setRxDataState()
+ .text._ZN14UartMasterPortILm1073755136EL8GpioPort0ELm512ELm256EE17interruptReceivedEv
+                0x0000000000000f1e      0x13a ./User/Main.o
+                0x0000000000000f1e                UartMasterPort<1073755136ul, (GpioPort)0, 512ul, 256ul>::interruptReceived()
+ .text._ZN8UartPortILm1073757184EL8GpioPort0ELm32ELm16E13UartSlavePortILm1073757184ELS0_0ELm32ELm16EEE15setTriggerPointEt
+                0x0000000000001058       0x38 ./User/Main.o
+                0x0000000000001058                UartPort<1073757184ul, (GpioPort)0, 32ul, 16ul, UartSlavePort<1073757184ul, (GpioPort)0, 32ul, 16ul> >::setTriggerPoint(unsigned short)
+ .text._ZN8UartPortILm1073757184EL8GpioPort0ELm32ELm16E13UartSlavePortILm1073757184ELS0_0ELm32ELm16EEE14setTxDataStateEv
+                0x0000000000001090       0x30 ./User/Main.o
+                0x0000000000001090                UartPort<1073757184ul, (GpioPort)0, 32ul, 16ul, UartSlavePort<1073757184ul, (GpioPort)0, 32ul, 16ul> >::setTxDataState()
+ .text._ZN8UartPortILm1073757184EL8GpioPort0ELm32ELm16E13UartSlavePortILm1073757184ELS0_0ELm32ELm16EEE12echoReceivedEv
+                0x00000000000010c0       0x78 ./User/Main.o
+                0x00000000000010c0                UartPort<1073757184ul, (GpioPort)0, 32ul, 16ul, UartSlavePort<1073757184ul, (GpioPort)0, 32ul, 16ul> >::echoReceived()
+ .text._ZN13UartSlavePortILm1073757184EL8GpioPort0ELm32ELm16EE17interruptReceivedEv
+                0x0000000000001138      0x15e ./User/Main.o
+                0x0000000000001138                UartSlavePort<1073757184ul, (GpioPort)0, 32ul, 16ul>::interruptReceived()
  .text.startup._GLOBAL__sub_I_UART1
-                0x00000000000011ca       0x5c ./User/Main.o
+                0x0000000000001296       0x5c ./User/Main.o
  .text.GPIOA_ModeCfg
-                0x0000000000001226       0xa6 ./StdPeriphDriver/CH59x_gpio.o
-                0x0000000000001226                GPIOA_ModeCfg
+                0x00000000000012f2       0xa6 ./StdPeriphDriver/CH59x_gpio.o
+                0x00000000000012f2                GPIOA_ModeCfg
  .text.GPIOB_ModeCfg
-                0x00000000000012cc       0xa6 ./StdPeriphDriver/CH59x_gpio.o
-                0x00000000000012cc                GPIOB_ModeCfg
+                0x0000000000001398       0xa6 ./StdPeriphDriver/CH59x_gpio.o
+                0x0000000000001398                GPIOB_ModeCfg
  .text.GetSysClock
-                0x0000000000001372       0x40 ./StdPeriphDriver/CH59x_sys.o
-                0x0000000000001372                GetSysClock
+                0x000000000000143e       0x40 ./StdPeriphDriver/CH59x_sys.o
+                0x000000000000143e                GetSysClock
  *(.rodata)
  *(.rodata*)
- *fill*         0x00000000000013b2        0x2 
- .rodata._ZN13UartSlavePortILm1073755136ELm512ELm256EE17interruptReceivedEv
-                0x00000000000013b4       0x18 ./User/Main.o
- .rodata._ZN13UartSlavePortILm1073757184ELm32ELm16EE17interruptReceivedEv
-                0x00000000000013cc       0x18 ./User/Main.o
+ *fill*         0x000000000000147e        0x2 
+ .rodata._ZN13UartSlavePortILm1073757184EL8GpioPort0ELm32ELm16EE17interruptReceivedEv
+                0x0000000000001480       0x18 ./User/Main.o
  .rodata.GPIOA_ModeCfg
-                0x00000000000013e4       0x14 ./StdPeriphDriver/CH59x_gpio.o
+                0x0000000000001498       0x14 ./StdPeriphDriver/CH59x_gpio.o
  .rodata.GPIOB_ModeCfg
-                0x00000000000013f8       0x14 ./StdPeriphDriver/CH59x_gpio.o
+                0x00000000000014ac       0x14 ./StdPeriphDriver/CH59x_gpio.o
  *(.sdata2.*)
  *(.glue_7)
  *(.glue_7t)
  *(.gnu.linkonce.t.*)
-                0x000000000000140c                . = ALIGN (0x4)
+                0x00000000000014c0                . = ALIGN (0x4)
 
-.rela.dyn       0x000000000000140c        0x0
+.rela.dyn       0x00000000000014c0        0x0
+ .rela.text._ZN14UartMasterPortILm1073755136EL8GpioPort0ELm512ELm256EE4pollEv
+                0x00000000000014c0        0x0 ./User/Main.o
  .rela.highcode
-                0x000000000000140c        0x0 ./User/Main.o
+                0x00000000000014c0        0x0 ./User/Main.o
+ .rela.text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE14setTxDataStateEv
+                0x00000000000014c0        0x0 ./User/Main.o
  .rela.text.startup.main
-                0x000000000000140c        0x0 ./User/Main.o
- .rela.text._ZN8UartPortILm1073755136ELm512ELm256E13UartSlavePortILm1073755136ELm512ELm256EEE14setTxDataStateEv
-                0x000000000000140c        0x0 ./User/Main.o
- .rela.text._ZN8UartPortILm1073755136ELm512ELm256E13UartSlavePortILm1073755136ELm512ELm256EEE12echoReceivedEv
-                0x000000000000140c        0x0 ./User/Main.o
- .rela.text._ZN13UartSlavePortILm1073755136ELm512ELm256EE17interruptReceivedEv
-                0x000000000000140c        0x0 ./User/Main.o
- .rela.text._ZN8UartPortILm1073757184ELm32ELm16E13UartSlavePortILm1073757184ELm32ELm16EEE14setTxDataStateEv
-                0x000000000000140c        0x0 ./User/Main.o
- .rela.text._ZN8UartPortILm1073757184ELm32ELm16E13UartSlavePortILm1073757184ELm32ELm16EEE12echoReceivedEv
-                0x000000000000140c        0x0 ./User/Main.o
- .rela.text._ZN13UartSlavePortILm1073757184ELm32ELm16EE17interruptReceivedEv
-                0x000000000000140c        0x0 ./User/Main.o
- .rela.init     0x000000000000140c        0x0 ./User/Main.o
- .rela.vector   0x000000000000140c        0x0 ./User/Main.o
+                0x00000000000014c0        0x0 ./User/Main.o
+ .rela.text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE12echoReceivedEv
+                0x00000000000014c0        0x0 ./User/Main.o
+ .rela.text._ZN8UartPortILm1073755136EL8GpioPort0ELm512ELm256E14UartMasterPortILm1073755136ELS0_0ELm512ELm256EEE14setRxDataStateEv
+                0x00000000000014c0        0x0 ./User/Main.o
+ .rela.text._ZN14UartMasterPortILm1073755136EL8GpioPort0ELm512ELm256EE17interruptReceivedEv
+                0x00000000000014c0        0x0 ./User/Main.o
+ .rela.text._ZN8UartPortILm1073757184EL8GpioPort0ELm32ELm16E13UartSlavePortILm1073757184ELS0_0ELm32ELm16EEE14setTxDataStateEv
+                0x00000000000014c0        0x0 ./User/Main.o
+ .rela.text._ZN8UartPortILm1073757184EL8GpioPort0ELm32ELm16E13UartSlavePortILm1073757184ELS0_0ELm32ELm16EEE12echoReceivedEv
+                0x00000000000014c0        0x0 ./User/Main.o
+ .rela.text._ZN13UartSlavePortILm1073757184EL8GpioPort0ELm32ELm16EE17interruptReceivedEv
+                0x00000000000014c0        0x0 ./User/Main.o
+ .rela.init     0x00000000000014c0        0x0 ./User/Main.o
+ .rela.vector   0x00000000000014c0        0x0 ./User/Main.o
  .rela.handle_reset
-                0x000000000000140c        0x0 ./User/Main.o
+                0x00000000000014c0        0x0 ./User/Main.o
 
-.fini           0x000000000000140c        0x0
+.fini           0x00000000000014c0        0x0
  *(SORT_NONE(.fini))
-                0x000000000000140c                . = ALIGN (0x4)
+                0x00000000000014c0                . = ALIGN (0x4)
                 [!provide]                        PROVIDE (_etext = .)
                 [!provide]                        PROVIDE (_eitcm = .)
 
-.preinit_array  0x000000000000140c        0x0
+.preinit_array  0x00000000000014c0        0x0
                 [!provide]                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array)
                 [!provide]                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x000000000000140c        0x4
+.init_array     0x00000000000014c0        0x4
                 [!provide]                        PROVIDE (__init_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
  *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
- .init_array    0x000000000000140c        0x4 ./User/Main.o
+ .init_array    0x00000000000014c0        0x4 ./User/Main.o
                 [!provide]                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x0000000000001410        0x0
+.fini_array     0x00000000000014c4        0x0
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
  *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
@@ -608,54 +633,57 @@ END GROUP
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
 
-.dalign         0x0000000020000918        0x0 load address 0x0000000000001410
-                0x0000000020000918                . = (ORIGIN (RAM) + SIZEOF (.highcode))
+.dalign         0x00000000200008c4        0x0 load address 0x00000000000014c4
+                0x00000000200008c4                . = (ORIGIN (RAM) + SIZEOF (.highcode))
 
-.dlalign        0x0000000000001410        0x0
-                0x0000000000001410                . = ALIGN (0x4)
-                0x0000000000001410                PROVIDE (_data_lma = .)
+.dlalign        0x00000000000014c4        0x0
+                0x00000000000014c4                . = ALIGN (0x4)
+                0x00000000000014c4                PROVIDE (_data_lma = .)
 
-.data           0x0000000020000918        0x0 load address 0x0000000000001410
-                0x0000000020000918                . = ALIGN (0x4)
-                0x0000000020000918                PROVIDE (_data_vma = .)
+.data           0x00000000200008c4       0x1c load address 0x00000000000014c4
+                0x00000000200008c4                . = ALIGN (0x4)
+                0x00000000200008c4                PROVIDE (_data_vma = .)
  *(.gnu.linkonce.r.*)
  *(.data .data.*)
+ .data.TxBuff   0x00000000200008c4       0x18 ./User/Main.o
+                0x00000000200008c4                TxBuff
  *(.gnu.linkonce.d.*)
-                0x0000000020000918                . = ALIGN (0x8)
-                0x0000000020001118                PROVIDE (__global_pointer$ = (. + 0x800))
+                0x00000000200008e0                . = ALIGN (0x8)
+ *fill*         0x00000000200008dc        0x4 
+                0x00000000200010e0                PROVIDE (__global_pointer$ = (. + 0x800))
  *(.sdata .sdata.*)
  *(.gnu.linkonce.s.*)
-                0x0000000020000918                . = ALIGN (0x8)
+                0x00000000200008e0                . = ALIGN (0x8)
  *(.srodata.cst16)
  *(.srodata.cst8)
  *(.srodata.cst4)
  *(.srodata.cst2)
  *(.srodata .srodata.*)
-                0x0000000020000918                . = ALIGN (0x4)
-                0x0000000020000918                PROVIDE (_edata = .)
+                0x00000000200008e0                . = ALIGN (0x4)
+                0x00000000200008e0                PROVIDE (_edata = .)
 
-.bss            0x0000000020000918       0x64 load address 0x0000000000001410
-                0x0000000020000918                . = ALIGN (0x4)
-                0x0000000020000918                PROVIDE (_sbss = .)
+.bss            0x00000000200008e0       0x64 load address 0x00000000000014e0
+                0x00000000200008e0                . = ALIGN (0x4)
+                0x00000000200008e0                PROVIDE (_sbss = .)
  *(.sbss*)
- .sbss.command  0x0000000020000918        0x1 ./User/Main.o
-                0x0000000020000918                command
+ .sbss.command  0x00000000200008e0        0x1 ./User/Main.o
+                0x00000000200008e0                command
  *(.gnu.linkonce.sb.*)
  *(.bss*)
- *fill*         0x0000000020000919        0x3 
- .bss.RxBuff    0x000000002000091c       0x18 ./User/Main.o
-                0x000000002000091c                RxBuff
- .bss.RxBuff3   0x0000000020000934       0x18 ./User/Main.o
-                0x0000000020000934                RxBuff3
- .bss.UART1     0x000000002000094c       0x18 ./User/Main.o
-                0x000000002000094c                UART1
- .bss.UART3     0x0000000020000964       0x18 ./User/Main.o
-                0x0000000020000964                UART3
+ *fill*         0x00000000200008e1        0x3 
+ .bss.RxBuff    0x00000000200008e4       0x18 ./User/Main.o
+                0x00000000200008e4                RxBuff
+ .bss.RxBuff3   0x00000000200008fc       0x18 ./User/Main.o
+                0x00000000200008fc                RxBuff3
+ .bss.UART1     0x0000000020000914       0x18 ./User/Main.o
+                0x0000000020000914                UART1
+ .bss.UART3     0x000000002000092c       0x18 ./User/Main.o
+                0x000000002000092c                UART3
  *(.gnu.linkonce.b.*)
  *(COMMON*)
-                0x000000002000097c                . = ALIGN (0x4)
-                0x000000002000097c                PROVIDE (_ebss = .)
-                0x000000002000097c                PROVIDE (_end = _ebss)
+                0x0000000020000944                . = ALIGN (0x4)
+                0x0000000020000944                PROVIDE (_ebss = .)
+                0x0000000020000944                PROVIDE (_end = _ebss)
                 [!provide]                        PROVIDE (end = .)
 
 .stack          0x0000000020006600      0x200
@@ -667,53 +695,53 @@ END GROUP
                 0x0000000020006800                PROVIDE (_eusrstack = .)
 OUTPUT(UART_test.elf elf32-littleriscv)
 
-.debug_info     0x0000000000000000     0x5548
- .debug_info    0x0000000000000000     0x2e3f ./User/Main.o
- .debug_info    0x0000000000002e3f      0xe32 ./StdPeriphDriver/CH59x_gpio.o
- .debug_info    0x0000000000003c71     0x18b5 ./StdPeriphDriver/CH59x_sys.o
- .debug_info    0x0000000000005526       0x22 ./Startup/startup_CH592.o
+.debug_info     0x0000000000000000     0x5b26
+ .debug_info    0x0000000000000000     0x341d ./User/Main.o
+ .debug_info    0x000000000000341d      0xe32 ./StdPeriphDriver/CH59x_gpio.o
+ .debug_info    0x000000000000424f     0x18b5 ./StdPeriphDriver/CH59x_sys.o
+ .debug_info    0x0000000000005b04       0x22 ./Startup/startup_CH592.o
 
-.debug_abbrev   0x0000000000000000      0xd1e
- .debug_abbrev  0x0000000000000000      0x651 ./User/Main.o
- .debug_abbrev  0x0000000000000651      0x268 ./StdPeriphDriver/CH59x_gpio.o
- .debug_abbrev  0x00000000000008b9      0x453 ./StdPeriphDriver/CH59x_sys.o
- .debug_abbrev  0x0000000000000d0c       0x12 ./Startup/startup_CH592.o
+.debug_abbrev   0x0000000000000000      0xd6a
+ .debug_abbrev  0x0000000000000000      0x69d ./User/Main.o
+ .debug_abbrev  0x000000000000069d      0x268 ./StdPeriphDriver/CH59x_gpio.o
+ .debug_abbrev  0x0000000000000905      0x453 ./StdPeriphDriver/CH59x_sys.o
+ .debug_abbrev  0x0000000000000d58       0x12 ./Startup/startup_CH592.o
 
-.debug_loc      0x0000000000000000     0x12f7
- .debug_loc     0x0000000000000000      0xb40 ./User/Main.o
- .debug_loc     0x0000000000000b40      0x361 ./StdPeriphDriver/CH59x_gpio.o
- .debug_loc     0x0000000000000ea1      0x456 ./StdPeriphDriver/CH59x_sys.o
+.debug_loc      0x0000000000000000     0x16b4
+ .debug_loc     0x0000000000000000      0xefd ./User/Main.o
+ .debug_loc     0x0000000000000efd      0x361 ./StdPeriphDriver/CH59x_gpio.o
+ .debug_loc     0x000000000000125e      0x456 ./StdPeriphDriver/CH59x_sys.o
 
-.debug_aranges  0x0000000000000000      0x1c8
+.debug_aranges  0x0000000000000000      0x1e0
  .debug_aranges
-                0x0000000000000000       0xc0 ./User/Main.o
+                0x0000000000000000       0xd8 ./User/Main.o
  .debug_aranges
-                0x00000000000000c0       0x48 ./StdPeriphDriver/CH59x_gpio.o
+                0x00000000000000d8       0x48 ./StdPeriphDriver/CH59x_gpio.o
  .debug_aranges
-                0x0000000000000108       0x90 ./StdPeriphDriver/CH59x_sys.o
+                0x0000000000000120       0x90 ./StdPeriphDriver/CH59x_sys.o
  .debug_aranges
-                0x0000000000000198       0x30 ./Startup/startup_CH592.o
+                0x00000000000001b0       0x30 ./Startup/startup_CH592.o
 
-.debug_ranges   0x0000000000000000      0x468
- .debug_ranges  0x0000000000000000      0x328 ./User/Main.o
- .debug_ranges  0x0000000000000328       0x38 ./StdPeriphDriver/CH59x_gpio.o
- .debug_ranges  0x0000000000000360       0xe0 ./StdPeriphDriver/CH59x_sys.o
- .debug_ranges  0x0000000000000440       0x28 ./Startup/startup_CH592.o
+.debug_ranges   0x0000000000000000      0x5d8
+ .debug_ranges  0x0000000000000000      0x498 ./User/Main.o
+ .debug_ranges  0x0000000000000498       0x38 ./StdPeriphDriver/CH59x_gpio.o
+ .debug_ranges  0x00000000000004d0       0xe0 ./StdPeriphDriver/CH59x_sys.o
+ .debug_ranges  0x00000000000005b0       0x28 ./Startup/startup_CH592.o
 
-.debug_line     0x0000000000000000     0x3090
- .debug_line    0x0000000000000000     0x15a9 ./User/Main.o
- .debug_line    0x00000000000015a9      0x7f4 ./StdPeriphDriver/CH59x_gpio.o
- .debug_line    0x0000000000001d9d     0x11a8 ./StdPeriphDriver/CH59x_sys.o
- .debug_line    0x0000000000002f45      0x14b ./Startup/startup_CH592.o
+.debug_line     0x0000000000000000     0x3331
+ .debug_line    0x0000000000000000     0x184a ./User/Main.o
+ .debug_line    0x000000000000184a      0x7f4 ./StdPeriphDriver/CH59x_gpio.o
+ .debug_line    0x000000000000203e     0x11a8 ./StdPeriphDriver/CH59x_sys.o
+ .debug_line    0x00000000000031e6      0x14b ./Startup/startup_CH592.o
 
-.debug_str      0x0000000000000000     0x2e51
- .debug_str     0x0000000000000000     0x2abe ./User/Main.o
-                                       0x2c09 (size before relaxing)
- .debug_str     0x0000000000002abe      0x1a7 ./StdPeriphDriver/CH59x_gpio.o
+.debug_str      0x0000000000000000     0x34d0
+ .debug_str     0x0000000000000000     0x3142 ./User/Main.o
+                                       0x329f (size before relaxing)
+ .debug_str     0x0000000000003142      0x1a2 ./StdPeriphDriver/CH59x_gpio.o
                                         0x99f (size before relaxing)
- .debug_str     0x0000000000002c65      0x1c5 ./StdPeriphDriver/CH59x_sys.o
+ .debug_str     0x00000000000032e4      0x1c5 ./StdPeriphDriver/CH59x_sys.o
                                         0xbd2 (size before relaxing)
- .debug_str     0x0000000000002e2a       0x27 ./Startup/startup_CH592.o
+ .debug_str     0x00000000000034a9       0x27 ./Startup/startup_CH592.o
                                          0x5e (size before relaxing)
 
 .comment        0x0000000000000000       0x33

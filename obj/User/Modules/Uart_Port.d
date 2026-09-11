@@ -1,4 +1,4 @@
-User/Main.o: ../User/Main.cpp \
+User/Modules/Uart_Port.o: ../User/Modules/Uart_Port.cpp \
  c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_common.h \
  c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH592SFR.h \
  c:/Users/Jenny/mounriver-studio-projects/UART_test/RVMSIS/core_riscv.h \
@@ -15,8 +15,7 @@ User/Main.o: ../User/Main.cpp \
  c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_spi.h \
  c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_usbdev.h \
  c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_usbhost.h \
- c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/ISP592.h \
- ../User/Modules/UART_Port.cpp
+ c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/ISP592.h
 
 c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_common.h:
 
@@ -51,5 +50,3 @@ c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_usb
 c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/CH59x_usbhost.h:
 
 c:/Users/Jenny/mounriver-studio-projects/UART_test/StdPeriphDriver/inc/ISP592.h:
-
-../User/Modules/UART_Port.cpp:

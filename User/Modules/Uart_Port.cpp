@@ -1,9 +1,29 @@
 // #pragma once
 #include "CH59x_common.h"
+// §°§Ò§Ö§â§ä§Ü§Ñ §Õ§Ý§ñ GPIO
 
-template <uint32_t BASE, uint32_t TX_PIN, uint32_t RX_PIN, typename Derived>
+enum GpioPort {
+    PORTA,
+    PORTB
+};
+template<GpioPort PORT> struct GpioTraits;
+
+template<> struct GpioTraits<PORTA> {
+    static void mode(uint32_t pin, GPIOModeTypeDef m) { GPIOA_ModeCfg(pin,  m); }
+    static void set(uint32_t pin) { GPIOA_SetBits(pin); }
+    static void reset(uint32_t pin) { GPIOA_ResetBits(pin); }
+};
+
+template<> struct GpioTraits<PORTB> {
+    static void mode(uint32_t pin, GPIOModeTypeDef m) { GPIOB_ModeCfg(pin, m); }
+    static void set(uint32_t pin) { GPIOB_SetBits(pin); }
+    static void reset(uint32_t pin) { GPIOB_ResetBits(pin); }
+};
+
+template <uint32_t BASE, GpioPort PORT, uint32_t TX_PIN, uint32_t RX_PIN, typename Derived>
 class UartPort
 {
+    using Gpio = GpioTraits<PORT>;
 public:
     enum State
     {
@@ -49,10 +69,9 @@ public: ////////////////////////////////////////////////////////////////
     void init(uint32_t baudrate = 115200) 
     {
         // §ß§Ñ§ã§ä§â§à§Û§Ü§Ñ §á§Ú§ß§à§Ó
-        GPIOA_SetBits(TX_PIN);
-        GPIOA_ModeCfg(RX_PIN, GPIO_ModeIN_PU);
-        GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
-        
+        Gpio::set(TX_PIN); 
+        Gpio::mode(RX_PIN, GPIO_ModeIN_PU); 
+        Gpio::mode(TX_PIN, GPIO_ModeIN_PU); 
         // §¯§Ñ§ã§ä§â§à§Û§Ü§Ñ §ã§Ñ§Þ§à§Ô§à UART (§ã§Ü§à§â§à§ã§ä§î, §æ§à§â§Þ§Ñ§ä)
         UART_DefInit();
         UART_BaudRateCfg(baudrate);
@@ -117,7 +136,8 @@ protected: ////////////////////////////////////////////////////////
     void setTxCommandState()
     {
         state = STATE_TX_COMMAND; 
-        GPIOA_ModeCfg(TX_PIN, GPIO_ModeOut_PP_5mA);
+        // GPIOA_ModeCfg(TX_PIN, GPIO_ModeOut_PP_5mA);
+        Gpio::mode(TX_PIN, GPIO_ModeOut_PP_5mA); 
         trig_point = 1;
         UART_ByteTrigCfg(UART_1BYTE_TRIG);
         echo_count = 1;          
@@ -125,7 +145,8 @@ protected: ////////////////////////////////////////////////////////
     void setRxCommandState()
     {
         state = STATE_RX_COMMAND; 
-        GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+        // GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+        Gpio::mode(TX_PIN, GPIO_ModeIN_PU); 
         trig_point = 1;
         UART_ByteTrigCfg(UART_1BYTE_TRIG);  
     }
@@ -133,7 +154,9 @@ protected: ////////////////////////////////////////////////////////
     void setTxDataState()
     {
         state = STATE_TX_DATA; 
-        GPIOA_ModeCfg(TX_PIN, GPIO_ModeOut_PP_5mA);
+        // GPIOA_ModeCfg(TX_PIN, GPIO_ModeOut_PP_5mA);
+        Gpio::mode(TX_PIN, GPIO_ModeOut_PP_5mA);
+
         setTriggerPoint(tx_length); 
         echo_count = tx_length;
     }
@@ -141,6 +164,8 @@ protected: ////////////////////////////////////////////////////////
     {
         state = STATE_RX_DATA; 
         GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+        Gpio::mode(TX_PIN, GPIO_ModeIN_PU);
+
         setTriggerPoint(rx_length); 
     }
 
@@ -233,11 +258,12 @@ protected: ////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Master
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-template <uint32_t BASE, uint32_t TX_PIN, uint32_t RX_PIN>
-class UartMasterPort: public UartPort<BASE, TX_PIN, RX_PIN, UartMasterPort<BASE, TX_PIN, RX_PIN>>
+template <uint32_t BASE, GpioPort PORT, uint32_t TX_PIN, uint32_t RX_PIN>
+class UartMasterPort: public UartPort<BASE, PORT, TX_PIN, RX_PIN, UartMasterPort<BASE, PORT, TX_PIN, RX_PIN>>
 {
-    using Base = UartPort<BASE, TX_PIN, RX_PIN, UartMasterPort>;
+    using Base = UartPort<BASE, PORT, TX_PIN, RX_PIN, UartMasterPort>;
     using State = typename Base::State;
+    using Gpio = GpioTraits<PORT>;
     friend Base;    
 private:
     void proceed()
@@ -258,7 +284,8 @@ private:
     void setIdleState()
     {
         this->state = State::STATE_IDLE; 
-        GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+        // GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+        Gpio::mode(TX_PIN, GPIO_ModeIN_PU);
         if (this->rx_command > 0) this->connection = true; 
         this->reset(); 
     }
@@ -352,11 +379,12 @@ public:
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Slave
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-template <uint32_t BASE, uint32_t TX_PIN, uint32_t RX_PIN>
-class UartSlavePort: public UartPort<BASE, TX_PIN, RX_PIN, UartSlavePort<BASE, TX_PIN, RX_PIN>>
+template <uint32_t BASE, GpioPort PORT, uint32_t TX_PIN, uint32_t RX_PIN>
+class UartSlavePort: public UartPort<BASE, PORT, TX_PIN, RX_PIN, UartSlavePort<BASE, PORT, TX_PIN, RX_PIN>>
 {
-    using Base = UartPort<BASE, TX_PIN, RX_PIN, UartSlavePort>;
+    using Base = UartPort<BASE, PORT, TX_PIN, RX_PIN, UartSlavePort>;
     using State = typename Base::State;
+    using Gpio = GpioTraits<PORT>;
     friend Base;
 
 private:
@@ -370,6 +398,8 @@ private:
     {
         this->state = State::STATE_IDLE; 
         GPIOA_ModeCfg(TX_PIN, GPIO_ModeIN_PU);
+        Gpio::mode(TX_PIN, GPIO_ModeIN_PU);
+
         this->connection = (this->rx_command)? true : false;  
 
         this->echo_count = 0; 

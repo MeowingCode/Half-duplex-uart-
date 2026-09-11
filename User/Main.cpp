@@ -1,15 +1,10 @@
 #include "CH59x_common.h"
-#include "Modules/UART_Port copy.hpp"
-// #include "Modules/UART_Port.hpp"
-// #include "Modules/UART_Port_backup.hpp"
+#include "Modules/UART_Port.cpp"
 
 
 // PA9 - TX, PA8 - RX.    
-UartSlavePort<0x40003400, GPIO_Pin_9, GPIO_Pin_8> UART1;
-// UartMasterPort<0x40003400, GPIO_Pin_9, GPIO_Pin_8> UART1;
-UartSlavePort<0x40003C00, GPIO_Pin_5,GPIO_Pin_4> UART3; 
-// UartMasterPort UART1; 
-// UartSlavePort UART1;
+UartMasterPort<0x40003400, PORTA, GPIO_Pin_9, GPIO_Pin_8> UART1;
+UartSlavePort<0x40003C00, PORTA, GPIO_Pin_5,GPIO_Pin_4> UART3; 
 
 uint8_t TxBuff[] = {0x01, 0x02, 0x03, 0x4, 0x05, 0x06, 0x07, 0xFF,
                     0x01, 0x02, 0x03, 0x04, 0x05, 0x01, 0x01, 0xFF,
@@ -28,8 +23,7 @@ int main()
     
     // §¬§à§ß§æ§Ú§Ô§å§â§Ñ§è§Ú§ñ §á§Ú§ß§à§Ó UART (§Ú§ã§á§à§Ý§î§Ù§å§Ö§Þ §ä§Ó§à§Û §â§Ñ§Ò§à§é§Ú§Û §Þ§Ö§ä§à§Õ §ã §Ñ§â§Ô§å§Þ§Ö§ß§ä§Ñ§Þ§Ú)
     UART1.init(115200); 
-    // UART3.init(115200); 
-    // UART1.init(GPIO_Pin_9,GPIO_Pin_8);
+    UART3.init(115200); 
 
     // §¯§Ñ§ã§ä§â§à§Û§Ü§Ñ §Ú§ß§Õ§Ú§Ü§Ñ§ä§à§â§ß§à§Ô§à §á§Ú§ß§Ñ B15
     GPIOB_ModeCfg(GPIO_Pin_15, GPIO_ModeOut_PP_5mA);
@@ -87,11 +81,9 @@ extern "C" {
         if (TMR0_GetITFlag(RB_TMR_IF_CYC_END)) 
         {
             TMR0_ClearITFlag(RB_TMR_IF_CYC_END); // §³§Ò§â§à§ã §æ§Ý§Ñ§Ô§Ñ §á§â§Ö§â§í§Ó§Ñ§ß§Ú§ñ
-            // GPIOB_InverseBits(GPIO_Pin_14);
-            // UART1.sendData(3, TxBuff, 3);
+            UART1.sendData(3, TxBuff, 3);
             UART1.poll();  
             UART3.poll();
-            // UART1.sendData(20, TxBuff, 20);
         }
     }
 
